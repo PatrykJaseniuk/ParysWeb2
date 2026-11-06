@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ *  Design tokens — Sport Studio Parys
+ *  Paleta pochodzi z brandu (business-data.json → brand),
+ *  ale została rozszerzona o warianty dla trybu ciemnego.
+ * ------------------------------------------------------------------ */
+@theme {
+  --font-display: "Archivo Variable", "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+
+  --color-ink: #0a0a0b;
+  --color-ink-2: #101012;
+  --color-ink-3: #17171a;
+  --color-line: #26262b;
+  --color-line-soft: #33333a;
+  --color-bone: #f2f1ed;
+  --color-bone-2: #e6e4de;
+  --color-mist: #9d9da5;
+  --color-brand: #e31e24;
+  --color-brand-deep: #b01218;
+  /* Warianty czytelne dla małego tekstu (≥4,5:1) */
+  --color-brand-text-dark: #f2404a;
+  --color-brand-text-paper: #c8151b;
+  --color-brand-soft: #f8d8d9;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-ink font-sans text-bone antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-brand text-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display uppercase;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Cienki, ciemny scrollbar — spójny z motywem. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-soft) transparent;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Custom utilities (kompozycje wielokrotnego użytku)
+ *  W Tailwind v4 @apply działa tylko z utilities, dlatego bazowe
+ *  „mikstury” definiujemy przez @utility, a nie jako klasy komponentów.
+ * ------------------------------------------------------------------ */
+@utility display-text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border-radius: 2px;
+  padding: 0.875rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Komponenty
+ * ------------------------------------------------------------------ */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[10px] font-medium uppercase tracking-[0.3em] text-mist sm:text-[11px];
+  }
+
+  .eyebrow-strong {
+    @apply font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-text-dark sm:text-[11px];
+  }
+
+  /* Nagłówek sekcji — duży, ciasny, wersaliki. */
+  .display {
+    @apply display-text;
+  }
+
+  .h2 {
+    @apply display-text text-[clamp(1.9rem,4.2vw,3.5rem)];
+  }
+
+  .h3 {
+    @apply display-text text-[clamp(1.35rem,2.3vw,1.9rem)];
+    letter-spacing: -0.025em;
+  }
+
+  .lead {
+    @apply text-[15px] leading-relaxed text-mist sm:text-base;
+  }
+
+  .body-copy {
+    @apply text-[15px] leading-[1.75] text-bone/80;
+  }
+
+  /* Przyciski ------------------------------------------------------- */
+  .btn,
+  .btn-primary,
+  .btn-ghost,
+  .btn-light {
+    @apply btn-base;
+  }
+
+  .btn-primary {
+    @apply bg-brand text-white;
+  }
+
+  .btn-primary:hover {
+    @apply bg-brand-deep;
+  }
+
+  .btn-ghost {
+    @apply border border-line text-bone;
+  }
+
+  .btn-ghost:hover {
+    @apply border-bone/40 bg-white/5;
+  }
+
+  .btn-light {
+    @apply bg-ink text-bone;
+  }
+
+  .btn-light:hover {
+    @apply bg-ink-3;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2.5 text-[10px];
+  }
+
+  /* Link ze strzałką ------------------------------------------------ */
+  .link-arrow {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-bone transition-colors;
+  }
+
+  .link-arrow:hover {
+    @apply text-brand;
+  }
+
+  .link-arrow svg {
+    @apply transition-transform duration-200;
+  }
+
+  .link-arrow:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  /* Karty ----------------------------------------------------------- */
+  .card {
+    @apply border border-line bg-ink-2;
+  }
+
+  .card-paper {
+    @apply border border-black/10 bg-white;
+  }
+
+  /* Siatka włosowa (tło techniczne) --------------------------------- */
+  .hairlines {
+    background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-line) 65%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 25% 100%;
+  }
+
+  /* Liczby — zawsze tabelaryczne, żeby ceny się nie „skakały”. */
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Marquee --------------------------------------------------------- */
+  .marquee {
+    @apply flex w-max items-center gap-0 will-change-transform;
+    animation: marquee 38s linear infinite;
+  }
+
+  .marquee-slow {
+    animation-duration: 60s;
+  }
+
+  .marquee-wrap:hover .marquee {
+    animation-play-state: paused;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Dostępność — respektujemy preferencję ograniczonego ruchu.
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Druk — cennik musi dać się wydrukować z recepcji.
+ * ------------------------------------------------------------------ */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}

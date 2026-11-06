@@ -1,0 +1,12 @@
+# Zależności
+node_modules/
+
+# Artefakty (build, eksport, cache)
+1-web/8-output/
+1-web/.astro/
+
+# System / środowisko
+.DS_Store
+Thumbs.db
+.env
+.env.local

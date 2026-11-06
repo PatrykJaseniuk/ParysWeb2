@@ -1,0 +1,69 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  class?: string;
+  /** GPS z danych biznesowych. */
+  lat: number;
+  lng: number;
+  embedUrl: string;
+  placeName: string;
+  addressLine1: string;
+  addressLine2: string;
+}
+
+const { class: className = "", lat, lng, embedUrl, placeName, addressLine1, addressLine2 } = Astro.props;
+
+const externalUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+---
+
+<div class:list={["group relative overflow-hidden border border-line bg-ink-2", className]} data-map>
+  <!-- Zaślepka: ładuje iframe dopiero po kliknięciu (prywatność + wydajność). -->
+  <div class="flex aspect-[4/3] flex-col items-center justify-center gap-4 p-8 text-center lg:aspect-auto lg:h-full lg:min-h-[420px]" data-map-placeholder>
+    <span class="flex h-12 w-12 items-center justify-center border border-brand/40 bg-brand/10 text-brand">
+      <Icon name="pin" size={22} />
+    </span>
+    <div>
+      <p class="font-display text-lg font-bold uppercase tracking-tight text-bone">{placeName}</p>
+      <p class="mt-1 text-sm text-mist">{addressLine1}<br />{addressLine2}</p>
+    </div>
+    <button type="button" class="btn-ghost btn-sm" data-map-load>
+      Pokaż mapę
+      <Icon name="arrow-down" size={13} />
+    </button>
+    <a
+      href={externalUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="link-arrow text-[10px] text-mist"
+    >
+      Otwórz w Google Maps
+      <Icon name="arrow-up-right" size={12} />
+    </a>
+  </div>
+
+  <iframe
+    data-map-frame
+    data-src={embedUrl}
+    title={`Mapa dojazdu — ${placeName}`}
+    class="hidden h-full min-h-[420px] w-full border-0"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+  ></iframe>
+</div>
+
+<script>
+  document.querySelectorAll("[data-map]").forEach((root) => {
+    const button = root.querySelector("[data-map-load]");
+    const frame = root.querySelector("[data-map-frame]") as HTMLIFrameElement | null;
+    const placeholder = root.querySelector("[data-map-placeholder]");
+    if (!button || !frame) return;
+
+    button.addEventListener("click", () => {
+      frame.src = frame.dataset.src ?? "";
+      frame.classList.remove("hidden");
+      placeholder?.classList.add("hidden");
+    });
+  });
+</script>

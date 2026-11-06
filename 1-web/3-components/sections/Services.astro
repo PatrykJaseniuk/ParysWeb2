@@ -1,0 +1,77 @@
+---
+import Icon from "../../2-ui/ui/Icon.astro";
+import SectionHead from "../../2-ui/ui/SectionHead.astro";
+import { contact, pln, services } from "../../1-data/business";
+
+function priceLabel(service: (typeof services)[number]) {
+  if (!service.price) return "Ceny w sklepie";
+  const { amount_pln, unit } = service.price;
+  const prefix = unit === "od" ? "od " : "";
+  const suffix = unit === "godzina" ? " / godz." : "";
+  return `${prefix}${pln(amount_pln)}${suffix}`;
+}
+---
+
+<section class="border-t border-line bg-ink" id="uslugi">
+  <div class="container-x py-14 sm:py-16 lg:py-20">
+    <SectionHead
+      index="06"
+      label="Usługi dodatkowe"
+      title="Nie tylko siłownia"
+      description="Sauna, badminton, masaż i bufet — rzeczy, które robią różnicę między „chodzę na siłownię” a „trenuję w klubie”."
+      link={{ label: "Wszystkie usługi", href: "/uslugi" }}
+    />
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:gap-5">
+      {
+        services.map((service, i) => (
+          <article class="group relative flex flex-col justify-between overflow-hidden border border-line bg-ink-2 p-6 transition-colors hover:border-line-soft sm:p-7">
+            <div class="absolute right-0 top-0 h-16 w-16 bg-gradient-to-bl from-brand/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-mono text-[10px] tracking-[0.2em] text-mist/80">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 class="mt-3 font-display text-xl font-bold uppercase leading-tight tracking-tight text-bone sm:text-2xl">
+                  {service.name}
+                </h3>
+              </div>
+              <p class="shrink-0 text-right">
+                <span class="num block font-display text-lg font-bold text-brand sm:text-xl">
+                  {priceLabel(service)}
+                </span>
+              </p>
+            </div>
+
+            <p class="mt-4 text-sm leading-relaxed text-mist">{service.description}</p>
+
+            <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-4">
+              {service.booking && (
+                <span class="flex items-center gap-1.5 font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-bone/60">
+                  <Icon name="phone" size={12} class="shrink-0 text-brand" />
+                  {service.booking}
+                </span>
+              )}
+              {service.calendar && (
+                <a href="/uslugi" class="link-arrow text-[10px]">
+                  Kalendarz
+                  <Icon name="calendar" size={12} />
+                </a>
+              )}
+              {!service.booking && !service.calendar && (
+                <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-mist/80">
+                  Dostępne w recepcji
+                </span>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-mist/75">
+      Rezerwacje sauny i badmintona prowadzimy telefonicznie: {contact.phone}
+    </p>
+  </div>
+</section>

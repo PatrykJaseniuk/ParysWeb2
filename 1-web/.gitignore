@@ -1,0 +1,16 @@
+# Zależności
+node_modules/
+
+# Artefakty budowania, eksportu i cache
+8-output/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Środowisko
+.env
+.env.local
+
+# Cache typów Astro
+.astro/

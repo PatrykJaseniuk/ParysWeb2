@@ -1,0 +1,20 @@
+---
+import LegalPage from "../../4-layouts/LegalPage.astro";
+
+const checklist = [
+  "Pełna nazwa firmy, adres siedziby i NIP administratora danych.",
+  "Zakres przetwarzanych danych (formularz kontaktowy, rezerwacje, monitoring).",
+  "Podstawa prawna i okres przechowywania danych.",
+  "Lista odbiorców danych (np. Google Analytics, Google Maps, Google Calendar — jeśli są używane).",
+  "Informacja o plikach cookies i sposobie zarządzania zgodami.",
+  "Prawa osób, których dane dotyczą (dostęp, sprostowanie, usunięcie, sprzeciw).",
+  "Dane kontaktowe inspektora ochrony danych lub osoby odpowiedzialnej.",
+];
+---
+
+<LegalPage
+  title="Polityka prywatności"
+  description="Informacje o przetwarzaniu danych osobowych i plikach cookies w serwisie parys.nysa.pl."
+  canonical="/polityka-prywatnosci"
+  checklist={checklist}
+/>

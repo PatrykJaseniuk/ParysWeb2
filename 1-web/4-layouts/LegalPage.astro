@@ -1,0 +1,62 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import PageHero from "../2-ui/ui/PageHero.astro";
+import CtaBand from "../3-components/sections/CtaBand.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  /** Lista sekcji, które musi uzupełnić właściciel przed publikacją. */
+  checklist: string[];
+}
+
+const { title, description, canonical, checklist } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} noindex>
+  <PageHero
+    label="Dokument"
+    title={title}
+    description={description}
+    breadcrumbs={[{ name: title, href: canonical }]}
+  />
+
+  <section class="container-x py-14 sm:py-16 lg:py-20">
+    <div class="max-w-3xl">
+      <div class="border border-brand/40 bg-brand/[0.07] p-5">
+        <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-brand">
+          Wersja robocza — do uzupełnienia
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-bone/75">
+          Ten dokument wymaga danych prawnych, których nie ma w materiale źródłowym.
+          Strona startowa nie powinna być publikowana bez jego uzupełnienia.
+        </p>
+      </div>
+
+      <h2 class="h3 mt-10">Co musi trafić do dokumentu</h2>
+      <ul class="mt-5 space-y-3">
+        {
+          checklist.map((item) => (
+            <li class="flex gap-3 border-b border-line pb-3 text-sm leading-relaxed text-bone/75">
+              <span class="mt-2 h-1 w-1 shrink-0 rotate-45 bg-brand" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-10 text-sm leading-relaxed text-mist">
+        W razie pytań o przetwarzanie danych kontaktuj się pod adresem
+        <a href="mailto:sportstudioparys@gmail.com" class="text-bone underline decoration-brand underline-offset-4">
+          sportstudioparys@gmail.com</a>.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Masz pytanie do dokumentu?"
+    text="Zadzwoń do recepcji — przekażemy je osobie odpowiedzialnej za dokumenty."
+    primary={{ label: "Kontakt", href: "/kontakt" }}
+  />
+</BaseLayout>

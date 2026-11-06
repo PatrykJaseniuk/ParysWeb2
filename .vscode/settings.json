@@ -1,0 +1,23 @@
+{
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": false,
+        "**/.hg": false,
+        "**/.jj": false,
+        "**/.DS_Store": false,
+        "**/Thumbs.db": false,
+        "**/CVS": false,
+        "**/next-env.d.ts": false,
+        "**/package-lock.json": false,
+        "**/package.json": false,
+        "**/tsconfig.json": false,
+        "**/node_modules": false,
+        "**/.*": false,
+        "**/yarn.lock": false,
+        "**/contributing.md": false,
+        "**LICENSE": false,
+        "**/*.test*": false,
+        "**/*.stories*": false,
+        "**/*.config*": false
+    }
+}

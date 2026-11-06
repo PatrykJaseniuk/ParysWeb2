@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../../../4-layouts/BaseLayout.astro";
+import PageHero from "../../../2-ui/ui/PageHero.astro";
+import Icon from "../../../2-ui/ui/Icon.astro";
+import CalendarEmbed from "../../../2-ui/ui/CalendarEmbed.astro";
+import CtaBand from "../../../3-components/sections/CtaBand.astro";
+import { areas, calendarById } from "../../../1-data/business";
+import { breadcrumbSchema } from "../../../2-ui/seo";
+
+export function getStaticPaths() {
+  return areas.map((area) => ({ params: { id: area.slug }, props: { area } }));
+}
+
+const { area } = Astro.props;
+const calendar = calendarById(area.calendarId);
+const others = areas.filter((a) => a.id !== area.id).slice(0, 3);
+---
+
+<BaseLayout
+  title={area.name}
+  description={`${area.name} w Sport Studio Parys w Nysie. ${area.short}. Sprawdź wyposażenie i dostępność.`}
+  canonical={`/strefy/${area.slug}`}
+  jsonLd={[
+    breadcrumbSchema([
+      { name: "Strefy", href: "/strefy" },
+      { name: area.name, href: `/strefy/${area.slug}` },
+    ]),
+  ]}
+>
+  <PageHero
+    label="Strefa"
+    title={area.name}
+    description={area.short}
+    breadcrumbs={[
+      { name: "Strefy", href: "/strefy" },
+      { name: area.name, href: `/strefy/${area.slug}` },
+    ]}
+  />
+
+  <section class="container-x py-14 sm:py-16 lg:py-20">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-7">
+        {
+          area.image && (
+            <div class="relative border border-line bg-ink-3">
+              <img
+                src={area.image.src}
+                srcset={area.image.srcset}
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                width="711"
+                height="400"
+                alt={`Strefa ${area.name} — Sport Studio Parys`}
+                class="aspect-[16/10] w-full object-cover"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+          )
+        }
+
+        <div class="mt-8">
+          <h2 class="eyebrow">Opis strefy</h2>
+          <p class="mt-3 text-base leading-[1.8] text-bone/80">{area.description}</p>
+        </div>
+
+        <div class="mt-8 border-t border-line pt-6">
+          <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-mist/80">
+            W cenie karnetów
+          </p>
+          <p class="mt-2 text-sm text-bone/70">
+            Ta strefa jest dostępna w karnetach obejmujących {area.name.toLowerCase()}.
+          </p>
+          <a href="/karnety" class="link-arrow mt-4">
+            Sprawdź, który karnet ją obejmuje
+            <Icon name="arrow-right" size={14} />
+          </a>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-5">
+        {
+          calendar ? (
+            <div>
+              <h2 class="eyebrow">Dostępność</h2>
+              <p class="mt-3 text-sm leading-relaxed text-mist">
+                Kalendarz pokazuje zajętość tej strefy. Rezerwacje prowadzimy w recepcji lub telefonicznie.
+              </p>
+              <CalendarEmbed
+                url={calendar.url}
+                title={calendar.title ?? `Dostępność — ${area.name}`}
+                class="mt-5"
+              />
+            </div>
+          ) : (
+            <div class="border border-line bg-ink-2 p-6">
+              <h2 class="eyebrow">Dostępność</h2>
+              <p class="mt-3 text-sm leading-relaxed text-mist">
+                Ta strefa nie wymaga rezerwacji — wchodzisz w ramach karnetu.
+              </p>
+              <p class="mt-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-bone/60">
+                <Icon name="clock" size={13} class="text-brand" />
+                Klub czynny 24/7
+              </p>
+            </div>
+          )
+        }
+
+        <div class="mt-6 border border-line bg-ink-2 p-6">
+          <h2 class="eyebrow">Sprzęt i wyposażenie</h2>
+          <p class="mt-3 text-sm leading-relaxed text-mist">
+            Pełną listę maszyn i przyrządów znajdziesz w opisie strefy. Masz pytanie o konkretny
+            sprzęt? Zadzwoń — recepcja chętnie doradzi.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="border-t border-line">
+    <div class="container-x py-14 sm:py-16 lg:py-20">
+      <h2 class="eyebrow">Zobacz też</h2>
+      <div class="mt-6 grid gap-4 sm:grid-cols-3">
+        {
+          others.map((other) => (
+            <a
+              href={`/strefy/${other.slug}`}
+              class="group flex items-center justify-between gap-4 border border-line bg-ink-2 p-5 transition-colors hover:border-line-soft"
+            >
+              <span class="font-display text-base font-semibold uppercase tracking-tight text-bone group-hover:text-brand">
+                {other.name}
+              </span>
+              <Icon name="arrow-up-right" size={15} class="shrink-0 text-mist" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

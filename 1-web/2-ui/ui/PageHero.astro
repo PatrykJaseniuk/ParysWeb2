@@ -1,0 +1,64 @@
+---
+interface Props {
+  index?: string;
+  label?: string;
+  title: string;
+  description?: string;
+  /** Ścieżka okruszków, bez „Start”. */
+  breadcrumbs?: { name: string; href: string }[];
+  /** Dodatkowa treść pod opisem (np. CTA). */
+  class?: string;
+}
+
+const { index, label, title, description, breadcrumbs = [], class: className = "" } = Astro.props;
+const trail = [{ name: "Start", href: "/" }, ...breadcrumbs];
+---
+
+<section class:list={["border-b border-line", className]}>
+  <div class="container-x pb-12 pt-8 sm:pb-16 lg:pb-20 lg:pt-10">
+    <nav aria-label="Ścieżka nawigacji">
+      <ol class="flex flex-wrap items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-mist/80">
+        {
+          trail.map((crumb, i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <span class="text-mist/30">/</span>}
+              {i === trail.length - 1 ? (
+                <span class="text-bone/70" aria-current="page">
+                  {crumb.name}
+                </span>
+              ) : (
+                <a href={crumb.href} class="transition-colors hover:text-bone">
+                  {crumb.name}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <div class="mt-8 sm:mt-10">
+      {
+        (index || label) && (
+          <p class="eyebrow">
+            {index && <span class="text-brand-text-dark">{index}</span>}
+            {index && label && <span class="mx-2 text-mist/80">/</span>}
+            {label}
+          </p>
+        )
+      }
+
+      <h1 class="mt-4 display text-[clamp(2.3rem,6vw,4.8rem)]">{title}</h1>
+
+      {
+        description && (
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-mist sm:text-lg">
+            {description}
+          </p>
+        )
+      }
+
+      <slot />
+    </div>
+  </div>
+</section>

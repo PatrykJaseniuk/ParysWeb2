@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../4-layouts/BaseLayout.astro";
+import PageHero from "../../2-ui/ui/PageHero.astro";
+import Icon from "../../2-ui/ui/Icon.astro";
+import CtaBand from "../../3-components/sections/CtaBand.astro";
+import { contact, personalTraining, pln, trainers } from "../../1-data/business";
+import { breadcrumbSchema } from "../../2-ui/seo";
+---
+
+<BaseLayout
+  title="Trenerzy personalni"
+  description="Trenerzy personalni Sport Studio Parys w Nysie: Krzysztof, Łukasz, Rafał i Andrzej (boks). Trening indywidualny 110 zł za godzinę."
+  canonical="/trenerzy"
+  jsonLd={[breadcrumbSchema([{ name: "Trenerzy", href: "/trenerzy" }])]}
+>
+  <PageHero
+    index="05"
+    label="Trening personalny"
+    title="Trenerzy"
+    description={`${personalTraining.description}. Praca 1:1 — technika, progresja i tempo dopasowane do Ciebie. ${pln(personalTraining.price.amount_pln)} za godzinę treningu.`}
+    breadcrumbs={[{ name: "Trenerzy", href: "/trenerzy" }]}
+  />
+
+  <section class="container-x py-14 sm:py-16 lg:py-20">
+    <div class="grid gap-px border border-line bg-line sm:grid-cols-2">
+      {
+        trainers.map((trainer, i) => (
+          <article class="group flex flex-col justify-between bg-ink-2 p-7 sm:p-9">
+            <div class="flex items-start justify-between">
+              <span class="flex h-20 w-20 items-center justify-center rounded-full border border-line bg-ink">
+                <span class="font-display text-3xl font-extrabold uppercase text-bone">
+                  {trainer.name.charAt(0)}
+                </span>
+              </span>
+              <span class="font-mono text-[10px] tracking-[0.2em] text-mist/80">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+
+            <div class="mt-8">
+              <h2 class="font-display text-2xl font-bold uppercase tracking-tight text-bone">
+                {trainer.name}
+              </h2>
+              <p class="mt-2 text-sm leading-relaxed text-mist">{trainer.description}</p>
+
+              <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-4">
+                <span class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-bone/60">
+                  <Icon name="barbell" size={13} class="text-brand" />
+                  Trening indywidualny
+                </span>
+                <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-mist/75">
+                  {pln(personalTraining.price.amount_pln)} / godz.
+                </span>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-line bg-ink-2">
+    <div class="container-x py-14 sm:py-16 lg:py-20">
+      <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <div class="lg:col-span-5">
+          <h2 class="eyebrow">Jak to działa</h2>
+          <p class="h2 mt-4">Trzy kroki</p>
+          <p class="lead mt-5">
+            Trening personalny to nie dodatkowa opłata za „lepszy sprzęt” — to godzina pracy
+            z trenerem, który układa plan pod Twój cel.
+          </p>
+        </div>
+
+        <div class="lg:col-span-7">
+          <ol class="border-t border-line">
+            {
+              [
+                ["Rozmowa i cel", "Krótka konsultacja: co chcesz osiągnąć, ile masz czasu, jakie masz ograniczenia."],
+                ["Plan i technika", "Trener dobiera ćwiczenia i pilnuje techniki — to najszybsza droga do wyników bez kontuzji."],
+                ["Regularność", "Trenujesz samodzielnie między sesjami, a trener koryguje plan w miarę postępów."],
+              ].map(([title, text], i) => (
+                <li class="flex gap-5 border-b border-line py-5">
+                  <span class="font-mono text-[10px] tracking-[0.2em] text-brand">0{i + 1}</span>
+                  <div>
+                    <h3 class="font-display text-base font-semibold uppercase tracking-tight text-bone">{title}</h3>
+                    <p class="mt-1.5 text-sm leading-relaxed text-mist">{text}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+
+          <p class="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-mist/80">
+            Zapisy: recepcja lub telefonicznie {contact.phone}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Umów trening"
+    text="Zadzwoń, powiedz nam swój cel, a my dobierzemy trenera i termin."
+    primary={{ label: "Zobacz karnety", href: "/karnety" }}
+  />
+</BaseLayout>

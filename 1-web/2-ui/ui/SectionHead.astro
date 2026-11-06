@@ -1,0 +1,49 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  index: string;
+  label: string;
+  title: string;
+  description?: string;
+  /** Opcjonalny link po prawej (np. „Zobacz wszystkie strefy”). */
+  link?: { label: string; href: string };
+  tone?: "light" | "dark";
+  class?: string;
+}
+
+const { index, label, title, description, link, tone = "dark", class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-col gap-7 border-t pt-8 md:flex-row md:items-end md:justify-between md:gap-12",
+    tone === "light" ? "border-black/15" : "border-line",
+    className,
+  ]}
+>
+  <div class="max-w-3xl">
+    <p class:list={["eyebrow", tone === "light" && "text-black/50"]}>
+      <span class:list={[tone === "light" ? "text-brand-text-paper" : "text-brand-text-dark"]}>{index}</span>
+      <span class="mx-2 text-mist/75">/</span>
+      {label}
+    </p>
+    <h2 class:list={["h2 mt-4", tone === "light" ? "text-ink" : "text-bone"]}>{title}</h2>
+    {
+      description && (
+        <p class:list={["lead mt-5 max-w-2xl", tone === "light" && "text-black/60"]}>
+          {description}
+        </p>
+      )
+    }
+  </div>
+
+  {
+    link && (
+      <a href={link.href} class:list={["link-arrow shrink-0", tone === "light" ? "text-ink" : "text-bone"]}>
+        {link.label}
+        <Icon name="arrow-up-right" size={15} />
+      </a>
+    )
+  }
+</div>

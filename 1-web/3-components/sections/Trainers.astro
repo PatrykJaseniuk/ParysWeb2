@@ -1,0 +1,66 @@
+---
+import Icon from "../../2-ui/ui/Icon.astro";
+import SectionHead from "../../2-ui/ui/SectionHead.astro";
+import { contact, personalTraining, pln, trainers } from "../../1-data/business";
+---
+
+<section class="border-t border-black/10 bg-bone text-ink" id="trenerzy">
+  <div class="container-x py-14 sm:py-16 lg:py-20">
+    <SectionHead
+      index="05"
+      label="Trening personalny"
+      title="Trener, który zna Twój plan"
+      description={`${personalTraining.description}. Praca 1:1 — technika, progresja i tempo dopasowane do Ciebie, nie do grupy.`}
+      tone="light"
+    />
+
+    <div class="mt-10 grid gap-px overflow-hidden border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        trainers.map((trainer, i) => (
+          <article class="group flex flex-col bg-bone p-6">
+            <div class="flex items-start justify-between">
+              <span class="flex h-16 w-16 items-center justify-center rounded-full bg-ink">
+                <span class="font-display text-2xl font-extrabold uppercase text-bone">
+                  {trainer.name.charAt(0)}
+                </span>
+              </span>
+              <span class="font-mono text-[10px] tracking-[0.2em] text-black/30">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+
+            <h3 class="mt-6 font-display text-xl font-bold uppercase tracking-tight">{trainer.name}</h3>
+            <p class="mt-1 text-sm leading-relaxed text-black/55">{trainer.description}</p>
+
+            <div class="mt-6 flex items-center gap-2 border-t border-black/10 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-black/45">
+              <Icon name="barbell" size={13} class="text-brand" />
+              Trening 1:1
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-8 flex flex-col items-start justify-between gap-5 border-t border-black/15 pt-8 sm:flex-row sm:items-center">
+      <p class="flex items-baseline gap-3">
+        <span class="font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+          {pln(personalTraining.price.amount_pln)}
+        </span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-black/50">
+          / godzina treningu
+        </span>
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a href={`tel:${contact.phone_e164}`} class="btn-light">
+          <Icon name="phone" size={15} />
+          Umów trening
+        </a>
+        <a href="/trenerzy" class="link-arrow self-center text-ink">
+          Więcej o trenerach
+          <Icon name="arrow-up-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

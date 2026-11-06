@@ -1,0 +1,75 @@
+---
+import Icon from "../../2-ui/ui/Icon.astro";
+import SectionHead from "../../2-ui/ui/SectionHead.astro";
+import { areas } from "../../1-data/business";
+---
+
+<section class="border-t border-line bg-ink" id="strefy">
+  <div class="container-x py-14 sm:py-16 lg:py-20">
+    <SectionHead
+      index="02"
+      label="Strefy"
+      title="Sześć stref. Jeden karnet."
+      description="Od wolnych ciężarów przez cardio po halę cross — każda strefa to osobna sala z własnym sprzętem. Zobacz, co dokładnie na Ciebie czeka."
+      link={{ label: "Wszystkie strefy", href: "/strefy" }}
+    />
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+      {
+        areas.map((area, i) => (
+          <a
+            href={`/strefy/${area.slug}`}
+            class="group relative flex flex-col border border-line bg-ink-2 transition-colors hover:border-line-soft"
+          >
+            <div class="relative aspect-[16/10] overflow-hidden bg-ink-3">
+              {area.image ? (
+                <img
+                  src={area.image.src}
+                  srcset={area.image.srcset}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                  width="711"
+                  height="400"
+                  alt={`Strefa ${area.name} w Sport Studio Parys`}
+                  class="h-full w-full object-cover grayscale-[0.55] transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
+                  loading={i < 3 ? "eager" : "lazy"}
+                  decoding="async"
+                />
+              ) : (
+                <div class="flex h-full items-center justify-center text-mist/30">
+                  <Icon name="area" size={32} />
+                </div>
+              )}
+
+              <span class="absolute left-3 top-3 border border-white/15 bg-ink/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/80 backdrop-blur">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              {area.calendarId && (
+                <span class="absolute right-3 top-3 flex items-center gap-1.5 border border-brand/40 bg-brand/15 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-brand backdrop-blur">
+                  <Icon name="calendar" size={11} />
+                  Kalendarz
+                </span>
+              )}
+            </div>
+
+            <div class="flex flex-1 items-start justify-between gap-4 border-t border-line p-5">
+              <div>
+                <h3 class="font-display text-lg font-bold uppercase leading-tight tracking-tight text-bone transition-colors group-hover:text-brand">
+                  {area.name}
+                </h3>
+                <p class="mt-1.5 text-xs leading-relaxed text-mist">{area.short}</p>
+              </div>
+              <span class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center border border-line text-mist transition-colors group-hover:border-brand group-hover:bg-brand group-hover:text-white">
+                <Icon name="arrow-up-right" size={14} />
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="mt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-mist/75">
+      Kalendarz dostępności dotyczy sali cross i rollmasażu — szczegóły w opisach stref.
+    </p>
+  </div>
+</section>

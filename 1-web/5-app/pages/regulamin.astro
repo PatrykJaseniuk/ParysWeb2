@@ -1,0 +1,22 @@
+---
+import LegalPage from "../../4-layouts/LegalPage.astro";
+
+const checklist = [
+  "Definicja karnetu, jego zakresu i okresu ważności dla każdego wariantu.",
+  "Zasady opłaty wpisowej oraz zwrotów i reklamacji.",
+  "Zasady blokowania (zawieszania) karnetu — limit dni i sposób zgłoszenia.",
+  "Zasady korzystania z sal, sprzętu i stref (sauna, rollmasaż, sala cross).",
+  "Zasady rezerwacji sauny, badmintona i masażu, w tym odwoływania rezerwacji.",
+  "Warunki wejścia dla osób niepełnoletnich.",
+  "Zasady bezpieczeństwa, odpowiedzialność i ubezpieczenie.",
+  "Regulamin kart partnerskich (MultiSport, Medicover Sport, FitProfit, PZU).",
+  "Dane firmy i data wejścia regulaminu w życie.",
+];
+---
+
+<LegalPage
+  title="Regulamin"
+  description="Regulamin korzystania z obiektu Sport Studio Parys w Nysie — karnety, strefy, rezerwacje."
+  canonical="/regulamin"
+  checklist={checklist}
+/>

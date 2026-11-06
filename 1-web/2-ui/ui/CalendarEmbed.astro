@@ -1,0 +1,64 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  url: string;
+  title: string;
+  description?: string;
+  class?: string;
+}
+
+const { url, title, description, class: className = "" } = Astro.props;
+---
+
+<div class:list={["relative overflow-hidden border border-line bg-ink-2", className]} data-calendar>
+  <div class="flex min-h-[300px] flex-col items-center justify-center gap-4 p-8 text-center sm:min-h-[340px]" data-calendar-placeholder>
+    <span class="flex h-12 w-12 items-center justify-center border border-brand/40 bg-brand/10 text-brand">
+      <Icon name="calendar" size={22} />
+    </span>
+    <div>
+      <p class="font-display text-lg font-bold uppercase tracking-tight text-bone">{title}</p>
+      {description && <p class="mt-1 max-w-sm text-sm leading-relaxed text-mist">{description}</p>}
+    </div>
+    <button type="button" class="btn-ghost btn-sm" data-calendar-load>
+      Pokaż kalendarz
+      <Icon name="arrow-down" size={13} />
+    </button>
+    <p class="font-mono text-[9px] uppercase tracking-[0.16em] text-mist/75">
+      Kalendarz Google · ładowany po kliknięciu
+    </p>
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="link-arrow text-[10px] text-mist"
+    >
+      Otwórz w Google Calendar
+      <Icon name="arrow-up-right" size={12} />
+    </a>
+  </div>
+
+  <iframe
+    data-calendar-frame
+    data-src={url}
+    title={title}
+    class="hidden h-[600px] w-full border-0"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
+<script>
+  document.querySelectorAll("[data-calendar]").forEach((root) => {
+    const button = root.querySelector("[data-calendar-load]");
+    const frame = root.querySelector("[data-calendar-frame]") as HTMLIFrameElement | null;
+    const placeholder = root.querySelector("[data-calendar-placeholder]");
+    if (!button || !frame) return;
+
+    button.addEventListener("click", () => {
+      frame.src = frame.dataset.src ?? "";
+      frame.classList.remove("hidden");
+      placeholder?.classList.add("hidden");
+    });
+  });
+</script>

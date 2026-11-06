@@ -1,0 +1,153 @@
+---
+import Icon from "../2-ui/ui/Icon.astro";
+import { contact, nav } from "../1-data/business";
+
+const pathname = Astro.url.pathname;
+
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+
+<!--
+  Uwaga: wrapper jest `sticky`, a blur siedzi na wewnętrznym <header>.
+  Element z `backdrop-filter` staje się containing blockiem dla `position: fixed`,
+  więc panel mobilny musi być poza nim — inaczej „fixed inset-x-0” liczy się
+  względem nagłówka, a nie okna.
+-->
+<div id="site-header" class="sticky top-0 z-50">
+  <header class="border-b border-line/70 bg-ink/85 backdrop-blur-xl">
+    <div class="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
+      <!-- Logo -->
+      <a href="/" class="group flex shrink-0 items-center gap-3" aria-label="Sport Studio Parys — strona główna">
+        <img
+          src="/brand/icon-mark.svg"
+          alt=""
+          width="40"
+          height="40"
+          class="h-9 w-9 transition-transform duration-300 group-hover:-rotate-6 lg:h-10 lg:w-10"
+        />
+        <span class="leading-none">
+          <span class="block font-display text-xl font-extrabold tracking-[-0.02em] lg:text-[22px]">
+            PARYS
+          </span>
+          <span class="mt-1 block font-mono text-[8px] uppercase tracking-[0.24em] text-mist lg:text-[9px]">
+            siłownia / cross
+          </span>
+        </span>
+      </a>
+
+      <!-- Nawigacja desktop -->
+      <nav class="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Nawigacja główna">
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "font-mono text-[11px] font-medium uppercase tracking-[0.16em] transition-colors",
+                isActive(item.href) ? "text-brand" : "text-bone/80 hover:text-bone",
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Akcje -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a
+          href={`tel:${contact.phone_e164}`}
+          class="hidden items-center gap-2 font-mono text-[11px] tracking-[0.08em] text-bone/80 transition-colors hover:text-brand xl:flex"
+        >
+          <Icon name="phone" size={15} />
+          {contact.phone}
+        </a>
+
+        <a href="/karnety" class="btn-primary btn-sm hidden sm:inline-flex">
+          Cennik
+          <Icon name="arrow-up-right" size={14} />
+        </a>
+
+        <button
+          type="button"
+          id="menu-toggle"
+          class="flex h-10 w-10 items-center justify-center border border-line text-bone transition-colors hover:border-bone/40 lg:hidden"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Otwórz menu"
+        >
+          <Icon name="menu" size={20} class="menu-icon" />
+          <Icon name="close" size={20} class="close-icon hidden" />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu mobilne (poza elementem z backdrop-filter) -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-x-0 bottom-0 top-16 hidden overflow-y-auto border-t border-line bg-ink lg:hidden"
+  >
+    <nav class="container-x flex min-h-full flex-col justify-between py-8 pb-28" aria-label="Nawigacja mobilna">
+      <ul class="flex flex-col">
+        {
+          nav.map((item, i) => (
+            <li class="border-b border-line/60">
+              <a
+                href={item.href}
+                class:list={[
+                  "flex items-baseline justify-between py-4 font-display text-3xl font-bold uppercase tracking-tight transition-colors",
+                  isActive(item.href) ? "text-brand" : "text-bone hover:text-brand",
+                ]}
+              >
+                {item.label}
+                <span class="font-mono text-[10px] font-normal tracking-[0.2em] text-mist">
+                  0{i + 1}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="space-y-4 pt-8">
+        <a href={`tel:${contact.phone_e164}`} class="btn-primary w-full">
+          <Icon name="phone" size={16} />
+          <span class="num">{contact.phone}</span>
+        </a>
+        <p class="font-mono text-[10px] uppercase leading-relaxed tracking-[0.18em] text-mist">
+          {contact.address.street} · {contact.address.postal_code} {contact.address.city}<br />
+          Klub czynny 24/7 · recepcja pon–pt 8:00–22:00
+        </p>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle("hidden", !open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
+      toggle.querySelector(".menu-icon")?.classList.toggle("hidden", open);
+      toggle.querySelector(".close-icon")?.classList.toggle("hidden", !open);
+      document.body.classList.toggle("overflow-hidden", open);
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+  }
+</script>

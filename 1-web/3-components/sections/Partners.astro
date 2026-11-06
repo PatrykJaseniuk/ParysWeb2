@@ -1,0 +1,94 @@
+---
+import SectionHead from "../../2-ui/ui/SectionHead.astro";
+import Icon from "../../2-ui/ui/Icon.astro";
+import { partners } from "../../1-data/business";
+---
+
+<section class="border-t border-line bg-ink-2" id="partnerzy">
+  <div class="container-x py-14 sm:py-16 lg:py-20">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <SectionHead
+          index="07"
+          label="Partnerzy"
+          title="Twoja karta też działa"
+          description="Akceptujemy karty MultiSport, Medicover Sport i FitProfit. Zakres dostępu różni się między karnetami — sprawdź szczegóły albo zapytaj w recepcji."
+        />
+
+        <dl class="mt-8 border-t border-line">
+          {
+            partners.map((partner) => (
+              <div class="flex items-start gap-3 border-b border-line py-3.5">
+                <Icon name="check" size={14} class="mt-1 shrink-0 text-brand" />
+                <div>
+                  <dt class="font-display text-sm font-semibold uppercase tracking-tight text-bone">
+                    {partner.name}
+                  </dt>
+                  <dd class="mt-0.5 text-[12px] leading-relaxed text-mist">{partner.note}</dd>
+                  {partner.scope && (
+                    <dd class="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-mist/75">
+                      {partner.scope}
+                    </dd>
+                  )}
+                </div>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+
+      <div class="lg:col-span-7">
+        <ul class="grid grid-cols-2 gap-3 sm:gap-4">
+          {
+            partners.map((partner, i) => (
+              <li class="group relative overflow-hidden border border-line bg-ink-3">
+                <div class="flex aspect-[16/10] items-center justify-center overflow-hidden">
+                  {partner.logoSrc ? (
+                    <img
+                      src={partner.logoSrc}
+                      alt={`Karta ${partner.name}`}
+                      width="474"
+                      height="300"
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <span class="font-display text-3xl font-extrabold uppercase tracking-tight text-bone/80">
+                      {partner.name}
+                    </span>
+                  )}
+                </div>
+                <div class="flex items-center justify-between border-t border-line px-4 py-3">
+                  <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-bone/80">
+                    {partner.name}
+                  </span>
+                  <span class="font-mono text-[9px] uppercase tracking-[0.14em] text-mist/75">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </li>
+            ))
+          }
+
+          <li class="flex flex-col justify-between border border-dashed border-line p-4">
+            <Icon name="spark" size={18} class="text-mist/75" />
+            <div>
+              <p class="font-display text-sm font-semibold uppercase tracking-tight text-bone">
+                Inna karta?
+              </p>
+              <p class="mt-1 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-mist/80">
+                Zapytaj w recepcji
+              </p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="mt-5 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-mist/75">
+          Medicover i FitProfit — dostęp 24/7 dla zarejestrowanych klientów ·
+          MultiSport — w godzinach pracy recepcji
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

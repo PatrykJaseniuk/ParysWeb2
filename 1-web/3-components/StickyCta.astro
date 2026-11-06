@@ -1,0 +1,24 @@
+---
+import Icon from "../2-ui/ui/Icon.astro";
+import { contact } from "../1-data/business";
+---
+
+<!-- Pasek akcji na mobile: telefon + cennik zawsze pod ręką. -->
+<div
+  class="no-print fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink/95 backdrop-blur-lg lg:hidden"
+  style="padding-bottom: env(safe-area-inset-bottom)"
+>
+  <div class="grid grid-cols-2 gap-2 p-3">
+    <a href={`tel:${contact.phone_e164}`} class="btn-ghost btn-sm justify-center">
+      <Icon name="phone" size={15} />
+      Zadzwoń
+    </a>
+    <a href="/karnety" class="btn-primary btn-sm justify-center">
+      Cennik
+      <Icon name="arrow-up-right" size={14} />
+    </a>
+  </div>
+</div>
+
+<!-- Zapas miejsca, żeby pasek nie zasłaniał stopki. -->
+<div class="h-[68px] lg:hidden" aria-hidden="true"></div>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X8 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality;"
+    viewBox="0 0 10000 10000 " xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <style type="text/css">
+            <![CDATA[
+            .str2 {
+                stroke: #2B2A29;
+                stroke-width: 7.62
+            }
+
+            .str1 {
+                stroke: #EBECEC;
+                stroke-width: 7.62
+            }
+
+            .str0 {
+                stroke: #FEFEFE;
+                stroke-width: 151.45;
+                stroke-linecap: round;
+                stroke-linejoin: round
+            }
+
+            .fil0 {
+                fill: none;
+                fill-rule: nonzero
+            }
+
+            .fil4 {
+                fill: #2B2A29
+            }
+
+            .fil6 {
+                fill: #952825
+            }
+
+            .fil5 {
+                fill: #E31E24
+            }
+
+            .fil3 {
+                fill: #FEFEFE
+            }
+
+            .fil1 {
+                fill: #2B2A29;
+                fill-rule: nonzero
+            }
+
+            .fil2 {
+                fill: #FEFEFE
+            }
+            ]]>
+        </style>
+    </defs>
+    <g id="Warstwa_x0020_1">
+        <g id="_2639129046464">
+
+            <path class="fil5" d="M0 0 l1000 0 l0 1000 l -1000 0 z" />
+        </g>
+    </g>
+    </g>
+</svg>

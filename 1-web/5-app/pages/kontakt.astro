@@ -1,0 +1,140 @@
+---
+import BaseLayout from "../../4-layouts/BaseLayout.astro";
+import PageHero from "../../2-ui/ui/PageHero.astro";
+import Icon from "../../2-ui/ui/Icon.astro";
+import MapEmbed from "../../2-ui/ui/MapEmbed.astro";
+import { business, contact } from "../../1-data/business";
+import { breadcrumbSchema } from "../../2-ui/seo";
+---
+
+<BaseLayout
+  title="Kontakt"
+  description="Sport Studio Parys, Poniatowskiego 3, 48-300 Nysa. Telefon 77 433 63 01, e-mail sportstudioparys@gmail.com. Klub czynny 24/7."
+  canonical="/kontakt"
+  jsonLd={[breadcrumbSchema([{ name: "Kontakt", href: "/kontakt" }])]}
+>
+  <PageHero
+    index="08"
+    label="Kontakt"
+    title="Tu trenujemy"
+    description="Recepcja czynna od poniedziałku do soboty. Z karnetem wchodzisz o dowolnej porze — także w niedzielę i w święta."
+    breadcrumbs={[{ name: "Kontakt", href: "/kontakt" }]}
+  />
+
+  <section class="container-x py-14 sm:py-16 lg:py-20">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-5">
+        <div class="border-t border-line">
+          <a href={`tel:${contact.phone_e164}`} class="group flex items-center justify-between border-b border-line py-5">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-mist">Telefon</p>
+              <p class="num mt-1 font-display text-3xl font-bold tracking-tight text-bone transition-colors group-hover:text-brand">
+                {contact.phone}
+              </p>
+            </div>
+            <span class="flex h-10 w-10 items-center justify-center border border-line text-mist transition-colors group-hover:border-brand group-hover:bg-brand group-hover:text-white">
+              <Icon name="phone" size={16} />
+            </span>
+          </a>
+
+          <a href={`mailto:${contact.email}`} class="group flex items-center justify-between border-b border-line py-5">
+            <div class="min-w-0">
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-mist">E-mail</p>
+              <p class="mt-1 break-all text-base text-bone transition-colors group-hover:text-brand">
+                {contact.email}
+              </p>
+            </div>
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-line text-mist transition-colors group-hover:border-brand group-hover:bg-brand group-hover:text-white">
+              <Icon name="mail" size={16} />
+            </span>
+          </a>
+
+          <div class="flex items-start justify-between border-b border-line py-5">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-mist">Adres</p>
+              <p class="mt-1 text-base leading-relaxed text-bone">
+                {contact.address.street}<br />
+                {contact.address.postal_code} {contact.address.city}
+              </p>
+            </div>
+            <span class="flex h-10 w-10 items-center justify-center border border-line text-mist">
+              <Icon name="pin" size={16} />
+            </span>
+          </div>
+
+          <div class="flex items-start justify-between border-b border-line py-5">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-mist">Recepcja</p>
+              <ul class="mt-1 space-y-1">
+                {contact.reception_hours.map((row) => (
+                  <li class="flex items-baseline gap-3 text-sm text-bone/85">
+                    <span class="w-16 font-mono text-[11px] uppercase tracking-[0.1em] text-mist">{row.days}</span>
+                    <span class="num">{row.open}–{row.close}</span>
+                  </li>
+                ))}
+              </ul>
+              <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.12em] text-mist/80">
+                Klub {business.open24 ? "24/7" : ""} dla posiadaczy karnetów
+              </p>
+            </div>
+            <span class="flex h-10 w-10 items-center justify-center border border-line text-mist">
+              <Icon name="clock" size={16} />
+            </span>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          {
+            contact.social.map((social) => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-10 items-center gap-2 border border-line px-3 text-bone/70 transition-colors hover:border-brand hover:text-brand"
+              >
+                <Icon name={social.platform === "Facebook" ? "facebook" : "instagram"} size={14} />
+                <span class="font-mono text-[10px] uppercase tracking-[0.14em]">{social.handle}</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="mt-8 border border-line bg-ink-2 p-5">
+          <h2 class="font-mono text-[10px] uppercase tracking-[0.22em] text-mist">Rezerwacje</h2>
+          <p class="mt-2 text-sm leading-relaxed text-bone/75">
+            Sauna, badminton i masaż — telefonicznie lub w recepcji. Saunę rezerwuj najpóźniej
+            godzinę przed planowaną wizytą.
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <MapEmbed
+          lat={contact.coordinates.lat}
+          lng={contact.coordinates.lng}
+          embedUrl={contact.mapEmbed}
+          placeName={contact.placeName}
+          addressLine1={contact.address.street}
+          addressLine2={`${contact.address.postal_code} ${contact.address.city}`}
+        />
+
+        <div class="mt-6 grid gap-px border border-line bg-line sm:grid-cols-2">
+          <div class="bg-ink-2 p-5">
+            <h2 class="font-mono text-[10px] uppercase tracking-[0.18em] text-mist/80">Dojazd</h2>
+            <p class="mt-2 text-sm leading-relaxed text-bone/75">
+              Darmowy parking dla samochodów osobowych i rowerów. Obiekt znajduje się w Nysie,
+              przy ulicy Poniatowskiego 3.
+            </p>
+          </div>
+          <div class="bg-ink-2 p-5">
+            <h2 class="font-mono text-[10px] uppercase tracking-[0.18em] text-mist/80">Na miejscu</h2>
+            <p class="mt-2 text-sm leading-relaxed text-bone/75">
+              Szatnie, prysznice, klimatyzacja we wszystkich salach, bufet z koktajlami
+              proteinowymi i sklep z odżywkami.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

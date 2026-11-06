@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../../4-layouts/BaseLayout.astro";
+import PageHero from "../../../2-ui/ui/PageHero.astro";
+import Icon from "../../../2-ui/ui/Icon.astro";
+import CtaBand from "../../../3-components/sections/CtaBand.astro";
+import { areas } from "../../../1-data/business";
+---
+
+<BaseLayout
+  title="Strefy treningowe"
+  description="Sześć stref treningowych w Sport Studio Parys: wolne ciężary, maszyny ze stosem, cardio, sala funkcjonalna, hala cross oraz rollmasaż z platformą wibrującą."
+  canonical="/strefy"
+>
+  <PageHero
+    index="02"
+    label="Strefy"
+    title="Sześć sal, tysiąc metrów"
+    description="Każda strefa to osobna sala z własnym sprzętem. Wybierz to, na czym chcesz pracować — albo korzystaj ze wszystkich, jeśli masz karnet."
+    breadcrumbs={[{ name: "Strefy", href: "/strefy" }]}
+  />
+
+  <section class="container-x py-14 sm:py-16 lg:py-20">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        areas.map((area, i) => (
+          <a
+            href={`/strefy/${area.slug}`}
+            class="group flex flex-col border border-line bg-ink-2 transition-colors hover:border-line-soft"
+          >
+            <div class="relative aspect-[16/10] overflow-hidden bg-ink-3">
+              {area.image && (
+                <img
+                  src={area.image.src}
+                  srcset={area.image.srcset}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                  width="711"
+                  height="400"
+                  alt={`Strefa ${area.name}`}
+                  class="h-full w-full object-cover grayscale-[0.5] transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
+                  loading={i < 3 ? "eager" : "lazy"}
+                  decoding="async"
+                />
+              )}
+              <span class="absolute left-3 top-3 border border-white/15 bg-ink/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/80 backdrop-blur">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <div class="flex flex-1 items-start justify-between gap-4 border-t border-line p-5">
+              <div>
+                <h2 class="font-display text-lg font-bold uppercase leading-tight tracking-tight text-bone transition-colors group-hover:text-brand">
+                  {area.name}
+                </h2>
+                <p class="mt-1.5 text-xs leading-relaxed text-mist">{area.short}</p>
+              </div>
+              <span class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center border border-line text-mist transition-colors group-hover:border-brand group-hover:bg-brand group-hover:text-white">
+                <Icon name="arrow-up-right" size={14} />
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

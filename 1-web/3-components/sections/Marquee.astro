@@ -1,0 +1,32 @@
+---
+const items = [
+  "Wolne ciężary",
+  "Maszyny ze stosem",
+  "Cardio",
+  "Sala cross",
+  "Sauna",
+  "Badminton",
+  "Masaż",
+  "Trening personalny",
+  "Bufet i sklep",
+];
+---
+
+<div class="marquee-wrap overflow-hidden border-y border-line bg-ink-2 py-3.5" aria-hidden="true">
+  <div class="marquee">
+    {
+      [0, 1].map(() => (
+        <div class="flex shrink-0 items-center">
+          {items.map((item) => (
+            <span class="flex items-center">
+              <span class="px-5 font-mono text-[10px] uppercase tracking-[0.28em] text-bone/60 sm:px-7 sm:text-[11px]">
+                {item}
+              </span>
+              <span class="h-1 w-1 rotate-45 bg-brand" />
+            </span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</div>
