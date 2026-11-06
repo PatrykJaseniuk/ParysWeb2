@@ -643,7 +643,7 @@ export const site = {
     }
   },
   site: {
-    canonical_base: "https://parys.nysa.pl",
+    canonical_base: "https://patrykjaseniuk.github.io/ParysWeb2",
     nav: [
       {
         label: "Strefy",

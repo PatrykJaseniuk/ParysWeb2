@@ -50,7 +50,7 @@ Komponenty nie czytają modelu bezpośrednio — tylko przez `1-data/business.ts
 
 ```bash
 npm install
-npm run dev          # http://localhost:4321
+npm run dev          # http://localhost:4321/ParysWeb2/
 npm run check        # astro check (typy całego projektu)
 npm run build        # build + assertModelIntegrity() przy starcie
 npm run preview      # podgląd builda
@@ -58,6 +58,20 @@ npm run model:export # 8-output/export/model.json
 npm run brand:md     # 8-output/docs/BRAND.md z 0-core/2-brand.ts
 npm run assets       # 7-public/ z 0-assets/ (Python 3 + Pillow)
 ```
+
+## Wdrożenie
+
+Strona działa pod **https://patrykjaseniuk.github.io/ParysWeb2/** (GitHub Pages,
+repo `ParysWeb2`). Push na `main` uruchamia
+[`../.github/workflows/deploy.yml`](../.github/workflows/deploy.yml).
+
+- `base: "/ParysWeb2"` jest w [`astro.config.mjs`](astro.config.mjs),
+- `SITE_ORIGIN`/`SITE_URL` w [`2-ui/seo.ts`](2-ui/seo.ts),
+- wewnętrzne linki i assety dostają prefiks przez `withBase`
+  w [`1-data/business.ts`](1-data/business.ts).
+
+Domena `parys.nysa.pl` obsługuje starą stronę (repo `ParysWeb`) — ten projekt
+nie powinien jej przejmować.
 
 ## Dokumentacja
 

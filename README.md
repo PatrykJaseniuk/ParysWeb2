@@ -83,7 +83,7 @@ Wszystkie uruchamiane w `1-web/`:
 
 ```bash
 npm install
-npm run dev          # serwer developerski (http://localhost:4321)
+npm run dev          # serwer developerski (http://localhost:4321/ParysWeb2/)
 npm run check        # astro check — typy całego projektu
 npm run build        # build statyczny + reguły spójności modelu
 npm run preview      # podgląd builda
@@ -91,6 +91,17 @@ npm run model:export # eksport modelu do JSON (8-output/export/model.json)
 npm run brand:md     # eksport księgi marki (8-output/docs/BRAND.md)
 npm run assets       # optymalizacja obrazów (wymaga Python 3 + Pillow)
 ```
+
+## Publikacja
+
+- **Repo:** https://github.com/PatrykJaseniuk/ParysWeb2
+- **Strona:** https://patrykjaseniuk.github.io/ParysWeb2/ — GitHub Pages,
+  wdrożenie przez [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+  przy każdym pushu na `main`.
+- Strona jest budowana z `base: "/ParysWeb2"` (`astro.config.mjs`), a linki
+  i assety dostają prefiks w adapterze (`withBase` w `1-web/1-data/business.ts`).
+- **Domena `parys.nysa.pl` należy do starej strony** (repo `ParysWeb`) i nie
+  jest podłączona do tego projektu — nie zmieniaj `cname` w Pages tego repo.
 
 ## Wymagania
 
