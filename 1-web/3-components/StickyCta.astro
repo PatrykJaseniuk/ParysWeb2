@@ -1,6 +1,6 @@
 ---
 import Icon from "../2-ui/ui/Icon.astro";
-import { contact } from "../1-data/business";
+import { contact, withBase } from "../1-data/business";
 ---
 
 <!-- Pasek akcji na mobile: telefon + cennik zawsze pod ręką. -->
@@ -13,7 +13,7 @@ import { contact } from "../1-data/business";
       <Icon name="phone" size={15} />
       Zadzwoń
     </a>
-    <a href="/karnety" class="btn-primary btn-sm justify-center">
+    <a href={withBase("/karnety")} class="btn-primary btn-sm justify-center">
       Cennik
       <Icon name="arrow-up-right" size={14} />
     </a>

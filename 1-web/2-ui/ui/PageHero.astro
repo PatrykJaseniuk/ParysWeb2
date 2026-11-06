@@ -1,4 +1,6 @@
 ---
+import { withBase } from "../../1-data/business";
+
 interface Props {
   index?: string;
   label?: string;
@@ -27,7 +29,7 @@ const trail = [{ name: "Start", href: "/" }, ...breadcrumbs];
                   {crumb.name}
                 </span>
               ) : (
-                <a href={crumb.href} class="transition-colors hover:text-bone">
+                <a href={withBase(crumb.href)} class="transition-colors hover:text-bone">
                   {crumb.name}
                 </a>
               )}

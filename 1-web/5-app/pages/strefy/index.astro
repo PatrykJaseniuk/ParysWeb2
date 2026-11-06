@@ -3,7 +3,7 @@ import BaseLayout from "../../../4-layouts/BaseLayout.astro";
 import PageHero from "../../../2-ui/ui/PageHero.astro";
 import Icon from "../../../2-ui/ui/Icon.astro";
 import CtaBand from "../../../3-components/sections/CtaBand.astro";
-import { areas } from "../../../1-data/business";
+import { areas, withBase } from "../../../1-data/business";
 ---
 
 <BaseLayout
@@ -24,7 +24,7 @@ import { areas } from "../../../1-data/business";
       {
         areas.map((area, i) => (
           <a
-            href={`/strefy/${area.slug}`}
+            href={withBase(`/strefy/${area.slug}`)}
             class="group flex flex-col border border-line bg-ink-2 transition-colors hover:border-line-soft"
           >
             <div class="relative aspect-[16/10] overflow-hidden bg-ink-3">

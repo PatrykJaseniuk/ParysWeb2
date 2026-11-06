@@ -1,6 +1,6 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
-import { business, contact, entryPrice, pln } from "../../1-data/business";
+import { business, contact, entryPrice, pln, withBase } from "../../1-data/business";
 
 const stats = [
   { value: String(business.established), label: "Rok założenia" },
@@ -47,7 +47,7 @@ const stats = [
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a href="/karnety" class="btn-primary w-full justify-center sm:w-auto">
+        <a href={withBase("/karnety")} class="btn-primary w-full justify-center sm:w-auto">
           Zobacz karnety
           <Icon name="arrow-up-right" size={16} />
         </a>
@@ -70,8 +70,8 @@ const stats = [
 
         <div class="relative aspect-[4/5] overflow-hidden bg-ink-3 sm:aspect-[16/11] lg:aspect-[5/6]">
           <img
-            src="/img/hero/silownia-1200.webp"
-            srcset="/img/hero/silownia-800.webp 800w, /img/hero/silownia-1200.webp 1200w, /img/hero/silownia-1800.webp 1800w, /img/hero/silownia-2400.webp 2400w"
+            src={withBase("/img/hero/silownia-1200.webp")}
+            srcset={[800, 1200, 1800, 2400].map((w) => `${withBase(`/img/hero/silownia-${w}.webp`)} ${w}w`).join(", ")}
             sizes="(min-width: 1024px) 40vw, 100vw"
             width="1200"
             height="672"
@@ -92,7 +92,7 @@ const stats = [
               </p>
             </div>
             <a
-              href="/strefy"
+              href={withBase("/strefy")}
               class="flex h-11 w-11 shrink-0 items-center justify-center border border-white/30 bg-ink/40 text-white backdrop-blur transition-colors hover:border-brand hover:bg-brand"
               aria-label="Zobacz strefy treningowe"
             >

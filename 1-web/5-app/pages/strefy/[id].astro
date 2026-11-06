@@ -4,7 +4,7 @@ import PageHero from "../../../2-ui/ui/PageHero.astro";
 import Icon from "../../../2-ui/ui/Icon.astro";
 import CalendarEmbed from "../../../2-ui/ui/CalendarEmbed.astro";
 import CtaBand from "../../../3-components/sections/CtaBand.astro";
-import { areas, calendarById } from "../../../1-data/business";
+import { areas, calendarById, withBase } from "../../../1-data/business";
 import { breadcrumbSchema } from "../../../2-ui/seo";
 
 export function getStaticPaths() {
@@ -70,7 +70,7 @@ const others = areas.filter((a) => a.id !== area.id).slice(0, 3);
           <p class="mt-2 text-sm text-bone/70">
             Ta strefa jest dostępna w karnetach obejmujących {area.name.toLowerCase()}.
           </p>
-          <a href="/karnety" class="link-arrow mt-4">
+          <a href={withBase("/karnety")} class="link-arrow mt-4">
             Sprawdź, który karnet ją obejmuje
             <Icon name="arrow-right" size={14} />
           </a>
@@ -123,7 +123,7 @@ const others = areas.filter((a) => a.id !== area.id).slice(0, 3);
         {
           others.map((other) => (
             <a
-              href={`/strefy/${other.slug}`}
+              href={withBase(`/strefy/${other.slug}`)}
               class="group flex items-center justify-between gap-4 border border-line bg-ink-2 p-5 transition-colors hover:border-line-soft"
             >
               <span class="font-display text-base font-semibold uppercase tracking-tight text-bone group-hover:text-brand">

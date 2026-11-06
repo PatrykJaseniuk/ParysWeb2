@@ -2,7 +2,7 @@
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
 import PriceMatrix from "../pricing/PriceMatrix.astro";
-import { contact, enrollmentFee, monthlyFrom, pln } from "../../1-data/business";
+import { contact, enrollmentFee, monthlyFrom, pln, withBase } from "../../1-data/business";
 
 const notes = [
   {
@@ -60,7 +60,7 @@ const notes = [
           <Icon name="phone" size={15} />
           <span class="num">{contact.phone}</span>
         </a>
-        <a href="/karnety" class="link-arrow self-center text-ink">
+        <a href={withBase("/karnety")} class="link-arrow self-center text-ink">
           Pełny cennik i FAQ
           <Icon name="arrow-up-right" size={15} />
         </a>

@@ -1,7 +1,7 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
-import { contact, pln, services } from "../../1-data/business";
+import { contact, pln, services, withBase } from "../../1-data/business";
 
 function priceLabel(service: (typeof services)[number]) {
   if (!service.price) return "Ceny w sklepie";
@@ -19,7 +19,7 @@ function priceLabel(service: (typeof services)[number]) {
       label="Usługi dodatkowe"
       title="Nie tylko siłownia"
       description="Sauna, badminton, masaż i bufet — rzeczy, które robią różnicę między „chodzę na siłownię” a „trenuję w klubie”."
-      link={{ label: "Wszystkie usługi", href: "/uslugi" }}
+      link={{ label: "Wszystkie usługi", href: withBase("/uslugi") }}
     />
 
     <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:gap-5">
@@ -54,7 +54,7 @@ function priceLabel(service: (typeof services)[number]) {
                 </span>
               )}
               {service.calendar && (
-                <a href="/uslugi" class="link-arrow text-[10px]">
+                <a href={withBase("/uslugi")} class="link-arrow text-[10px]">
                   Kalendarz
                   <Icon name="calendar" size={12} />
                 </a>

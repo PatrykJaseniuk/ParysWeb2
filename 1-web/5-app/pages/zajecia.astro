@@ -4,7 +4,7 @@ import PageHero from "../../2-ui/ui/PageHero.astro";
 import Icon from "../../2-ui/ui/Icon.astro";
 import CalendarEmbed from "../../2-ui/ui/CalendarEmbed.astro";
 import CtaBand from "../../3-components/sections/CtaBand.astro";
-import { calendarById, contact, groupClasses, personalTraining, pln, trainers } from "../../1-data/business";
+import { calendarById, contact, groupClasses, personalTraining, pln, trainers, withBase } from "../../1-data/business";
 import { breadcrumbSchema } from "../../2-ui/seo";
 
 const groupsCalendar = calendarById(groupClasses[0]?.calendar);
@@ -67,8 +67,8 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
               <div class:list={["lg:col-span-5", index % 2 === 1 && "lg:order-2"]}>
                 <div class="relative overflow-hidden border border-line">
                   <img
-                    src="/img/strefy/sala-cross-711.webp"
-                    srcset="/img/strefy/sala-cross-500.webp 500w, /img/strefy/sala-cross-711.webp 711w"
+                    src={withBase("/img/strefy/sala-cross-711.webp")}
+                    srcset={`${withBase("/img/strefy/sala-cross-500.webp")} 500w, ${withBase("/img/strefy/sala-cross-711.webp")} 711w`}
                     sizes="(min-width: 1024px) 40vw, 100vw"
                     width="711"
                     height="400"
@@ -106,7 +106,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
                 </dl>
 
                 <div class="mt-6 flex flex-wrap gap-3">
-                  <a href="/karnety" class="btn-primary">Karnet z zajęciami</a>
+                  <a href={withBase("/karnety")} class="btn-primary">Karnet z zajęciami</a>
                   {calendar && (
                     <a href="#kalendarz" class="btn-ghost">
                       <Icon name="calendar" size={14} />
@@ -134,7 +134,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
           </p>
         </div>
         <div class="lg:col-span-5 lg:text-right">
-          <a href="/trenerzy" class="btn-primary">
+          <a href={withBase("/trenerzy")} class="btn-primary">
             Poznaj trenerów
             <Icon name="arrow-up-right" size={15} />
           </a>

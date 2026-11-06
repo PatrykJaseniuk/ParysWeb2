@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../4-layouts/BaseLayout.astro";
 import Icon from "../../2-ui/ui/Icon.astro";
-import { contact } from "../../1-data/business";
+import { contact, withBase } from "../../1-data/business";
 ---
 
 <BaseLayout
@@ -20,11 +20,11 @@ import { contact } from "../../1-data/business";
     </p>
 
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="/" class="btn-primary">
+      <a href={withBase("/")} class="btn-primary">
         Strona główna
         <Icon name="arrow-right" size={15} />
       </a>
-      <a href="/karnety" class="btn-ghost">Cennik</a>
+      <a href={withBase("/karnety")} class="btn-ghost">Cennik</a>
       <a href={`tel:${contact.phone_e164}`} class="btn-ghost">
         <Icon name="phone" size={15} />
         <span class="num">{contact.phone}</span>

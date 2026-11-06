@@ -32,6 +32,20 @@ const businessModel: BusinessModel = businessModelSource;
 /** Reguły międzypliku — niespójny model zatrzymuje build. */
 assertModelIntegrity();
 
+/**
+ * Bazowa ścieżka wdrożenia (GitHub Pages: `/ParysWeb2`).
+ * Wszystkie wewnętrzne URL-e w modelu są zapisane od roota (`/karnety`,
+ * `/img/...`), a ta warstwa dokłada prefiks wdrożenia.
+ */
+export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+/** `/karnety` → `/ParysWeb2/karnety`; `#kotwica` i adresy zewnętrzne bez zmian. */
+export function withBase(path: string): string {
+  if (!path.startsWith("/")) return path;
+  if (BASE_PATH && (path === BASE_PATH || path.startsWith(`${BASE_PATH}/`))) return path;
+  return `${BASE_PATH}${path}`;
+}
+
 const bindings: Record<string, MediaRoles> = siteModel.media.bindings;
 
 /** Media encji pochodzą z warstwy strony, nie z modelu biznesowego. */
@@ -96,8 +110,8 @@ export function asset(id: string | null | undefined) {
   const largest = variants.length ? variants[variants.length - 1] : null;
   return {
     id,
-    src: a.served ?? largest?.path ?? "",
-    srcset: variants.map((v) => `${v.path} ${v.width}w`).join(", "),
+    src: withBase(a.served ?? largest?.path ?? ""),
+    srcset: variants.map((v) => `${withBase(v.path)} ${v.width}w`).join(", "),
     alt: a.alt,
     width: largest?.width ?? null,
   };
@@ -482,15 +496,18 @@ export function calendarById(id: string | null | undefined) {
  *  Nawigacja i SEO
  * ------------------------------------------------------------------ */
 
-export const nav = siteModel.site.nav.map((n) => ({ label: n.label, href: n.href }));
+export const nav = siteModel.site.nav.map((n) => ({ label: n.label, href: withBase(n.href) }));
 
-export const cta = siteModel.site.cta;
+export const cta = {
+  primary: { ...siteModel.site.cta.primary, href: withBase(siteModel.site.cta.primary.href) },
+  secondary: { ...siteModel.site.cta.secondary, href: withBase(siteModel.site.cta.secondary.href) },
+};
 
 export const seo = {
   title: businessModel.identity.display_name,
   description: siteModel.site.seo_defaults.description,
-  canonical_url: "https://parys.nysa.pl/",
-  favicon: asset("asset-favicon")?.src ?? "/favicon.ico",
+  canonical_url: `${BASE_PATH}/`,
+  favicon: asset("asset-favicon")?.src ?? withBase("/favicon.ico"),
 };
 
 /** Czy model pozwala publikować (bramka z `_quality`). */

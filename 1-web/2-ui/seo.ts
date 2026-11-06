@@ -1,10 +1,13 @@
-import { contact, business, seo, memberships } from "../1-data/business";
+import { BASE_PATH, contact, business, seo, memberships } from "../1-data/business";
 
-export const SITE_URL = "https://parys.nysa.pl";
+/** Origin wdrożenia (GitHub Pages). Domena parys.nysa.pl obsługuje starą stronę. */
+export const SITE_ORIGIN = "https://patrykjaseniuk.github.io";
+export const SITE_URL = `${SITE_ORIGIN}${BASE_PATH}`;
 export const OG_IMAGE = `${SITE_URL}/og/og-default.jpg`;
 
 export function absoluteUrl(path: string): string {
-  return new URL(path, SITE_URL).toString();
+  if (/^https?:\/\//.test(path)) return path;
+  return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 /** Główny schemat organizacji — zastępuje zakomentowany JSON-LD ze starej strony. */

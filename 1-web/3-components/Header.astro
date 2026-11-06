@@ -1,6 +1,6 @@
 ---
 import Icon from "../2-ui/ui/Icon.astro";
-import { contact, nav } from "../1-data/business";
+import { contact, nav, withBase } from "../1-data/business";
 
 const pathname = Astro.url.pathname;
 
@@ -18,9 +18,9 @@ const isActive = (href: string) =>
   <header class="border-b border-line/70 bg-ink/85 backdrop-blur-xl">
     <div class="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
       <!-- Logo -->
-      <a href="/" class="group flex shrink-0 items-center gap-3" aria-label="Sport Studio Parys — strona główna">
+      <a href={withBase("/")} class="group flex shrink-0 items-center gap-3" aria-label="Sport Studio Parys — strona główna">
         <img
-          src="/brand/icon-mark.svg"
+          src={withBase("/brand/icon-mark.svg")}
           alt=""
           width="40"
           height="40"
@@ -63,7 +63,7 @@ const isActive = (href: string) =>
           {contact.phone}
         </a>
 
-        <a href="/karnety" class="btn-primary btn-sm hidden sm:inline-flex">
+        <a href={withBase("/karnety")} class="btn-primary btn-sm hidden sm:inline-flex">
           Cennik
           <Icon name="arrow-up-right" size={14} />
         </a>

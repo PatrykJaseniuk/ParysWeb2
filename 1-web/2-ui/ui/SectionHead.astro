@@ -1,5 +1,6 @@
 ---
 import Icon from "./Icon.astro";
+import { withBase } from "../../1-data/business";
 
 interface Props {
   index: string;
@@ -40,7 +41,7 @@ const { index, label, title, description, link, tone = "dark", class: className 
 
   {
     link && (
-      <a href={link.href} class:list={["link-arrow shrink-0", tone === "light" ? "text-ink" : "text-bone"]}>
+      <a href={withBase(link.href)} class:list={["link-arrow shrink-0", tone === "light" ? "text-ink" : "text-bone"]}>
         {link.label}
         <Icon name="arrow-up-right" size={15} />
       </a>

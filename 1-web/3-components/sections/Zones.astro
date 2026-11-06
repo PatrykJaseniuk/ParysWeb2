@@ -1,7 +1,7 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
-import { areas } from "../../1-data/business";
+import { areas, withBase } from "../../1-data/business";
 ---
 
 <section class="border-t border-line bg-ink" id="strefy">
@@ -11,14 +11,14 @@ import { areas } from "../../1-data/business";
       label="Strefy"
       title="Sześć stref. Jeden karnet."
       description="Od wolnych ciężarów przez cardio po halę cross — każda strefa to osobna sala z własnym sprzętem. Zobacz, co dokładnie na Ciebie czeka."
-      link={{ label: "Wszystkie strefy", href: "/strefy" }}
+      link={{ label: "Wszystkie strefy", href: withBase("/strefy") }}
     />
 
     <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
       {
         areas.map((area, i) => (
           <a
-            href={`/strefy/${area.slug}`}
+            href={withBase(`/strefy/${area.slug}`)}
             class="group relative flex flex-col border border-line bg-ink-2 transition-colors hover:border-line-soft"
           >
             <div class="relative aspect-[16/10] overflow-hidden bg-ink-3">

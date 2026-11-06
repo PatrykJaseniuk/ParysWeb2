@@ -1,7 +1,7 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
-import { contact, personalTraining, pln, trainers } from "../../1-data/business";
+import { contact, personalTraining, pln, trainers, withBase } from "../../1-data/business";
 ---
 
 <section class="border-t border-black/10 bg-bone text-ink" id="trenerzy">
@@ -56,7 +56,7 @@ import { contact, personalTraining, pln, trainers } from "../../1-data/business"
           <Icon name="phone" size={15} />
           Umów trening
         </a>
-        <a href="/trenerzy" class="link-arrow self-center text-ink">
+        <a href={withBase("/trenerzy")} class="link-arrow self-center text-ink">
           Więcej o trenerach
           <Icon name="arrow-up-right" size={15} />
         </a>

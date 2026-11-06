@@ -1,6 +1,6 @@
 ---
 import Icon from "../2-ui/ui/Icon.astro";
-import { business, contact, nav } from "../1-data/business";
+import { business, contact, nav, withBase } from "../1-data/business";
 
 const year = new Date().getFullYear();
 ---
@@ -9,8 +9,8 @@ const year = new Date().getFullYear();
   <div class="container-x grid gap-12 py-16 md:grid-cols-12 lg:py-20">
     <!-- Marka -->
     <div class="md:col-span-5 lg:col-span-4">
-      <a href="/" class="flex items-center gap-3" aria-label="Sport Studio Parys — strona główna">
-        <img src="/brand/icon-mark.svg" alt="" width="44" height="44" class="h-11 w-11" />
+      <a href={withBase("/")} class="flex items-center gap-3" aria-label="Sport Studio Parys — strona główna">
+        <img src={withBase("/brand/icon-mark.svg")} alt="" width="44" height="44" class="h-11 w-11" />
         <span class="leading-none">
           <span class="block font-display text-2xl font-extrabold tracking-[-0.02em]">PARYS</span>
           <span class="mt-1 block font-mono text-[9px] uppercase tracking-[0.24em] text-mist">
@@ -54,7 +54,7 @@ const year = new Date().getFullYear();
           ))
         }
         <li>
-          <a href="/polityka-prywatnosci" class="text-sm text-bone/80 transition-colors hover:text-brand">
+          <a href={withBase("/polityka-prywatnosci")} class="text-sm text-bone/80 transition-colors hover:text-brand">
             Polityka prywatności
           </a>
         </li>
@@ -124,8 +124,8 @@ const year = new Date().getFullYear();
     >
       <p>© {year} Sport Studio Parys · Nysa</p>
       <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
-        <a href="/polityka-prywatnosci" class="transition-colors hover:text-bone">Polityka prywatności</a>
-        <a href="/regulamin" class="transition-colors hover:text-bone">Regulamin</a>
+        <a href={withBase("/polityka-prywatnosci")} class="transition-colors hover:text-bone">Polityka prywatności</a>
+        <a href={withBase("/regulamin")} class="transition-colors hover:text-bone">Regulamin</a>
         <span class="text-mist/80">Ceny brutto · stan na {new Date().getFullYear()}</span>
       </div>
     </div>

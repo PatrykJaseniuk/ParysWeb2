@@ -1,7 +1,7 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
-import { groupClasses, calendarById } from "../../1-data/business";
+import { groupClasses, calendarById, withBase } from "../../1-data/business";
 ---
 
 <section class="border-b border-line bg-ink" id="zajecia">
@@ -11,7 +11,7 @@ import { groupClasses, calendarById } from "../../1-data/business";
       label="Zajęcia grupowe"
       title="Dwie grupy, jeden prowadzący, zero tłoku"
       description="Cross trening i boks w małych grupach — trener ogarnia technikę każdego uczestnika, a nie tylko pierwszy rząd."
-      link={{ label: "Terminy i kalendarz", href: "/zajecia" }}
+      link={{ label: "Terminy i kalendarz", href: withBase("/zajecia") }}
     />
 
     <div class="mt-10 grid gap-4 lg:grid-cols-2 lg:gap-6">
@@ -21,10 +21,10 @@ import { groupClasses, calendarById } from "../../1-data/business";
           const photo = "sala-cross";
           return (
             <article class="group flex flex-col border border-line bg-ink-2">
-              <a href={`/zajecia#${item.id}`} class="relative block aspect-[16/9] overflow-hidden">
+              <a href={`${withBase("/zajecia")}#${item.id}`} class="relative block aspect-[16/9] overflow-hidden">
                 <img
-                  src={`/img/strefy/${photo}-711.webp`}
-                  srcset={`/img/strefy/${photo}-500.webp 500w, /img/strefy/${photo}-711.webp 711w`}
+                  src={withBase(`/img/strefy/${photo}-711.webp`)}
+                  srcset={`${withBase(`/img/strefy/${photo}-500.webp`)} 500w, ${withBase(`/img/strefy/${photo}-711.webp`)} 711w`}
                   sizes="(min-width: 1024px) 46vw, 100vw"
                   alt={`Zajęcia grupowe: ${item.name}`}
                   width="711"
@@ -62,7 +62,7 @@ import { groupClasses, calendarById } from "../../1-data/business";
                   ) : (
                     <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-mist">Zapisy w recepcji</span>
                   )}
-                  <a href={`/zajecia#${item.id}`} class="link-arrow">
+                  <a href={`${withBase("/zajecia")}#${item.id}`} class="link-arrow">
                     Szczegóły
                     <Icon name="arrow-up-right" size={14} />
                   </a>

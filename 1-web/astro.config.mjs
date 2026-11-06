@@ -7,7 +7,10 @@ export default defineConfig({
   srcDir: "./5-app",
   publicDir: "./7-public",
   outDir: "./8-output/dist",
-  site: "https://parys.nysa.pl",
+  // Projektowy GitHub Pages: https://patrykjaseniuk.github.io/ParysWeb2/
+  // Domena parys.nysa.pl należy do starej strony (repo ParysWeb).
+  site: "https://patrykjaseniuk.github.io",
+  base: "/ParysWeb2",
   trailingSlash: "never",
   integrations: [
     sitemap({
