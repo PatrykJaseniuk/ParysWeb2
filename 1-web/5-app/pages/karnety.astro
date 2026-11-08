@@ -4,8 +4,21 @@ import PageHero from "../../2-ui/ui/PageHero.astro";
 import Icon from "../../2-ui/ui/Icon.astro";
 import PriceMatrix from "../../3-components/pricing/PriceMatrix.astro";
 import CtaBand from "../../3-components/sections/CtaBand.astro";
-import { areas, contact, enrollmentFee, memberships, pln } from "../../1-data/business";
+import {
+  areas,
+  contact,
+  enrollmentFee,
+  entryPrice,
+  memberships,
+  monthlyFrom,
+  optionCount,
+  pln,
+} from "../../1-data/business";
 import { breadcrumbSchema, faqSchema } from "../../2-ui/seo";
+
+const studentMonthly = memberships
+  .find((membership) => membership.id === "mem-4-areas")
+  ?.options.find((option) => option.id === "monthly_student_senior");
 
 const faq = [
   {
@@ -26,7 +39,7 @@ const faq = [
   },
   {
     q: "Czy przysługuje mi zniżka jako uczniowi lub seniorowi?",
-    a: "Tak, w zakresie „4 strefy” karnet miesięczny kosztuje 129 zł dla uczniów i studentów do 26 roku życia oraz seniorzy od 67 roku życia. Wymagane okazanie dokumentu.",
+    a: `Tak, w zakresie „4 strefy” karnet miesięczny kosztuje ${pln(studentMonthly?.price_pln ?? 0)} dla uczniów oraz studentów do 26 roku życia na studiach dziennych i seniorów od 67 roku życia. Wymagane okazanie dokumentu.`,
   },
   {
     q: "Czy karta MultiSport działa całą dobę?",
@@ -38,7 +51,7 @@ const faq = [
   },
   {
     q: "Czy ceny są aktualne?",
-    a: "Cennik odzwierciedla stan z poprzedniej wersji strony i wymaga potwierdzenia w recepcji. Przed zakupem upewnij się telefonicznie pod numerem 77 433 63 01.",
+    a: "Tak. Cennik obowiązuje od 1 czerwca 2026 r. Przed zakupem możesz potwierdzić cenę telefonicznie pod numerem 77 433 63 01.",
   },
 ];
 
@@ -49,7 +62,7 @@ const steps = [
   },
   {
     title: "Wybierz zakres",
-    text: "Cztery strefy, pięć stref, sześć stref z zajęciami albo cztery strefy z crossem — doradzimy na miejscu.",
+    text: "Cztery strefy, cztery strefy z crossem, pięć stref albo sześć stref z zajęciami — doradzimy na miejscu.",
   },
   {
     title: "Odbierz kartę",
@@ -60,7 +73,7 @@ const steps = [
 
 <BaseLayout
   title="Karnety i cennik"
-  description="Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 5 stref, 6 stref z zajęciami grupowymi i 4 strefy + cross. Wejście od 25 zł, karnet miesięczny od 139 zł, bez umowy."
+  description={`Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 4 strefy + cross, 5 stref i 6 stref z zajęciami grupowymi. Wejście od ${pln(entryPrice)}, karnet miesięczny od ${pln(monthlyFrom)}, bez umowy.`}
   canonical="/karnety"
   jsonLd={[
     breadcrumbSchema([{ name: "Karnety", href: "/karnety" }]),
@@ -68,10 +81,10 @@ const steps = [
   ]}
 >
   <PageHero
-    index="03"
+    index="02"
     label="Karnety"
     title="Cennik karnetów"
-    description="Cztery zakresy i dwadzieścia wariantów — od pojedynczego wejścia po karnet roczny z dwoma miesiącami gratis. Bez umowy lojalnościowej, z możliwością zablokowania karnetu."
+    description={`Cztery zakresy i ${optionCount} wariantów — od pojedynczego wejścia po karnet roczny z dwoma miesiącami gratis. Bez umowy lojalnościowej, z możliwością zablokowania karnetu.`}
     breadcrumbs={[{ name: "Karnety", href: "/karnety" }]}
   >
     <div class="mt-8 flex flex-wrap gap-3">

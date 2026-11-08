@@ -42,7 +42,7 @@ const partnerNote = (membership: (typeof memberships)[number]) =>
   membership.partner_access.map((p) => (p.partner === "Medicover" ? "Medicover" : p.partner));
 
 const optionLabel = (id: string, label: string) =>
-  id === "miesieczny-uczen-senior" ? "Miesiąc (uczeń/senior)" : label.charAt(0) + label.slice(1).toLowerCase();
+  id === "monthly_student_senior" ? "Miesiąc (uczeń/senior)" : label.charAt(0) + label.slice(1).toLowerCase();
 ---
 
 <div style={themeVars} class="text-[color:var(--pm-text)]">

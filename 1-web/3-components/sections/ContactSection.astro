@@ -2,13 +2,15 @@
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
 import Icon from "../../2-ui/ui/Icon.astro";
 import MapEmbed from "../../2-ui/ui/MapEmbed.astro";
-import { business, contact } from "../../1-data/business";
+import { business, contact, facilities } from "../../1-data/business";
+
+const parking = facilities.find((facility) => facility.id === "hl-parking");
 ---
 
 <section class="border-t border-line bg-ink" id="kontakt">
   <div class="container-x py-14 sm:py-16 lg:py-20">
     <SectionHead
-      index="08"
+      index="07"
       label="Kontakt"
       title="Tu trenujemy"
       description="Recepcja czynna od poniedziałku do soboty. Z karnetem wchodzisz o dowolnej porze — także w niedzielę i w święta."
@@ -60,6 +62,18 @@ import { business, contact } from "../../1-data/business";
               <Icon name="pin" size={16} />
             </span>
           </div>
+
+          {parking && (
+            <div class="flex items-start justify-between border-b border-line py-5">
+              <div>
+                <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-mist">{parking.title}</p>
+                <p class="mt-1 text-base leading-relaxed text-bone">{parking.description}</p>
+              </div>
+              <span class="flex h-10 w-10 items-center justify-center border border-line text-mist">
+                <Icon name="parking" size={16} />
+              </span>
+            </div>
+          )}
 
           <div class="flex items-start justify-between border-b border-line py-5">
             <div>

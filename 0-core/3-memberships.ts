@@ -8,7 +8,7 @@ import type { PartnerKey } from "./1-partners";
  * Karnety i warianty cenowe — rekord klucz → karnet.
  *
  * Klucz jest tożsamością karnetu; nie ma pola `id`. Kolejność kluczy =
- * kolejność kolumn w cenniku.
+ * kolejność kolumn w cenniku (cennik obowiązujący od 1 czerwca 2026 r.).
  *
  * Referencje do stref, zajęć i partnerów są typowane ich kluczami
  * (`AreaKey`, `ClassKey`, `PartnerKey`), a dodatki — `PerkKey`. Nieistniejąca
@@ -25,56 +25,67 @@ export const memberships = {
     partners: ["partner-multisport", "partner-medicover", "partner-fitprofit"],
     options: [
       {
-        code: "entry",
-        label: "Jednorazowo",
-        price: { amount: 25, unit: "entry" },
-        entries: 1,
-      },
-      {
         code: "two_weeks",
         label: "2 tygodnie",
-        price: { amount: 100, unit: "term" },
+        price: { amount: 110, unit: "term" },
         term: { value: 2, unit: "week" },
-      },
-      {
-        code: "four_entries",
-        label: "4 wejścia",
-        price: { amount: 70, unit: "term" },
-        term: { value: 2, unit: "month" },
-        entries: 4,
       },
       {
         code: "eight_entries",
         label: "8 wejść",
-        price: { amount: 110, unit: "term" },
+        price: { amount: 120, unit: "term" },
         term: { value: 2, unit: "month" },
         entries: 8,
       },
       {
-        code: "ten_entries",
-        label: "10 wejść",
-        price: { amount: 120, unit: "term" },
-        term: { value: 2, unit: "month" },
-        entries: 10,
-      },
-      {
         code: "monthly",
         label: "Miesięczny",
-        price: { amount: 139, unit: "term" },
+        price: { amount: 149, unit: "term" },
         term: { value: 1, unit: "month" },
         perks: ["freeze"],
       },
       {
         code: "monthly_student_senior",
         label: "Uczniowski i senior",
-        price: { amount: 129, unit: "term" },
+        price: { amount: 139, unit: "term" },
         term: { value: 1, unit: "month" },
         perks: ["freeze", "student-senior-eligibility"],
       },
       {
         code: "yearly",
         label: "Roczny",
-        price: { amount: 1390, unit: "term" },
+        price: { amount: 1490, unit: "term" },
+        term: { value: 12, unit: "month" },
+        perks: ["freeze", "two-months-free"],
+      },
+    ],
+  },
+  "mem-4-areas-cross": {
+    slug: "4-strefy-plus-cross",
+    name: "4 strefy + cross",
+    subtitle: "4 strefy + zajęcia Cross trening",
+    areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional"],
+    classes: ["class-cross-training"],
+    partners: ["partner-multisport", "partner-medicover", "partner-fitprofit"],
+    options: [
+      {
+        code: "eight_entries",
+        label: "8 wejść",
+        price: { amount: 160, unit: "term" },
+        term: { value: 2, unit: "month" },
+        entries: 8,
+      },
+      {
+        code: "monthly",
+        label: "Miesięczny",
+        price: { amount: 180, unit: "term" },
+        term: { value: 1, unit: "month" },
+        perks: ["freeze"],
+      },
+      {
+        code: "yearly",
+        label: "Roczny",
+        price: { amount: 1800, unit: "term" },
         term: { value: 12, unit: "month" },
         perks: ["freeze", "two-months-free"],
       },
@@ -89,26 +100,33 @@ export const memberships = {
         code: "entry",
         label: "Jednorazowo",
         price: { amount: 35, unit: "entry" },
+        term: { value: 7, unit: "day" },
         entries: 1,
       },
       {
-        code: "ten_entries",
-        label: "10 wejść",
+        code: "two_weeks",
+        label: "2 tygodnie",
+        price: { amount: 130, unit: "term" },
+        term: { value: 2, unit: "week" },
+      },
+      {
+        code: "eight_entries",
+        label: "8 wejść",
         price: { amount: 150, unit: "term" },
         term: { value: 2, unit: "month" },
-        entries: 10,
+        entries: 8,
       },
       {
         code: "monthly",
         label: "Miesięczny",
-        price: { amount: 160, unit: "term" },
+        price: { amount: 170, unit: "term" },
         term: { value: 1, unit: "month" },
         perks: ["freeze"],
       },
       {
         code: "yearly",
         label: "Roczny",
-        price: { amount: 1600, unit: "term" },
+        price: { amount: 1700, unit: "term" },
         term: { value: 12, unit: "month" },
         perks: ["freeze", "two-months-free"],
       },
@@ -130,65 +148,16 @@ export const memberships = {
     featured: true,
     options: [
       {
-        code: "entry",
-        label: "Jednorazowo",
-        price: { amount: 35, unit: "entry" },
-        entries: 1,
-      },
-      {
-        code: "ten_entries",
-        label: "10 wejść",
-        price: { amount: 170, unit: "term" },
-        term: { value: 2, unit: "month" },
-        entries: 10,
-      },
-      {
         code: "monthly",
         label: "Miesięczny",
-        price: { amount: 180, unit: "term" },
-        term: { value: 1, unit: "month" },
-        perks: ["freeze"],
-      },
-    ],
-  },
-  "mem-4-areas-cross": {
-    slug: "4-strefy-plus-cross",
-    name: "4 strefy + cross",
-    subtitle: "4 strefy + zajęcia Cross trening",
-    areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional"],
-    classes: ["class-cross-training"],
-    partners: ["partner-multisport", "partner-medicover", "partner-fitprofit"],
-    options: [
-      {
-        code: "entry",
-        label: "Jednorazowo",
-        price: { amount: 35, unit: "entry" },
-        entries: 1,
-      },
-      {
-        code: "two_weeks",
-        label: "2 tygodnie",
-        price: { amount: 120, unit: "term" },
-        term: { value: 2, unit: "week" },
-      },
-      {
-        code: "ten_entries",
-        label: "10 wejść",
-        price: { amount: 150, unit: "term" },
-        term: { value: 2, unit: "month" },
-        entries: 10,
-      },
-      {
-        code: "monthly",
-        label: "Miesięczny",
-        price: { amount: 160, unit: "term" },
+        price: { amount: 190, unit: "term" },
         term: { value: 1, unit: "month" },
         perks: ["freeze"],
       },
       {
         code: "yearly",
         label: "Roczny",
-        price: { amount: 1600, unit: "term" },
+        price: { amount: 1800, unit: "term" },
         term: { value: 12, unit: "month" },
         perks: ["freeze", "two-months-free"],
       },

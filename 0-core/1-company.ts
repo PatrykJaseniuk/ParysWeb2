@@ -64,7 +64,7 @@ export const company: Identity = {
       id: "hl-equipment",
       title: "Sprzęt",
       icon: "barbell",
-      text: "Wiele maszyn do ćwiczeń najlepszych marek",
+      text: "Maszyny najlepszych marek",
     },
     {
       id: "hl-area",
@@ -78,14 +78,14 @@ export const company: Identity = {
       id: "hl-air",
       title: "Klimatyzacja",
       icon: "snowflake",
-      text: "Wszystkie pomieszczenia są klimatyzowane",
+      text: "Wszystkie sale są klimatyzowane",
     },
     { id: "hl-partners", title: "Karty partnerskie", icon: "users", ref: "partners" },
     {
       id: "hl-parking",
       title: "Parking",
       icon: "parking",
-      text: "Darmowy parking dla samochodów osobowych i rowerów",
+      text: "Darmowy dla samochodów osobowych i rowerów",
     },
   ],
 };

@@ -20,7 +20,7 @@ business/                 rdzeń — treść i marka, zero zależności
 ├── company.ts            tożsamość, kontakt, godziny, atuty
 ├── brand.ts              nazwa, logo, paleta, typografia, głos, obraz
 ├── areas.ts              6 stref
-├── memberships.ts        4 karnety i 20 wariantów cenowych
+├── memberships.ts        4 karnety i 15 wariantów cenowych
 ├── classes.ts            zajęcia, trenerzy, trening personalny
 ├── services.ts           usługi dodatkowe
 ├── partners.ts           partnerzy i promocje
@@ -128,7 +128,7 @@ business/
 ├── meta.ts           wersja, waluta, strefa czasowa, zasady cennika
 ├── company.ts        tożsamość, kontakt, godziny, lokalizacja, atuty
 ├── areas.ts          6 stref
-├── memberships.ts    4 karnety i 20 wariantów cenowych
+├── memberships.ts    4 karnety i 15 wariantów cenowych
 ├── classes.ts        zajęcia, trenerzy, trening personalny
 ├── services.ts       usługi dodatkowe
 ├── partners.ts       partnerzy i promocje
@@ -142,7 +142,7 @@ business/
 {
   code: "monthly",                        // klucz macierzy cennika
   label: "Miesięczny",
-  price: { amount: 139, unit: "term" },    // waluta z meta, VAT z pricing_policy
+  price: { amount: 149, unit: "term" },    // waluta z meta, VAT z pricing_policy
   term: { value: 1, unit: "month" },
   perks: ["freeze"],                       // etykieta w catalog.perks
 }
@@ -181,6 +181,9 @@ Wartość faktograficzna nie jest wpisana w tekst karty — pochodzi ze wskazane
 ```
 
 `fact` to klucz z `identity.facts`; `invariants.ts` pilnuje, żeby istniał.
+
+Osobna sekcja „Klub” została usunięta. Atuty są prezentowane punktowo:
+sprzęt i klimatyzacja w nagłówku stref, parking w kontakcie.
 
 ### Reguły wspólne (`pricing_policy`)
 

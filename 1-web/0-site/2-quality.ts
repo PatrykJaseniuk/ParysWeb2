@@ -11,17 +11,16 @@ import { site } from "./1-site";
  */
 export const quality = {
   requires: { business: business.model_version, site: site.site_version },
-  quality_version: "1.0.0",
+  quality_version: "1.1.0",
   publishable: false,
   questions: [
     {
-      id: "q-prices",
-      question: "Czy ceny i zakresy karnetów są aktualne?",
+      id: "q-6-streft-scope",
+      question: "Cennik wymienia w karnecie 6 stref tylko zajęcia Cross — czy nadal obejmuje on także zajęcia bokserskie?",
       owner: "owner",
-      blocks_publish: true,
+      blocks_publish: false,
       affects: [
-        "pricing_policy",
-        "catalog.memberships"
+        "catalog.memberships.mem-6-areas"
       ]
     },
     {
@@ -176,8 +175,8 @@ export const quality = {
     },
     {
       path: "pricing_policy",
-      assumption: "ceny bez potwierdzenia, VAT nieznany (includes_vat = null)",
-      risk: "high"
+      assumption: "ceny z cennika od 1 czerwca 2026; VAT nieznany (includes_vat = null)",
+      risk: "medium"
     },
     {
       path: "identity.legal_name",
@@ -191,7 +190,7 @@ export const quality = {
     }
   ],
   provenance: {
-    extracted_at: "2026-11-03T14:13:32+01:00",
+    extracted_at: "2026-11-08T19:30:00+01:00",
     source_repository: "https://github.com/PatrykJaseniuk/ParysWeb",
     source_commit: "8a14e21",
     legacy_stack: [

@@ -139,14 +139,13 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 | --- | --- | --- | --- |
 | 1 | Hero | Powiedzieć w 3 s, co to jest i że działa 24/7 | H1 „Siłownia w Nysie. Czynna całą dobę.” + 2 CTA + pasek statystyk |
 | 2 | Marquee | Pokazać szerokość oferty | Przewijane nazwy stref i usług |
-| 3 | Atuty (6) | Odpowiedzieć „czy warto” | Od 1989, sprzęt, 1000 m², klimatyzacja, partnerzy, parking |
-| 4 | Strefy (6) | Pobudzić wyobraźnię | Zdjęcia (kolor po hover), linki do podstron |
-| 5 | Cennik | **Zamknąć pytanie o cenę** | Macierz 8 wariantów × 4 karnety na jasnym tle |
-| 6 | Zajęcia grupowe | Pokazać ofertę poza siłownią | 2 karty + link do harmonogramu |
-| 7 | Trening personalny | Sprzedać usługę 1:1 | 4 trenerzy, cena 110 zł/h |
-| 8 | Usługi dodatkowe | Dowieźć saunę/badminton/masaż | 4 karty z cenami i rezerwacją |
-| 9 | Partnerzy | Zdjąć obiekcję „czy moja karta działa” | Karty MultiSport/Medicover/FitProfit + zakres |
-| 10 | Kontakt | Doprowadzić do wizyty | Telefon, adres, godziny, mapa (na klik) |
+| 3 | Strefy (6) | Pobudzić wyobraźnię | Zdjęcia (kolor po hover), linki do podstron, sprzęt i klimatyzacja pod nagłówkiem |
+| 4 | Cennik | **Zamknąć pytanie o cenę** | Macierz 6 wariantów × 4 karnety na jasnym tle |
+| 5 | Zajęcia grupowe | Pokazać ofertę poza siłownią | 2 karty + link do harmonogramu |
+| 6 | Trening personalny | Sprzedać usługę 1:1 | 4 trenerzy, cena 110 zł/h |
+| 7 | Usługi dodatkowe | Dowieźć saunę/badminton/masaż | 4 karty z cenami i rezerwacją |
+| 8 | Partnerzy | Zdjąć obiekcję „czy moja karta działa” | Karty MultiSport/Medicover/FitProfit + zakres |
+| 9 | Kontakt | Doprowadzić do wizyty | Telefon, adres, parking, godziny, mapa (na klik) |
 
 Rytm wizualny: ciemne sekcje przedzielone **jedną jasną sekcją cennika** — wygląda
 jak wydrukowany cennik na ścianie i naturalnie przyciąga wzrok w środku strony.
@@ -155,11 +154,11 @@ jak wydrukowany cennik na ścianie i naturalnie przyciąga wzrok w środku stron
 
 ## 7. Cennik — najważniejsza decyzja projektowa
 
-**Problem:** 20 wariantów cenowych w 4 zakresach to dużo. Stara strona ukrywała je
+**Problem:** 15 wariantów cenowych w 4 zakresach to dużo. Stara strona ukrywała je
 w modalu, przez co użytkownik nie mógł porównać.
 
 **Rozwiązanie:**
-- **Desktop:** macierz `wariant × karnet` — 8 wierszy, 4 kolumny. Warianty uporządkowane
+- **Desktop:** macierz `wariant × karnet` — 6 wierszy, 4 kolumny. Warianty uporządkowane
   od najkrótszego do najdłuższego. Kolumna „6 stref + zajęcia grupowe” wyróżniona jako
   pełny zakres. Puste komórki to myślnik, nie „0 zł”.
 - **Mobile:** 4 karty (po jednej na zakres) z listą wariantów — czytelne bez poziomego scrolla.
@@ -182,7 +181,7 @@ Pełny opis: [`DESIGN.md`](DESIGN.md).
 - **Paleta:** `#0a0a0b` (tło), `#f2f1ed` (papier), `#e31e24` (brand), `#9d9da5` (tekst pomocniczy).
 - **Typografia:** Archivo (nagłówki, 800, wersaliki, ciasny tracking) + Inter (treść) + monospace (etykiety techniczne).
 - **Kształt:** ostre krawędzie, włosowe linie 1 px, brak zaokrągleń poza 2 px.
-- **Sygnatura:** numerowane sekcje (`01 / KLUB`), czerwona ramka offsetowa wokół hero, pasek statystyk jak w karcie sprzętu.
+- **Sygnatura:** numerowane sekcje (`01 / STREFY`), czerwona ramka offsetowa wokół hero, pasek statystyk jak w karcie sprzętu.
 - **Stan ciemny tylko** — cennik jako jedyna jasna sekcja („papier”).
 
 ---
@@ -195,7 +194,7 @@ Pełny opis: [`CONTENT-MODEL.md`](CONTENT-MODEL.md).
   media, strony), `quality.ts` (blokery publikacji). Kształt pilnuje `satisfies`
   w `astro check`, spójność — `invariants.ts` uruchamiany przy buildzie.
   Adapter `src/data/business.ts` tłumaczy model na widoki UI.
-- Encje: `areas` (6), `memberships` (4 × 20 wariantów), `group_classes` (2), `trainers` (4),
+- Encje: `areas` (6), `memberships` (4 × 15 wariantów), `group_classes` (2), `trainers` (4),
   `services` (4), `partners` (4), `calendars` (4), `facilities` (6), `contact`.
 - Korekty redakcyjne są **w jednym miejscu** (`fixes`), więc da się je przejrzeć i wycofać.
 

@@ -29,8 +29,8 @@ export const brand = {
   promise: company.tagline,
 
   pillars: [
-    { name: "Konkret", meaning: "Liczby zamiast przymiotników: 1989, 1000 m², 139 zł, 24/7." },
-    { name: "Dostępność", meaning: "Czynne 24/7, karnety bez umowy, wejście jednorazowe od 25 zł." },
+    { name: "Konkret", meaning: "Liczby zamiast przymiotników: 1989, 1000 m², 149 zł, 24/7." },
+    { name: "Dostępność", meaning: "Czynne 24/7, karnety bez umowy, wejście jednorazowe od 35 zł." },
     { name: "Rzemiosło", meaning: "Sprzęt i strefy opisane rzeczowo, bez marketingowego lakieru." },
     { name: "Ciągłość", meaning: "Ta sama siłownia od 1989 roku, ta sama nazwa, to samo miejsce." },
   ],
@@ -167,7 +167,7 @@ export const brand = {
       { label: "godziny", example: "08:00–22:00" },
       { label: "data", example: "1 października 2024" },
     ],
-    example_good: "Karnet miesięczny 139 zł. Bez umowy, z możliwością zablokowania.",
+    example_good: "Karnet miesięczny 149 zł. Bez umowy, z możliwością zablokowania.",
     example_bad: "Zapraszamy do skorzystania z naszej bogatej oferty w konkurencyjnych cenach!",
   },
 

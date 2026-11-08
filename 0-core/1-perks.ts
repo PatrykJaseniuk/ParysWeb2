@@ -8,7 +8,7 @@
  */
 export const perks = {
   freeze: "Możliwość zablokowania karnetu",
-  "student-senior-eligibility": "Uczniowie i studenci do 26 lat oraz seniorzy od 67 lat",
+  "student-senior-eligibility": "Uczniowie oraz studenci do 26 lat na studiach dziennych i seniorzy od 67 lat",
   "two-months-free": "Dwa miesiące gratis",
 } satisfies Record<string, string>;
 

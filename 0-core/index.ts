@@ -27,7 +27,7 @@ import { perks } from "./1-perks";
  *   2-areas.ts          6 stref treningowych
  *   2-classes.ts        zajęcia grupowe, trenerzy, trening personalny
  *   2-services.ts       usługi dodatkowe
- *   3-memberships.ts    4 karnety i 20 wariantów cenowych
+ *   3-memberships.ts    4 karnety i 15 wariantów cenowych
  *   index.ts            kompozycja — najwyższa warstwa, importuje wszystko
  *
  * Tożsamość encji jest kluczem rekordu, nie polem `id`. Referencje używają
@@ -42,7 +42,7 @@ import { perks } from "./1-perks";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "5.0.0",
+  model_version: "6.0.0",
   meta,
   identity: company,
   brand,

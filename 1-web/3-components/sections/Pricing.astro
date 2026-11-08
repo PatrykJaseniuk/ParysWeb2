@@ -2,7 +2,7 @@
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
 import PriceMatrix from "../pricing/PriceMatrix.astro";
-import { contact, enrollmentFee, monthlyFrom, pln, withBase } from "../../1-data/business";
+import { contact, enrollmentFee, entryPrice, monthlyFrom, optionCount, pln, withBase } from "../../1-data/business";
 
 const notes = [
   {
@@ -26,10 +26,10 @@ const notes = [
 <section id="karnety" class="bg-bone text-ink">
   <div class="container-x py-14 sm:py-16 lg:py-20">
     <SectionHead
-      index="03"
+      index="02"
       label="Karnety"
       title="Cennik bez gwiazdek"
-      description={`Cztery zakresy, dwadzieścia wariantów — od wejścia za ${pln(25)} po karnet roczny z dwoma miesiącami gratis. Karnet miesięczny już od ${pln(monthlyFrom)}.`}
+      description={`Cztery zakresy, ${optionCount} wariantów — od wejścia za ${pln(entryPrice)} po karnet roczny z dwoma miesiącami gratis. Karnet miesięczny już od ${pln(monthlyFrom)}.`}
       tone="light"
     />
 

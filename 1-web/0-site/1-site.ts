@@ -706,7 +706,7 @@ export const site = {
         id: "home",
         path: "/",
         title: "Sport Studio Parys",
-        description: "Siłownia i klub fitness w Nysie — czynne całą dobę. Karnety od 25 zł, bez umowy.",
+        description: "Siłownia i klub fitness w Nysie — czynne całą dobę. Karnety od 35 zł, bez umowy.",
         intent: "Jednoekranowe odpowiedzi: co to za miejsce, ile kosztuje, jak dojechać. Prowadzi do cennika i telefonu.",
         noindex: false,
         source: null,
@@ -719,15 +719,6 @@ export const site = {
               "identity.tagline",
               "identity.facts",
               "media.hero"
-            ],
-            note: null
-          },
-          {
-            id: "sec-highlights",
-            type: "highlights",
-            required: true,
-            content_refs: [
-              "identity.highlights"
             ],
             note: null
           },
@@ -804,7 +795,7 @@ export const site = {
         id: "pricing",
         path: "/karnety",
         title: "Karnety i cennik",
-        description: "Cennik karnetów: 4 strefy, 5 stref, 6 stref z zajęciami i 4 strefy + cross. Od 25 zł, bez umowy.",
+        description: "Cennik karnetów: 4 strefy, 4 strefy + cross, 5 stref i 6 stref z zajęciami. Od 35 zł, bez umowy.",
         intent: "Zamknąć pytanie o cenę bez kontaktu z recepcją. Macierz wariantów, zakresy, FAQ.",
         noindex: false,
         source: null,

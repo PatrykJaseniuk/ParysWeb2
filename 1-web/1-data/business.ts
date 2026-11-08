@@ -57,9 +57,12 @@ function mediaOf(id: string): MediaRoles {
  *  Formatowanie
  * ------------------------------------------------------------------ */
 
-const plnFormatter = new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 });
+const plnFormatter = new Intl.NumberFormat("pl-PL", {
+  maximumFractionDigits: 0,
+  useGrouping: true,
+});
 
-/** 1390 → "1 390 zł" (niełamliwa spacja z Intl). */
+/** 1490 → "1 490 zł" (niełamliwa spacja z Intl). */
 export function pln(amount: number): string {
   return `${plnFormatter.format(amount)}\u00a0zł`;
 }
@@ -89,7 +92,7 @@ function termLabel(term: Term | null): string {
   return `${term.value} ${TERM_UNIT_PL[term.unit] ?? ""}`.trim();
 }
 
-/** Opis ceny: "139 zł", "od 120 zł / godz." */
+/** Opis ceny: "149 zł", "od 120 zł / godz." */
 function priceText(money: Money | null, note: string | null = null): string {
   if (!money) return note ?? "—";
   const prefix = money.type === "from" ? "od " : "";
@@ -228,9 +231,7 @@ export function areaById(id: string) {
 export const OPTION_ORDER = [
   "entry",
   "two_weeks",
-  "four_entries",
   "eight_entries",
-  "ten_entries",
   "monthly",
   "monthly_student_senior",
   "yearly",
@@ -240,27 +241,17 @@ export const OPTION_META: Record<string, { label: string; short: string; descrip
   entry: {
     label: "Wejście jednorazowe",
     short: "1 wejście",
-    description: "Jedno wejście, bez zobowiązań.",
+    description: "Jedno wejście ważne 7 dni.",
   },
   two_weeks: {
     label: "2 tygodnie",
     short: "2 tyg.",
     description: "Nielimitowane wejścia przez 14 dni.",
   },
-  four_entries: {
-    label: "4 wejścia",
-    short: "4 wejścia",
-    description: "Cztery wejścia ważne 2 miesiące.",
-  },
   eight_entries: {
     label: "8 wejść",
     short: "8 wejść",
     description: "Osiem wejść ważnych 2 miesiące.",
-  },
-  ten_entries: {
-    label: "10 wejść",
-    short: "10 wejść",
-    description: "Dziesięć wejść ważnych 2 miesiące.",
   },
   monthly: {
     label: "Karnet miesięczny",
@@ -270,7 +261,7 @@ export const OPTION_META: Record<string, { label: string; short: string; descrip
   monthly_student_senior: {
     label: "Miesiąc — uczeń/senior",
     short: "Miesiąc uczeń/senior",
-    description: "Uczniowie i studenci do 26 lat oraz seniorzy od 67 lat.",
+    description: "Uczniowie oraz studenci do 26 lat na studiach dziennych, a także seniorzy od 67 lat.",
   },
   yearly: {
     label: "Karnet roczny",
@@ -358,6 +349,8 @@ export const memberships: MembershipView[] = Object.entries(
     featured: m.featured === true,
   };
 });
+
+export const optionCount = memberships.reduce((count, membership) => count + membership.options.length, 0);
 
 export interface MatrixCell {
   price: number;
