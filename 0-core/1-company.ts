@@ -1,10 +1,10 @@
 import type { Identity } from "./0-types";
 
 /**
- * Dane firmy: tożsamość, kontakt, godziny, lokalizacja i atuty.
+ * Dane firmy: tożsamość, kontakt, godziny i lokalizacja.
  *
- * Wartości liczbowe atutów pochodzą z `facts` — karta „od 1989”
- * bierze rok z `facts.founded`, nie z kopii w tekście.
+ * Wartości liczbowe pochodzą z `facts` — jedno źródło prawdy dla roku
+ * założenia, powierzchni i liczby sal.
  */
 
 export const company: Identity = {
@@ -49,43 +49,6 @@ export const company: Identity = {
       platform: "instagram",
       url: "https://www.instagram.com/silownia_parys/",
       handle: "silownia_parys",
-    },
-  ],
-  highlights: [
-    {
-      id: "hl-founded",
-      title: "Rok założenia",
-      icon: "clock",
-      fact: "founded",
-      prefix: "od",
-      text: "Wieloletnie doświadczenie",
-    },
-    {
-      id: "hl-equipment",
-      title: "Sprzęt",
-      icon: "barbell",
-      text: "Maszyny najlepszych marek",
-    },
-    {
-      id: "hl-area",
-      title: "Powierzchnia",
-      icon: "area",
-      fact: "area_m2",
-      suffix: " m²",
-      text: "Sześć klimatyzowanych sal",
-    },
-    {
-      id: "hl-air",
-      title: "Klimatyzacja",
-      icon: "snowflake",
-      text: "Wszystkie sale są klimatyzowane",
-    },
-    { id: "hl-partners", title: "Karty partnerskie", icon: "users", ref: "partners" },
-    {
-      id: "hl-parking",
-      title: "Parking",
-      icon: "parking",
-      text: "Darmowy dla samochodów osobowych i rowerów",
     },
   ],
 };

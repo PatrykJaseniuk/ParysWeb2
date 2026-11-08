@@ -3,10 +3,8 @@ import BaseLayout from "../../4-layouts/BaseLayout.astro";
 import PageHero from "../../2-ui/ui/PageHero.astro";
 import Icon from "../../2-ui/ui/Icon.astro";
 import MapEmbed from "../../2-ui/ui/MapEmbed.astro";
-import { business, contact, facilities } from "../../1-data/business";
+import { business, contact } from "../../1-data/business";
 import { breadcrumbSchema } from "../../2-ui/seo";
-
-const parking = facilities.find((facility) => facility.id === "hl-parking");
 ---
 
 <BaseLayout
@@ -63,18 +61,6 @@ const parking = facilities.find((facility) => facility.id === "hl-parking");
               <Icon name="pin" size={16} />
             </span>
           </div>
-
-          {parking && (
-            <div class="flex items-start justify-between border-b border-line py-5">
-              <div>
-                <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-mist">{parking.title}</p>
-                <p class="mt-1 text-base leading-relaxed text-bone">{parking.description}</p>
-              </div>
-              <span class="flex h-10 w-10 items-center justify-center border border-line text-mist">
-                <Icon name="parking" size={16} />
-              </span>
-            </div>
-          )}
 
           <div class="flex items-start justify-between border-b border-line py-5">
             <div>

@@ -185,32 +185,6 @@ export const contact = {
   placeName: businessModel.identity.location.place_name,
 };
 
-const HIGHLIGHT_ICONS: Record<string, string> = {
-  clock: "IconClockShield",
-  barbell: "IconBarbell",
-  area: "IconSquare",
-  snowflake: "IconAirConditioning",
-  users: "IconHeartHandshake",
-  parking: "IconParking",
-};
-
-/** Tytuł karty: jeśli highlight wskazuje fakt, wartość pochodzi z faktu. */
-function highlightTitle(h: (typeof businessModel.identity.highlights)[number]): string {
-  if (!h.fact) return h.title;
-  const prefix = h.prefix ? `${h.prefix} ` : "";
-  return `${prefix}${businessModel.identity.facts[h.fact]}${h.suffix ?? ""}`;
-}
-
-export const facilities = businessModel.identity.highlights.map((h) => ({
-  id: h.id,
-  title: highlightTitle(h),
-  label: h.title,
-  description: h.text ?? "",
-  icon_hint: HIGHLIGHT_ICONS[h.icon] ?? "IconSpark",
-  content_ref: h.ref ?? null,
-  isPartners: h.ref === "partners",
-}));
-
 export const areas = Object.entries(businessModel.catalog.areas).map(([id, a]) => ({
   id,
   slug: a.slug,

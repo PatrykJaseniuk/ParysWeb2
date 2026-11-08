@@ -17,7 +17,7 @@ business/                 rdzeń — treść i marka, zero zależności
 ├── types.ts              typy rdzenia
 ├── invariants.ts         reguły rdzenia (referencje, ceny, kompletność)
 ├── meta.ts               wersja, waluta, strefa czasowa, cennik
-├── company.ts            tożsamość, kontakt, godziny, atuty
+├── company.ts            tożsamość, kontakt, godziny, lokalizacja
 ├── brand.ts              nazwa, logo, paleta, typografia, głos, obraz
 ├── areas.ts              6 stref
 ├── memberships.ts        4 karnety i 15 wariantów cenowych
@@ -126,7 +126,7 @@ Dziewięć modułów tematycznych. Każdy daje się objąć jednym spojrzeniem, 
 business/
 ├── index.ts          kompozycja + `model_version`
 ├── meta.ts           wersja, waluta, strefa czasowa, zasady cennika
-├── company.ts        tożsamość, kontakt, godziny, lokalizacja, atuty
+├── company.ts        tożsamość, kontakt, godziny, lokalizacja
 ├── areas.ts          6 stref
 ├── memberships.ts    4 karnety i 15 wariantów cenowych
 ├── classes.ts        zajęcia, trenerzy, trening personalny
@@ -170,20 +170,6 @@ Czego w wariancie **nie ma** i dlaczego:
 
 Strony wyprowadzane liczy adapter (`src/data/business.ts`), więc nie istnieją dwie
 listy, które mogą się rozjechać.
-
-### Atuty (`identity.highlights`)
-
-Wartość faktograficzna nie jest wpisana w tekst karty — pochodzi ze wskazanego faktu:
-
-```ts
-{ id: "hl-area", title: "Powierzchnia", icon: "area",
-  fact: "area_m2", suffix: " m²", text: "Sześć klimatyzowanych sal" }
-```
-
-`fact` to klucz z `identity.facts`; `invariants.ts` pilnuje, żeby istniał.
-
-Osobna sekcja „Klub” została usunięta. Atuty są prezentowane punktowo:
-sprzęt i klimatyzacja w nagłówku stref, parking w kontakcie.
 
 ### Reguły wspólne (`pricing_policy`)
 

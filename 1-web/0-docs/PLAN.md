@@ -195,7 +195,7 @@ Pełny opis: [`CONTENT-MODEL.md`](CONTENT-MODEL.md).
   w `astro check`, spójność — `invariants.ts` uruchamiany przy buildzie.
   Adapter `src/data/business.ts` tłumaczy model na widoki UI.
 - Encje: `areas` (6), `memberships` (4 × 15 wariantów), `group_classes` (2), `trainers` (4),
-  `services` (4), `partners` (4), `calendars` (4), `facilities` (6), `contact`.
+  `services` (4), `partners` (4), `calendars` (4), `contact`.
 - Korekty redakcyjne są **w jednym miejscu** (`fixes`), więc da się je przejrzeć i wycofać.
 
 ---

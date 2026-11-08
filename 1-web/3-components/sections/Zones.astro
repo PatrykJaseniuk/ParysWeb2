@@ -1,17 +1,7 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
-import type { IconName } from "../../2-ui/icons";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
-import { areas, facilities, withBase } from "../../1-data/business";
-
-const comfortIcons: Record<string, IconName> = {
-  IconBarbell: "barbell",
-  IconAirConditioning: "snowflake",
-};
-
-const comfortFacts = facilities.filter(
-  (facility) => facility.id === "hl-equipment" || facility.id === "hl-air",
-);
+import { areas, withBase } from "../../1-data/business";
 ---
 
 <section class="border-t border-line bg-ink" id="strefy">
@@ -23,17 +13,6 @@ const comfortFacts = facilities.filter(
       description="Od wolnych ciężarów przez cardio po halę cross — każda strefa to osobna sala z własnym sprzętem. Zobacz, co dokładnie na Ciebie czeka."
       link={{ label: "Wszystkie strefy", href: withBase("/strefy") }}
     />
-
-    <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-      {
-        comfortFacts.map((fact) => (
-          <li class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-mist/80">
-            <Icon name={comfortIcons[fact.icon_hint] ?? "check"} size={13} class="text-brand" />
-            {fact.description}
-          </li>
-        ))
-      }
-    </ul>
 
     <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
       {

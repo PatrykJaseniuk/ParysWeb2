@@ -37,8 +37,7 @@ znajduje się w [`README.md`](README.md).
 ## Model (`0-core`)
 
 1. **Tożsamość = klucz rekordu.** Encje katalogu to `Record<klucz, obiekt>`;
-   nie dodawaj pola `id`. Wyjątki: `Highlight.id` (kotwica UI) i
-   `LogoVariant.id` (dyskryminant unii).
+   nie dodawaj pola `id`. Wyjątkiem jest `LogoVariant.id` (dyskryminant unii).
 2. **Referencje tylko przez typy kluczy** (`AreaKey`, `ClassKey`, `TrainerKey`,
    `PartnerKey`, `CalendarKey`, `PerkKey`), nigdy przez `string`.
    Nowy rodzaj referencji: dodaj parametr generyczny do kształtu w `0-types.ts`

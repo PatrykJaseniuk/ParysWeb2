@@ -22,7 +22,7 @@ Ta sama zasada obowiązuje pliki w `0-core/` — prefiks numeru wyznacza warstw�
 0-types          kontrakt kształtu (korzeń, zero importów)
 1-perks          słownik dodatków
 1-meta           wersja, waluta, strefa czasowa, cennik
-1-company        tożsamość, kontakt, godziny, lokalizacja, atuty
+1-company        tożsamość, kontakt, godziny, lokalizacja
 1-partners       partnerzy i promocje
 1-integrations   kalendarze i analityka
 2-brand          marka: nazwa, logo, paleta, typografia, głos

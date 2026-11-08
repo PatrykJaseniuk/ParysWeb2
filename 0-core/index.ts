@@ -20,7 +20,7 @@ import { perks } from "./1-perks";
  *   0-types.ts          kontrakt kształtu — korzeń, zero importów
  *   1-perks.ts          słownik dodatków (eksportuje PerkKey)
  *   1-meta.ts           wersja, waluta, strefa czasowa, zasady cennika
- *   1-company.ts        tożsamość, kontakt, godziny, lokalizacja, atuty
+ *   1-company.ts        tożsamość, kontakt, godziny, lokalizacja
  *   1-partners.ts       partnerzy i promocje
  *   1-integrations.ts   kalendarze i analityka
  *   2-brand.ts          marka: nazwa, logo, paleta, typografia, głos, obraz
@@ -42,7 +42,7 @@ import { perks } from "./1-perks";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "6.0.0",
+  model_version: "7.0.0",
   meta,
   identity: company,
   brand,

@@ -16,17 +16,6 @@ export type PriceUnit = "entry" | "term" | "hour" | "item";
 export type PriceType = "exact" | "from";
 export type TermUnit = "day" | "week" | "month" | "year";
 export type Day = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
-export type HighlightIcon =
-  | "clock"
-  | "barbell"
-  | "area"
-  | "snowflake"
-  | "users"
-  | "parking"
-  | "spark"
-  | "phone"
-  | "calendar"
-  | "check";
 
 /* ------------------------------------------------------------------ *
  *  Wspólne
@@ -80,23 +69,6 @@ export interface IdentityFacts {
   open_24_7: boolean;
 }
 
-/**
- * Karta atutowa. Wartość liczbowa pochodzi z `facts` (jedno źródło prawdy),
- * a nie z kopii wpisanej w tekst.
- */
-export interface Highlight {
-  id: string;
-  title: string;
-  icon: HighlightIcon;
-  /** Klucz faktu, np. `founded` → „od 1989”. */
-  fact?: keyof IdentityFacts;
-  prefix?: string;
-  suffix?: string;
-  text?: string;
-  /** Karta renderuje listę encji zamiast tekstu. */
-  ref?: "partners";
-}
-
 export interface Identity {
   display_name: string;
   legal_name?: string;
@@ -130,7 +102,6 @@ export interface Identity {
     url: string;
     handle: string;
   }[];
-  highlights: Highlight[];
 }
 
 export interface PricingPolicy {
