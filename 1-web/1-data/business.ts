@@ -39,11 +39,16 @@ assertModelIntegrity();
  */
 export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-/** `/karnety` → `/ParysWeb2/karnety`; `#kotwica` i adresy zewnętrzne bez zmian. */
+/**
+ * `/karnety` → `/ParysWeb2/karnety`; `#kotwica` i adresy zewnętrzne bez zmian.
+ * Strona główna nie dostaje końcowego ukośnika (`/ParysWeb2`), bo
+ * `trailingSlash: "never"` — inaczej dev server zwraca 404.
+ */
 export function withBase(path: string): string {
-  if (!path.startsWith("/")) return path;
-  if (BASE_PATH && (path === BASE_PATH || path.startsWith(`${BASE_PATH}/`))) return path;
-  return `${BASE_PATH}${path}`;
+  const alreadyPrefixed =
+    BASE_PATH !== "" && (path === BASE_PATH || path.startsWith(`${BASE_PATH}/`));
+  const resolved = path === "/" ? BASE_PATH || "/" : `${BASE_PATH}${path}`;
+  return path.startsWith("/") && !alreadyPrefixed ? resolved : path;
 }
 
 const bindings: Record<string, MediaRoles> = siteModel.media.bindings;
