@@ -53,7 +53,7 @@ export const quality = {
     },
     {
       id: "q-cross-scope",
-      question: "Czy „4 strefy + cross” ma obejmować strefę Sala cross, czy tylko zajęcia?",
+      question: "Czy „4 strefy + Cross” ma obejmować strefę Sala cross, czy tylko Cross?",
       owner: "owner",
       blocks_publish: false,
       affects: [
@@ -111,7 +111,7 @@ export const quality = {
       id: "dq-name-cross",
       severity: "medium",
       area: "Karnety",
-      issue: "Nazwa „4 strefy + cross” nie odpowiada zakresowi: karnet obejmuje zajęcia Cross trening, ale nie strefę Sala cross.",
+      issue: "Nazwa „4 strefy + Cross” nie odpowiada zakresowi: karnet obejmuje Cross, ale nie strefę Sala cross.",
       resolution: "Potwierdzić zakres; w UI nazwa handlowa z dopiskiem pod spodem."
     },
     {

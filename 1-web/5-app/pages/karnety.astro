@@ -26,12 +26,12 @@ const faq = [
     a: "Nie. Karnety kupujesz na określony czas — nie podpisujesz umowy lojalnościowej ani zobowiązania na kolejne miesiące. Jednorazowo przy pierwszym zakupie doliczamy opłatę wpisową 15 zł.",
   },
   {
-    q: "Który karnet obejmuje zajęcia grupowe?",
-    a: "Zajęcia Cross trening są wliczone w karnet „6 stref + zajęcia grupowe”. Karnet „4 strefy + cross” również daje dostęp do zajęć Cross trening, ale nie do strefy Sala cross.",
+    q: "Który karnet obejmuje Cross?",
+    a: "Cross jest wliczony w karnet „6 stref + Cross”. Karnet „4 strefy + Cross” również daje dostęp do Cross, ale nie do strefy Sala cross.",
   },
   {
-    q: "Czym różni się „4 strefy + cross” od „6 stref + zajęcia grupowe”?",
-    a: "„4 strefy + cross” to cztery strefy treningowe plus zajęcia Cross trening. „6 stref + zajęcia grupowe” to wszystkie sześć stref (w tym Sala cross i rollmasaż) oraz zajęcia Cross trening.",
+    q: "Czym różni się „4 strefy + Cross” od „6 stref + Cross”?",
+    a: "„4 strefy + Cross” to cztery strefy treningowe plus Cross. „6 stref + Cross” to wszystkie sześć stref (w tym Sala cross i rollmasaż) oraz Cross.",
   },
   {
     q: "Czy mogę zawiesić karnet?",
@@ -43,7 +43,7 @@ const faq = [
   },
   {
     q: "Czy karta MultiSport działa całą dobę?",
-    a: "MultiSport — dostęp w godzinach pracy recepcji. Medicover Sport i FitProfit — dostęp całodobowy dla zarejestrowanych klientów. Karty działają w karnetach „4 strefy” i „4 strefy + cross”.",
+    a: "MultiSport — dostęp w godzinach pracy recepcji. Medicover Sport i FitProfit — dostęp całodobowy dla zarejestrowanych klientów. Karty działają w karnetach „4 strefy” i „4 strefy + Cross”.",
   },
   {
     q: "Jakie są godziny pracy recepcji?",
@@ -62,7 +62,7 @@ const steps = [
   },
   {
     title: "Wybierz zakres",
-    text: "Cztery strefy, cztery strefy z crossem, pięć stref albo sześć stref z zajęciami — doradzimy na miejscu.",
+    text: "Cztery strefy, cztery strefy + Cross, pięć stref albo sześć stref + Cross — doradzimy na miejscu.",
   },
   {
     title: "Odbierz kartę",
@@ -73,7 +73,7 @@ const steps = [
 
 <BaseLayout
   title="Karnety i cennik"
-  description={`Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 4 strefy + cross, 5 stref i 6 stref z zajęciami grupowymi. Wejście od ${pln(entryPrice)}, karnet miesięczny od ${pln(monthlyFrom)}, bez umowy.`}
+  description={`Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 4 strefy + Cross, 5 stref i 6 stref + Cross. Wejście od ${pln(entryPrice)}, karnet miesięczny od ${pln(monthlyFrom)}, bez umowy.`}
   canonical="/karnety"
   jsonLd={[
     breadcrumbSchema([{ name: "Karnety", href: "/karnety" }]),
@@ -198,8 +198,8 @@ const steps = [
       </div>
 
       <p class="mt-4 text-[11px] leading-relaxed text-mist/80">
-        Uwaga: karnet „4 strefy + cross” obejmuje zajęcia Cross trening, ale nie strefę Sala cross.
-        Karnet „6 stref + zajęcia grupowe” obejmuje zajęcia Cross trening oraz strefę Sala cross.
+        Uwaga: karnet „4 strefy + Cross” obejmuje Cross, ale nie strefę Sala cross.
+        Karnet „6 stref + Cross” obejmuje Cross oraz strefę Sala cross.
       </p>
     </div>
   </section>

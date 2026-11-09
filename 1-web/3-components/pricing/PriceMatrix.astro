@@ -153,7 +153,7 @@ const optionLabel = (id: string, label: string) =>
                   {membership.classes_included.length > 0 && (
                     <li class="flex items-start gap-1.5">
                       <Icon name="check" size={12} class="mt-0.5 shrink-0 text-brand" />
-                      <span>Zajęcia grupowe</span>
+                      <span>Cross</span>
                     </li>
                   )}
                   {membership.optionIds.includes("monthly_student_senior") && (
@@ -229,7 +229,7 @@ const optionLabel = (id: string, label: string) =>
             <p class="border-t border-[color:var(--pm-line-soft)] px-5 py-3 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-[color:var(--pm-muted)]">
               {[
                 membership.partner_access.length > 0 ? partnerNote(membership).join(" · ") : null,
-                membership.classes_included.length > 0 ? "zajęcia grupowe" : null,
+                membership.classes_included.length > 0 ? "Cross" : null,
               ]
                 .filter(Boolean)
                 .join(" · ")}

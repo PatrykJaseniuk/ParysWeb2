@@ -250,7 +250,7 @@ export const site = {
 - `alt` jest wymagany dla obrazów i logotypów (wyjątek: favicon).
 - **Brak wpisu w `bindings` = brak pliku.** Wtedy działa `fallbacks`.
 - Ten sam plik może obsługiwać wiele encji (`asset-photo-zone-cross` obsługuje salę
-  cross i oba zajęcia) bez duplikowania `alt` ani wariantów.
+  cross i Cross) bez duplikowania `alt` ani wariantów.
 
 ### 5.2 `design`
 

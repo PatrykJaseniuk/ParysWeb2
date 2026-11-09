@@ -100,7 +100,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 | --- | --- |
 | „Ile kosztuje karnet?” | Google → `/karnety` → macierz → telefon (sticky na mobile) |
 | „Czy jest sauna i ile kosztuje?” | Google → `/uslugi#sauna` → kalendarz → telefon |
-| „Czy są zajęcia cross?” | `/zajecia` → harmonogram → karnet z zajęciami |
+| „Czy jest Cross?” | `/zajecia` → harmonogram → karnet z Cross |
 | „Gdzie zaparkować?” | `/kontakt` → mapa (1 klik) |
 | „Czy dostanę zniżkę jako student?” | `/karnety` → FAQ „Czy przysługuje mi zniżka…” |
 
@@ -118,7 +118,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 │   ├── /strefy/sala-funkcjonalna
 │   ├── /strefy/sala-cross
 │   └── /strefy/rollmasaz-platforma-wibrujaca
-├── /zajecia            Cross trening + harmonogram
+├── /zajecia            Cross + harmonogram
 ├── /trenerzy           Czterech trenerów + cena + jak to działa
 ├── /uslugi             Sauna, badminton, masaż, bufet + kalendarze
 ├── /kontakt            Dane, godziny, mapa, rezerwacje
@@ -141,7 +141,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 | 2 | Marquee | Pokazać szerokość oferty | Przewijane nazwy stref i usług |
 | 3 | Strefy (6) | Pobudzić wyobraźnię | Zdjęcia (kolor po hover), linki do podstron, sprzęt i klimatyzacja pod nagłówkiem |
 | 4 | Cennik | **Zamknąć pytanie o cenę** | Macierz 6 wariantów × 4 karnety na jasnym tle |
-| 5 | Zajęcia grupowe | Pokazać ofertę poza siłownią | 2 karty + link do harmonogramu |
+| 5 | Cross | Pokazać ofertę poza siłownią | 1 karta + link do harmonogramu |
 | 6 | Trening personalny | Sprzedać usługę 1:1 | 4 trenerzy, cena 110 zł/h |
 | 7 | Usługi dodatkowe | Dowieźć saunę/badminton/masaż | 4 karty z cenami i rezerwacją |
 | 8 | Partnerzy | Zdjąć obiekcję „czy moja karta działa” | Karty MultiSport/Medicover/FitProfit + zakres |
@@ -159,7 +159,7 @@ w modalu, przez co użytkownik nie mógł porównać.
 
 **Rozwiązanie:**
 - **Desktop:** macierz `wariant × karnet` — 6 wierszy, 4 kolumny. Warianty uporządkowane
-  od najkrótszego do najdłuższego. Kolumna „6 stref + zajęcia grupowe” wyróżniona jako
+  od najkrótszego do najdłuższego. Kolumna „6 stref + Cross” wyróżniona jako
   pełny zakres. Puste komórki to myślnik, nie „0 zł”.
 - **Mobile:** 4 karty (po jednej na zakres) z listą wariantów — czytelne bez poziomego scrolla.
 - **Etykiety:** zamiast krzyczących „MIESIĘCZNY uczeń/senior” — „Miesiąc (uczeń/senior)”,
@@ -167,10 +167,9 @@ w modalu, przez co użytkownik nie mógł porównać.
 - **Opłata wpisowa 15 zł** pokazana raz, pod tabelą, nie w każdej komórce.
 - **Zastrzeżenie:** „ceny potwierdź w recepcji” — bo eksport odzwierciedla stan kodu, nie cennik na ścianie.
 
-**Niespójność do rozstrzygnięcia:** karnet „4 strefy + cross” obejmuje zajęcia Cross
-trening, ale **nie** strefę Sala cross. Nazwa sugeruje coś odwrotnego. W UI nazwa
-została zachowana (jest w obrocie), ale pod nią jest dopisek „4 strefy + zajęcia Cross
-trening” i przypis w `/karnety`.
+**Niespójność do rozstrzygnięcia:** karnet „4 strefy + Cross” obejmuje Cross, ale
+**nie** strefę Sala cross. Nazwa może sugerować dostęp do strefy. W UI nazwa pozostała
+bez zmian, a zakres doprecyzowuje przypis w `/karnety`.
 
 ---
 
@@ -351,7 +350,7 @@ Kod jest gotowy — blokują dane, nie technologia.
 **Blokujące publikację:**
 1. Czy ceny i zakresy karnetów są aktualne (stan z eksportu)?
 2. Jaki jest kod pocztowy i pełne dane firmy (NIP, nazwa do stopki)?
-3. Czy „4 strefy + cross” ma obejmować strefę Sala cross, czy tylko zajęcia Cross trening?
+3. Czy „4 strefy + Cross” ma obejmować strefę Sala cross, czy tylko Cross?
 4. Czy regulamin i polityka prywatności istnieją? Jeśli nie — kto je przygotuje?
 5. Czy PZU jest nadal akceptowane i na jakich zasadach?
 
@@ -365,7 +364,7 @@ Kod jest gotowy — blokują dane, nie technologia.
 **Opcjonalne:**
 11. Czy wideo (11 filmów, 189 MB) ma być na stronie, czy wystarczą zdjęcia?
 12. Czy planowany jest system rezerwacji online (sauna, badminton, masaż)?
-13. Czy dochodzą nowe zajęcia grupowe lub strefy?
+13. Czy dochodzą nowe zajęcia lub strefy?
 
 ---
 

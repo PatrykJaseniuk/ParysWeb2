@@ -11,17 +11,17 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
 ---
 
 <BaseLayout
-  title="Zajęcia grupowe"
-  description="Cross trening w Sport Studio Parys w Nysie. Małe grupy, indywidualne podejście i harmonogram w kalendarzu online."
+  title="Cross"
+  description="Cross w Sport Studio Parys w Nysie. Małe grupy, indywidualne podejście i harmonogram w kalendarzu online."
   canonical="/zajecia"
-  jsonLd={[breadcrumbSchema([{ name: "Zajęcia grupowe", href: "/zajecia" }])]}
+  jsonLd={[breadcrumbSchema([{ name: "Cross", href: "/zajecia" }])]}
 >
   <PageHero
     index="03"
-    label="Zajęcia grupowe"
-    title="Cross trening"
-    description="Zajęcia w małych grupach, z trenerem, który widzi każdego. Cross trening jest wliczony w karnety „6 stref + zajęcia grupowe” i „4 strefy + cross”."
-    breadcrumbs={[{ name: "Zajęcia", href: "/zajecia" }]}
+    label="Cross"
+    title="Cross"
+    description="Cross odbywa się w małych grupach, z trenerem, który widzi każdego. Jest wliczony w karnety „6 stref + Cross” i „4 strefy + Cross”."
+    breadcrumbs={[{ name: "Cross", href: "/zajecia" }]}
   />
 
   <!-- Harmonogram -->
@@ -31,12 +31,12 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
         <div>
           <h2 class="eyebrow">Harmonogram</h2>
           <p class="mt-3 max-w-xl text-sm leading-relaxed text-mist">
-            Aktualne terminy zajęć grupowych. Kalendarz jest publiczny — możesz dodać go do
+            Aktualne terminy Cross. Kalendarz jest publiczny — możesz dodać go do
             własnego Google Calendar.
           </p>
         </div>
         <div class="flex flex-wrap gap-3">
-          <a href="#cross-trening" class="link-arrow">Cross trening <Icon name="arrow-down" size={14} /></a>
+          <a href="#cross-trening" class="link-arrow">Cross <Icon name="arrow-down" size={14} /></a>
         </div>
       </div>
 
@@ -44,7 +44,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
         groupsCalendar ? (
           <CalendarEmbed
             url={groupsCalendar.url}
-            title={groupsCalendar.title ?? "Zajęcia grupowe — harmonogram"}
+            title={groupsCalendar.title ?? "Cross — harmonogram"}
             description="Wybierz widok tygodnia i sprawdź, kiedy wypadają Twoje zajęcia."
             class="mt-8"
           />
@@ -83,7 +83,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
                 <p class="eyebrow">
                   <span class="text-brand">{String(index + 1).padStart(2, "0")}</span>
                   <span class="mx-2 text-mist/80">/</span>
-                  zajęcia grupowe
+                  małe grupy
                 </p>
                 <h2 class="h2 mt-4">{item.name}</h2>
                 <p class="mt-6 text-base leading-[1.8] text-bone/80">{item.description}</p>
@@ -95,12 +95,12 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
                   </div>
                   <div class="bg-ink-2 p-4">
                     <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist/80">W cenie karnetu</dt>
-                    <dd class="mt-1 text-sm text-bone/85">6 stref + zajęcia grupowe, 4 strefy + cross</dd>
+                    <dd class="mt-1 text-sm text-bone/85">6 stref + Cross, 4 strefy + Cross</dd>
                   </div>
                 </dl>
 
                 <div class="mt-6 flex flex-wrap gap-3">
-                  <a href={withBase("/karnety")} class="btn-primary">Karnet z zajęciami</a>
+                  <a href={withBase("/karnety")} class="btn-primary">Karnet z Cross</a>
                   {calendar && (
                     <a href="#kalendarz" class="btn-ghost">
                       <Icon name="calendar" size={14} />

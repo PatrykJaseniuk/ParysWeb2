@@ -25,7 +25,7 @@ import { perks } from "./1-perks";
  *   1-integrations.ts   kalendarze i analityka
  *   2-brand.ts          marka: nazwa, logo, paleta, typografia, głos, obraz
  *   2-areas.ts          6 stref treningowych
- *   2-classes.ts        zajęcia grupowe, trenerzy, trening personalny
+ *   2-classes.ts        Cross, trenerzy, trening personalny
  *   2-services.ts       usługi dodatkowe
  *   3-memberships.ts    4 karnety i 15 wariantów cenowych
  *   index.ts            kompozycja — najwyższa warstwa, importuje wszystko

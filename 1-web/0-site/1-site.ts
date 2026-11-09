@@ -636,7 +636,7 @@ export const site = {
         kind: "link"
       },
       {
-        label: "Zajęcia",
+        label: "Cross",
         href: "/zajecia",
         kind: "link"
       },
@@ -670,7 +670,7 @@ export const site = {
     },
     seo_defaults: {
       title_template: "{title} — Sport Studio Parys, Nysa",
-      description: "Siłownia i klub fitness w Nysie, czynne całą dobę. Sześć stref treningowych na 1000 m², zajęcia grupowe, trening personalny, sauna i badminton.",
+      description: "Siłownia i klub fitness w Nysie, czynne całą dobę. Sześć stref treningowych na 1000 m², Cross, trening personalny, sauna i badminton.",
       locale: "pl_PL",
       og_image: "asset-og-default"
     },
@@ -775,7 +775,7 @@ export const site = {
         id: "pricing",
         path: "/karnety",
         title: "Karnety i cennik",
-        description: "Cennik karnetów: 4 strefy, 4 strefy + cross, 5 stref i 6 stref z zajęciami. Od 35 zł, bez umowy.",
+        description: "Cennik karnetów: 4 strefy, 4 strefy + Cross, 5 stref i 6 stref + Cross. Od 35 zł, bez umowy.",
         intent: "Zamknąć pytanie o cenę bez kontaktu z recepcją. Macierz wariantów, zakresy, FAQ.",
         noindex: false,
         source: null,
@@ -917,9 +917,9 @@ export const site = {
       {
         id: "classes",
         path: "/zajecia",
-        title: "Zajęcia grupowe",
-        description: "Cross trening w małych grupach. Harmonogram i zasady zapisów.",
-        intent: "Sprzedać zajęcia grupowe i pokazać terminy.",
+        title: "Cross",
+        description: "Cross w małych grupach. Harmonogram i zasady zapisów.",
+        intent: "Zaprezentować Cross i pokazać terminy.",
         noindex: false,
         source: null,
         sections: [

@@ -13,8 +13,8 @@ import type { CalendarSource, Integrations } from "./0-types";
 
 export const calendars = {
   "cal-classes": {
-    purpose: "Harmonogram zajęć grupowych (Cross trening)",
-    title: "Zajęcia grupowe",
+    purpose: "Harmonogram Cross",
+    title: "Cross",
     embed_url: "https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FWarsaw&bgcolor=%23ffffff&mode=WEEK&src=NDQ4Njk2NDc4MmQyYTdmMjNjZmZjOWQyNTc5ODY3NmMzN2JhZDM1YzAwZmZjN2Y2ZWZlNWRjZmU4NTQzZTgyM0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23D50000",
     colors: ["#d50000"],
   },

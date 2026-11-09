@@ -2,13 +2,13 @@ import type { GroupClass, PersonalTraining, Trainer } from "./0-types";
 import type { CalendarKey } from "./1-integrations";
 
 /**
- * Trenerzy, zajęcia grupowe i trening personalny.
+ * Trenerzy, Cross i trening personalny.
  *
  * Trenerzy są rekordem klucz → trener; klucz jest tożsamością, do której
  * odwołują się zajęcia (`class.trainer`) i trening personalny
  * (`personal_training.trainers`) — oba przez `TrainerKey`.
  *
- * Przynależność zajęć do karnetu jest zapisana po stronie karnetu
+ * Przynależność Cross do karnetu jest zapisana po stronie karnetu
  * (`membership.classes`), typowanej przez `ClassKey` — tu jej nie duplikujemy.
  */
 
@@ -25,11 +25,11 @@ export type TrainerKey = keyof typeof trainers;
 export const classes = {
   "class-cross-training": {
     slug: "cross-trening",
-    name: "Cross trening",
-    summary: "Gimnastyka, podnoszenie ciężarów i lekkoatletyka w jednym treningu — małe grupy, indywidualne podejście do każdego uczestnika.",
+    name: "Cross",
+    summary: "Cross łączy gimnastykę, podnoszenie ciężarów i lekkoatletykę — małe grupy, indywidualne podejście do każdego uczestnika.",
     calendar: "cal-classes",
     description:
-      "Trening łączy ćwiczenia gimnastyczne, pracę z ciężarami oraz ćwiczenia lekkoatletyczne. Rozwija siłę, mobilność, koordynację i wydolność. Zajęcia w małych grupach pozwalają dostosować ćwiczenia do możliwości uczestników.",
+      "Cross łączy ćwiczenia gimnastyczne, pracę z ciężarami oraz ćwiczenia lekkoatletyczne. Rozwija siłę, mobilność, koordynację i wydolność. Zajęcia w małych grupach pozwalają dostosować ćwiczenia do możliwości uczestników.",
   },
 } satisfies Record<string, GroupClass<TrainerKey, CalendarKey>>;
 

@@ -62,8 +62,7 @@ export const memberships = {
   },
   "mem-4-areas-cross": {
     slug: "4-strefy-plus-cross",
-    name: "4 strefy + cross",
-    subtitle: "4 strefy + zajęcia Cross trening",
+    name: "4 strefy + Cross",
     areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional"],
     classes: ["class-cross-training"],
     partners: ["partner-multisport", "partner-medicover", "partner-fitprofit"],
@@ -134,8 +133,7 @@ export const memberships = {
   },
   "mem-6-areas": {
     slug: "6-stref-plus-zajecia",
-    name: "6 stref + zajęcia grupowe",
-    subtitle: "6 stref + Cross trening",
+    name: "6 stref + Cross",
     areas: [
       "area-free-weights",
       "area-machines",
