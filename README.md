@@ -29,7 +29,8 @@ Ta sama zasada obowiązuje pliki w `0-core/` — prefiks numeru wyznacza warstw�
 2-areas          6 stref treningowych
 2-classes        zajęcia, trenerzy, trening personalny
 2-services       usługi dodatkowe
-3-memberships    4 karnety i 15 wariantów cenowych
+3-memberships    4 karnety i 14 wariantów cenowych
+3-single-entry   samodzielne wejście jednorazowe
 index.ts         kompozycja i publiczny punkt wejścia rdzenia
 ```
 

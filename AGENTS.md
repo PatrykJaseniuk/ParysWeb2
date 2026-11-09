@@ -117,4 +117,4 @@ npm run model:export # opcjonalnie: poprawny 8-output/export/model.json
 
 Sukces = brak błędów `astro check`, build kończy się `[build] Complete!`,
 a log modelu pokazuje 6 stref · 4 karnety · 20 wariantów · 2 zajęcia ·
-4 trenerów · 4 usługi.
+5 trenerów · 4 usługi.

@@ -208,7 +208,6 @@ export function areaById(id: string) {
 
 /** Kolejność wariantów w cenniku — rosnąco po czasie trwania. */
 export const OPTION_ORDER = [
-  "entry",
   "two_weeks",
   "eight_entries",
   "monthly",
@@ -217,11 +216,6 @@ export const OPTION_ORDER = [
 ] as const;
 
 export const OPTION_META: Record<string, { label: string; short: string; description: string }> = {
-  entry: {
-    label: "Wejście jednorazowe",
-    short: "1 wejście",
-    description: "Jedno wejście ważne 7 dni.",
-  },
   two_weeks: {
     label: "2 tygodnie",
     short: "2 tyg.",
@@ -249,7 +243,17 @@ export const OPTION_META: Record<string, { label: string; short: string; descrip
   },
 };
 
-export const enrollmentFee = businessModel.pricing_policy.enrollment_fee.amount;
+export const clubCardFee = businessModel.entry_policy.club_card_fee;
+export const entryPolicy = businessModel.entry_policy;
+
+export const singleEntry = {
+  id: "single-entry",
+  name: businessModel.catalog.single_entry.name,
+  description: businessModel.catalog.single_entry.description,
+  price_pln: businessModel.catalog.single_entry.price.amount,
+  price_text: priceText(businessModel.catalog.single_entry.price),
+  validity: termLabel(businessModel.catalog.single_entry.term),
+};
 
 export type MembershipOptionView = {
   id: string;
@@ -270,9 +274,7 @@ export type MembershipView = {
   subtitle: string | null;
   areas_included: string[];
   classes_included: string[];
-  partner_access: { partner: string; access: string; logo: string | null }[];
   options: MembershipOptionView[];
-  enrollment_fee_pln: number;
   no_contract: boolean;
   fromPrice: number;
   monthlyFrom: number | null;
@@ -306,19 +308,7 @@ export const memberships: MembershipView[] = Object.entries(
     subtitle: m.subtitle ?? null,
     areas_included: m.areas,
     classes_included: m.classes ?? [],
-    partner_access: (m.partners ?? []).map((partnerId) => {
-      const partner = businessModel.catalog.partners[partnerId];
-      return {
-        partner: partner?.name ?? partnerId,
-        access:
-          partner?.access_mode === "reception_hours"
-            ? "dostęp w godzinach otwarcia recepcji"
-            : "całodobowy dostęp dla zarejestrowanych klientów",
-        logo: partner ? (asset(mediaOf(partnerId).logo)?.src ?? null) : null,
-      };
-    }),
     options,
-    enrollment_fee_pln: businessModel.pricing_policy.enrollment_fee.amount,
     no_contract: businessModel.pricing_policy.contract === "none",
     fromPrice: Math.min(...options.map((o) => o.price_pln)),
     monthlyFrom: monthly.length ? Math.min(...monthly.map((o) => o.price_pln)) : null,
@@ -356,11 +346,7 @@ export function buildMatrix(): { columns: MembershipView[]; rows: MatrixRow[] } 
   return { columns: memberships, rows: rows.filter((row) => row.cells.some(Boolean)) };
 }
 
-export const entryPrice = Math.min(
-  ...Object.values(businessModel.catalog.memberships).flatMap((m) =>
-    m.options.map((o) => o.price.amount),
-  ),
-);
+export const entryPrice = singleEntry.price_pln;
 
 export const monthlyFrom = Math.min(
   ...Object.values(businessModel.catalog.memberships).flatMap((m) =>
@@ -390,17 +376,13 @@ export const trainers = Object.entries(businessModel.catalog.trainers).map(([id,
   id,
   name: t.name,
   description: t.role,
-  photo: asset(mediaOf(id).photo)?.src ?? null,
+  instagram: t.instagram ?? null,
+  photo: asset(mediaOf(id).photo),
 }));
 
 export const personalTraining = {
   description: businessModel.catalog.personal_training.description,
-  price: {
-    amount_pln: businessModel.catalog.personal_training.price.amount,
-    unit: "godzina",
-    price_text: priceText(businessModel.catalog.personal_training.price),
-    source_label: "godzinny trening",
-  },
+  booking: businessModel.catalog.personal_training.booking.text,
 };
 
 export const services = Object.entries(businessModel.catalog.services).map(([id, s]) => ({
@@ -423,17 +405,7 @@ export const services = Object.entries(businessModel.catalog.services).map(([id,
   video: mediaOf(id).video ?? null,
 }));
 
-const ACCESS_LABEL: Record<string, string> = {
-  reception_hours: "Dostęp w godzinach pracy recepcji.",
-  "24_7_after_registration": "Dostęp całodobowy dla zarejestrowanych klientów.",
-  "24_7": "Dostęp całodobowy.",
-  unknown: "Zakres dostępu potwierdź w recepcji.",
-};
-
 export const partners = Object.entries(businessModel.catalog.partners).map(([id, p]) => {
-  const applies = Object.entries(businessModel.catalog.memberships)
-    .filter(([, m]) => (m.partners ?? []).some((partnerKey) => partnerKey === id))
-    .map(([, m]) => m.name);
   const logoSrc = mediaOf(id).logo ?? null;
   const logo = asset(logoSrc);
   return {
@@ -442,9 +414,9 @@ export const partners = Object.entries(businessModel.catalog.partners).map(([id,
     logo: logoSrc,
     logoSrc: logo?.src ?? null,
     logoAlt: logo?.alt ?? p.name,
-    access_note: ACCESS_LABEL[p.access_mode] ?? ACCESS_LABEL.unknown,
-    note: p.note ?? ACCESS_LABEL[p.access_mode] ?? null,
-    scope: applies.length ? `Karnety: ${applies.join(" i ")}` : null,
+    can_register_club_card: p.can_register_club_card,
+    terminal_payment: p.terminal_payment,
+    note: p.note ?? null,
   };
 });
 

@@ -11,7 +11,7 @@ import { business } from "../../0-core";
  */
 export const site = {
   requires: { business: business.model_version },
-  site_version: "2.1.0",
+  site_version: "4.6.0",
   design: {
     direction: "Ciemny, techniczny interfejs w duchu karty sprzętowej: ostre krawędzie, włosowe linie 1 px, duża typografia wersalikowa i czerwień jako jedyny akcent. Cennik jest jedyną jasną sekcją — wygląda jak wydruk na ścianie recepcji.",
     scale: {
@@ -146,7 +146,7 @@ export const site = {
         width: 1090,
         height: 733,
         duration_s: null,
-        alt: "Karta FitProfit akceptowana w klubie",
+        alt: "Karta FitProfit — płatność za wejście jednorazowe",
         roles: [
           "partner-logo"
         ],
@@ -162,7 +162,7 @@ export const site = {
         width: 400,
         height: 258,
         duration_s: null,
-        alt: "Karta Medicover Sport akceptowana w klubie",
+        alt: "Karta Medicover Sport — płatność za wejście jednorazowe",
         roles: [
           "partner-logo"
         ],
@@ -178,7 +178,7 @@ export const site = {
         width: 474,
         height: 300,
         duration_s: null,
-        alt: "Karta MultiSport Plus akceptowana w klubie",
+        alt: "Karta MultiSport Plus — płatność za wejście jednorazowe",
         roles: [
           "partner-logo"
         ],
@@ -362,6 +362,86 @@ export const site = {
             format: "webp"
           }
         ],
+        status: "complete"
+      },
+      "asset-photo-trainer-krzysztof": {
+        kind: "image",
+        source: "photos/trainers/krzysztof.jpg",
+        served: "/img/trenerzy/krzysztof.webp",
+        mime: "image/webp",
+        width: 150,
+        height: 150,
+        duration_s: null,
+        alt: "Krzysztof Jaseniuk — trener osobisty i właściciel Sport Studio Parys",
+        roles: [
+          "trainer-photo"
+        ],
+        credit: "Instagram — @krzysztofjaseniuk",
+        variants: [],
+        status: "complete"
+      },
+      "asset-photo-trainer-lukasz": {
+        kind: "image",
+        source: "photos/trainers/lukasz.jpg",
+        served: "/img/trenerzy/lukasz.webp",
+        mime: "image/webp",
+        width: 150,
+        height: 150,
+        duration_s: null,
+        alt: "Łukasz Kowalski — trener osobisty w Sport Studio Parys",
+        roles: [
+          "trainer-photo"
+        ],
+        credit: "Instagram — @kowalski_trener",
+        variants: [],
+        status: "complete"
+      },
+      "asset-photo-trainer-rafal": {
+        kind: "image",
+        source: "photos/trainers/rafal.jpg",
+        served: "/img/trenerzy/rafal.webp",
+        mime: "image/webp",
+        width: 150,
+        height: 150,
+        duration_s: null,
+        alt: "Rafał Nowicki — trener osobisty w Sport Studio Parys",
+        roles: [
+          "trainer-photo"
+        ],
+        credit: "Instagram — @rafal_trenuje94",
+        variants: [],
+        status: "complete"
+      },
+      "asset-photo-trainer-cezary": {
+        kind: "image",
+        source: "photos/trainers/cezary.jpg",
+        served: "/img/trenerzy/cezary.webp",
+        mime: "image/webp",
+        width: 150,
+        height: 150,
+        duration_s: null,
+        alt: "Cezary Jaseniuk — trener osobisty w Sport Studio Parys",
+        roles: [
+          "trainer-photo"
+        ],
+        credit: "Instagram — @trener_cezary",
+        variants: [],
+        status: "complete"
+      },
+      "asset-photo-trainer-artur": {
+        kind: "image",
+        source: "photos/trainers/artur.jpg",
+        served: "/img/trenerzy/artur.webp",
+        mime: "image/webp",
+        width: 150,
+        height: 150,
+        duration_s: null,
+        alt: "Artur Gennadievich — trener boksu w Sport Studio Parys",
+        roles: [
+          "trainer-photo"
+        ],
+        credit: "Instagram — @yanov.artur_boks",
+        variants: [],
         status: "complete"
       },
       "asset-promo-student-90": {
@@ -586,6 +666,21 @@ export const site = {
         photo: "asset-photo-zone-cross",
         video: "asset-video-zone-cross"
       },
+      "trainer-krzysztof": {
+        photo: "asset-photo-trainer-krzysztof"
+      },
+      "trainer-lukasz": {
+        photo: "asset-photo-trainer-lukasz"
+      },
+      "trainer-rafal": {
+        photo: "asset-photo-trainer-rafal"
+      },
+      "trainer-cezary": {
+        photo: "asset-photo-trainer-cezary"
+      },
+      "trainer-artur": {
+        photo: "asset-photo-trainer-artur"
+      },
       "partner-fitprofit": {
         logo: "asset-logo-partner-fitprofit"
       },
@@ -686,7 +781,7 @@ export const site = {
         id: "home",
         path: "/",
         title: "Sport Studio Parys",
-        description: "Siłownia i klub fitness w Nysie — czynne całą dobę. Karnety od 35 zł, bez umowy.",
+        description: "Siłownia i klub fitness w Nysie — czynne całą dobę. Wejście jednorazowe 35 zł, karnety bez umowy.",
         intent: "Jednoekranowe odpowiedzi: co to za miejsce, ile kosztuje, jak dojechać. Prowadzi do cennika i telefonu.",
         noindex: false,
         source: null,
@@ -775,7 +870,7 @@ export const site = {
         id: "pricing",
         path: "/karnety",
         title: "Karnety i cennik",
-        description: "Cennik karnetów: 4 strefy, 4 strefy + Cross, 5 stref i 6 stref + Cross. Od 35 zł, bez umowy.",
+        description: "Cennik karnetów: 4 strefy, 4 strefy + zajęcia grupowe, 5 stref i 6 stref + zajęcia grupowe. Wejście jednorazowe 35 zł, bez umowy.",
         intent: "Zamknąć pytanie o cenę bez kontaktu z recepcją. Macierz wariantów, zakresy, FAQ.",
         noindex: false,
         source: null,
@@ -963,9 +1058,9 @@ export const site = {
       {
         id: "trainers",
         path: "/trenerzy",
-        title: "Trenerzy personalni",
-        description: "Czterech trenerów, trening indywidualny od 110 zł za godzinę.",
-        intent: "Przedstawić ludzi i cenę treningu 1:1.",
+        title: "Trenerzy personalni i bokserscy",
+        description: "Pięciu trenerów, trening indywidualny 1:1.",
+        intent: "Przedstawić ludzi i charakter treningu 1:1.",
         noindex: false,
         source: null,
         sections: [

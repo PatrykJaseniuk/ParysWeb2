@@ -32,7 +32,7 @@ FONT_REG = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
 
 
 def ensure_dirs() -> None:
-    for d in ("img/hero", "img/strefy", "img/partnerzy", "img/promocje", "brand", "og", "media"):
+    for d in ("img/hero", "img/strefy", "img/trenerzy", "img/partnerzy", "img/promocje", "brand", "og", "media"):
         (OUT / d).mkdir(parents=True, exist_ok=True)
 
 
@@ -85,6 +85,30 @@ def build_zones() -> list[dict]:
             p = OUT / "img" / "strefy" / f"{slug}-{w}.webp"
             size = save_webp(resized, p, 80)
             out.append({"file": str(p.relative_to(ROOT)), "w": w, "kb": round(size / 1024)})
+    return out
+
+
+def build_trainers() -> list[dict]:
+    mapping = {
+        "krzysztof.jpg": "krzysztof",
+        "lukasz.jpg": "lukasz",
+        "rafal.jpg": "rafal",
+        "cezary.jpg": "cezary",
+        "artur.jpg": "artur",
+    }
+    out = []
+    for filename, slug in mapping.items():
+        src = SRC / "photos" / "trainers" / filename
+        im = Image.open(src).convert("RGB")
+        # Zdjęcia profilowe są kwadratowe (150×150) — kadr bez zmian,
+        # natywna rozdzielczość wystarcza na awatar 64/80 px.
+        side = min(im.size)
+        left = (im.width - side) // 2
+        top = (im.height - side) // 2
+        im = im.crop((left, top, left + side, top + side))
+        p = OUT / "img" / "trenerzy" / f"{slug}.webp"
+        size = save_webp(im, p, 88)
+        out.append({"file": str(p.relative_to(ROOT)), "kb": round(size / 1024)})
     return out
 
 
@@ -177,6 +201,7 @@ def main() -> None:
     report = {
         "hero": build_hero(),
         "strefy": build_zones(),
+        "trenerzy": build_trainers(),
         "partnerzy": build_partners(),
         "brand": build_brand(),
         "og": build_og(),

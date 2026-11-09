@@ -9,9 +9,10 @@ import Trainers from "../../3-components/sections/Trainers.astro";
 import Services from "../../3-components/sections/Services.astro";
 import Partners from "../../3-components/sections/Partners.astro";
 import ContactSection from "../../3-components/sections/ContactSection.astro";
+import { entryPrice, pln } from "../../1-data/business";
 
 const description =
-  "Siłownia i klub fitness w Nysie, czynne całą dobę. 1000 m², sześć stref treningowych, Cross, sauna i badminton. Karnety od 35 zł, bez umowy lojalnościowej.";
+  `Siłownia i klub fitness w Nysie, czynne całą dobę. 1000 m², sześć stref treningowych, Cross, sauna i badminton. Wejście jednorazowe ${pln(entryPrice)}, karnety bez umowy lojalnościowej.`;
 ---
 
 <BaseLayout

@@ -11,7 +11,7 @@ import { site } from "./1-site";
  */
 export const quality = {
   requires: { business: business.model_version, site: site.site_version },
-  quality_version: "1.2.0",
+  quality_version: "1.7.0",
   publishable: false,
   questions: [
     {
@@ -53,20 +53,11 @@ export const quality = {
     },
     {
       id: "q-cross-scope",
-      question: "Czy „4 strefy + Cross” ma obejmować strefę Sala cross, czy tylko Cross?",
+      question: "Czy „4 strefy + zajęcia grupowe” ma obejmować strefę Sala cross, czy tylko zajęcia grupowe?",
       owner: "owner",
       blocks_publish: false,
       affects: [
         "catalog.memberships.mem-4-areas-cross"
-      ]
-    },
-    {
-      id: "q-pzu",
-      question: "Czy PZU jest nadal akceptowane i na jakich zasadach?",
-      owner: "owner",
-      blocks_publish: false,
-      affects: [
-        "catalog.partners.partner-pzu"
       ]
     },
     {
@@ -76,15 +67,6 @@ export const quality = {
       blocks_publish: false,
       affects: [
         "identity.hours.reception"
-      ]
-    },
-    {
-      id: "q-trainer-photos",
-      question: "Czy są zdjęcia trenerów?",
-      owner: "photographer",
-      blocks_publish: false,
-      affects: [
-        "catalog.trainers"
       ]
     },
     {
@@ -111,7 +93,7 @@ export const quality = {
       id: "dq-name-cross",
       severity: "medium",
       area: "Karnety",
-      issue: "Nazwa „4 strefy + Cross” nie odpowiada zakresowi: karnet obejmuje Cross, ale nie strefę Sala cross.",
+      issue: "Nazwa „4 strefy + zajęcia grupowe” nie odpowiada zakresowi: karnet obejmuje zajęcia grupowe, ale nie strefę Sala cross.",
       resolution: "Potwierdzić zakres; w UI nazwa handlowa z dopiskiem pod spodem."
     },
     {
@@ -129,11 +111,18 @@ export const quality = {
       resolution: "Sesja zdjęciowa w rozdzielczości min. 1600 px."
     },
     {
+      id: "dq-trainer-photos",
+      severity: "low",
+      area: "Media",
+      issue: "Zdjęcia trenerów to profile 150×150 px z Instagrama — wystarczają na awatary, ale nie na większe portrety.",
+      resolution: "Przy sesji zdjęciowej zastąpić portretami w rozdzielczości min. 800 px."
+    },
+    {
       id: "dq-pzu",
-      severity: "medium",
+      severity: "low",
       area: "Partnerzy",
-      issue: "PZU wymieniony jako partner, ale bez logo i bez zasad dostępu.",
-      resolution: "Dodać logo i zakres dostępu albo usunąć z listy."
+      issue: "PZU jest aktywnym programem płatności, ale nie ma pliku logo — używany jest fallback tekstowy.",
+      resolution: "Dodać logo PZU lub zaakceptować fallback wordmark."
     },
     {
       id: "dq-brand-css",

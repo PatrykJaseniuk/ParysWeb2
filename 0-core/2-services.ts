@@ -16,7 +16,7 @@ export const services = {
     slug: "badminton",
     name: "Badminton",
     description: "Pełnowymiarowy kort do gry w badmintona",
-    price: { amount: 60, unit: "hour" },
+    price: { amount: 70, unit: "hour" },
     features: ["1 godzina gry"],
     booking: { channel: "reception" },
     calendar: "cal-room-availability",
@@ -25,7 +25,7 @@ export const services = {
     slug: "sauna",
     name: "Sauna",
     description: "Sucha sauna z leżakownią i prysznicem. Cena dotyczy wynajęcia całego pomieszczenia na wyłączność.",
-    price: { amount: 60, unit: "hour" },
+    price: { amount: 70, unit: "hour" },
     features: ["wynajęcie na 1 godzinę", "maksymalnie 6 osób"],
     booking: {
       channel: "phone",

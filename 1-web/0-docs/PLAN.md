@@ -144,7 +144,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 | 5 | Cross | Pokazać ofertę poza siłownią | 1 karta + link do harmonogramu |
 | 6 | Trening personalny | Sprzedać usługę 1:1 | 4 trenerzy, cena 110 zł/h |
 | 7 | Usługi dodatkowe | Dowieźć saunę/badminton/masaż | 4 karty z cenami i rezerwacją |
-| 8 | Partnerzy | Zdjąć obiekcję „czy moja karta działa” | Karty MultiSport/Medicover/FitProfit + zakres |
+| 8 | Programy partnerskie | Pokazać sposoby opłacenia wejścia | Cztery programy + zasady wejścia jednorazowego |
 | 9 | Kontakt | Doprowadzić do wizyty | Telefon, adres, parking, godziny, mapa (na klik) |
 
 Rytm wizualny: ciemne sekcje przedzielone **jedną jasną sekcją cennika** — wygląda
@@ -154,7 +154,7 @@ jak wydrukowany cennik na ścianie i naturalnie przyciąga wzrok w środku stron
 
 ## 7. Cennik — najważniejsza decyzja projektowa
 
-**Problem:** 15 wariantów cenowych w 4 zakresach to dużo. Stara strona ukrywała je
+**Problem:** 14 wariantów karnetów w 4 zakresach oraz osobne wejście jednorazowe to dużo. Stara strona ukrywała je
 w modalu, przez co użytkownik nie mógł porównać.
 
 **Rozwiązanie:**
@@ -164,7 +164,7 @@ w modalu, przez co użytkownik nie mógł porównać.
 - **Mobile:** 4 karty (po jednej na zakres) z listą wariantów — czytelne bez poziomego scrolla.
 - **Etykiety:** zamiast krzyczących „MIESIĘCZNY uczeń/senior” — „Miesiąc (uczeń/senior)”,
   z krótkim opisem pod spodem.
-- **Opłata wpisowa 15 zł** pokazana raz, pod tabelą, nie w każdej komórce.
+- **Karta klubowa 15 zł** pokazana raz, pod tabelą, jako wymóg rejestracji karnetu i dostęp 24/7.
 - **Zastrzeżenie:** „ceny potwierdź w recepcji” — bo eksport odzwierciedla stan kodu, nie cennik na ścianie.
 
 **Niespójność do rozstrzygnięcia:** karnet „4 strefy + Cross” obejmuje Cross, ale
@@ -193,7 +193,7 @@ Pełny opis: [`CONTENT-MODEL.md`](CONTENT-MODEL.md).
   media, strony), `quality.ts` (blokery publikacji). Kształt pilnuje `satisfies`
   w `astro check`, spójność — `invariants.ts` uruchamiany przy buildzie.
   Adapter `src/data/business.ts` tłumaczy model na widoki UI.
-- Encje: `areas` (6), `memberships` (4 × 15 wariantów), `group_classes` (2), `trainers` (4),
+- Encje: `areas` (6), `memberships` (4 karnety, 14 wariantów), `single_entry` (1), `group_classes` (2), `trainers` (4),
   `services` (4), `partners` (4), `calendars` (4), `contact`.
 - Korekty redakcyjne są **w jednym miejscu** (`fixes`), więc da się je przejrzeć i wycofać.
 
@@ -290,7 +290,7 @@ formularz, potrzebny jest odbiorca (e-mail/CRM) i polityka prywatności.
 | --- | --- | --- |
 | Google Calendar (4 kalendarze) | iframe w modalu | iframe ładowany po kliknięciu (fasada) + link „Otwórz w Google Calendar” |
 | Google Maps | iframe | fasada + link do nawigacji |
-| MultiSport / Medicover / FitProfit | informacja tekstowa | karty + jasny zakres dostępu |
+| MultiSport / Medicover / FitProfit / PZU | informacja tekstowa | płatność za wejście jednorazowe; FitProfit/Medicover/PZU karta 24/7 i terminal; MultiSport tylko recepcja |
 | Facebook / Instagram | linki w stopce | linki w stopce i sekcji kontaktu |
 | GA4 | zakomentowane | do włączenia po decyzji o zgodach |
 | System rezerwacji | brak | poza zakresem; strona przygotowana na podmianę kalendarzy na link do systemu |
@@ -352,14 +352,14 @@ Kod jest gotowy — blokują dane, nie technologia.
 2. Jaki jest kod pocztowy i pełne dane firmy (NIP, nazwa do stopki)?
 3. Czy „4 strefy + Cross” ma obejmować strefę Sala cross, czy tylko Cross?
 4. Czy regulamin i polityka prywatności istnieją? Jeśli nie — kto je przygotuje?
-5. Czy PZU jest nadal akceptowane i na jakich zasadach?
 
 **Ważne:**
-6. Opis Sali funkcjonalnej (w źródle był pusty) — czy zaakceptować tekst roboczy?
-7. Czy promocja „Karnet studencki 99” obowiązuje? Jakie ma warunki i daty?
-8. Godziny recepcji w niedziele i święta.
-9. Czy są prawdziwe zdjęcia trenerów?
-10. Czy potrzebna jest analityka (GA4) i baner cookies?
+5. Opis Sali funkcjonalnej (w źródle był pusty) — czy zaakceptować tekst roboczy?
+6. Czy promocja „Karnet studencki 99” obowiązuje? Jakie ma warunki i daty?
+7. Godziny recepcji w niedziele i święta.
+8. Czy są prawdziwe zdjęcia trenerów?
+9. Czy potrzebna jest analityka (GA4) i baner cookies?
+10. Czy dostarczyć logo PZU?
 
 **Opcjonalne:**
 11. Czy wideo (11 filmów, 189 MB) ma być na stronie, czy wystarczą zdjęcia?

@@ -1,6 +1,6 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
-import { OPTION_ORDER, buildMatrix, enrollmentFee, memberships, pln } from "../../1-data/business";
+import { OPTION_ORDER, buildMatrix, clubCardFee, memberships, pln, singleEntry } from "../../1-data/business";
 
 interface Props {
   /** Cennik na ciemnym tle (domyślnie) albo na „papierze”. */
@@ -38,14 +38,34 @@ const themeVars =
         "--pm-featured-hover:rgba(227,30,36,0.1)",
       ].join(";");
 
-const partnerNote = (membership: (typeof memberships)[number]) =>
-  membership.partner_access.map((p) => (p.partner === "Medicover" ? "Medicover" : p.partner));
-
 const optionLabel = (id: string, label: string) =>
   id === "monthly_student_senior" ? "Miesiąc (uczeń/senior)" : label.charAt(0) + label.slice(1).toLowerCase();
 ---
 
 <div style={themeVars} class="text-[color:var(--pm-text)]">
+  <!-- ============ WEJŚCIE JEDNORAZOWE ============ -->
+  <div class="mb-8 flex flex-col gap-4 border border-[color:var(--pm-line)] bg-[color:var(--pm-surface)] p-5 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <p class="font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--pm-muted)]">
+        Poza karnetem
+      </p>
+      <p class="mt-1 font-display text-lg font-bold uppercase tracking-tight">
+        {singleEntry.name}
+      </p>
+      <p class="mt-1 text-[12px] leading-relaxed text-[color:var(--pm-muted)]">
+        {singleEntry.description} · ważne {singleEntry.validity}
+      </p>
+    </div>
+    <p class="shrink-0 sm:text-right">
+      <span class="num block font-display text-3xl font-extrabold tracking-tight text-brand">
+        {pln(singleEntry.price_pln)}
+      </span>
+      <span class="mt-0.5 block font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--pm-muted)]">
+        za wejście
+      </span>
+    </p>
+  </div>
+
   <!-- ============ DESKTOP: macierz ============ -->
   <div class="hidden lg:block">
     <table class="w-full border-collapse text-left">
@@ -144,16 +164,10 @@ const optionLabel = (id: string, label: string) =>
             memberships.map((membership) => (
               <td class="px-5 pt-5 align-top">
                 <ul class="space-y-1.5 text-[11px] leading-snug text-[color:var(--pm-muted)]">
-                  {membership.partner_access.length > 0 && (
-                    <li class="flex items-start gap-1.5">
-                      <Icon name="check" size={12} class="mt-0.5 shrink-0 text-brand" />
-                      <span>{partnerNote(membership).join(" · ")}</span>
-                    </li>
-                  )}
                   {membership.classes_included.length > 0 && (
                     <li class="flex items-start gap-1.5">
                       <Icon name="check" size={12} class="mt-0.5 shrink-0 text-brand" />
-                      <span>Cross</span>
+                      <span>Zajęcia grupowe</span>
                     </li>
                   )}
                   {membership.optionIds.includes("monthly_student_senior") && (
@@ -162,9 +176,10 @@ const optionLabel = (id: string, label: string) =>
                       <span>Zniżka uczeń/senior</span>
                     </li>
                   )}
-                  {membership.partner_access.length === 0 && membership.classes_included.length === 0 && (
-                    <li class="text-[color:var(--pm-faint)]">Bez kart partnerskich</li>
-                  )}
+                  {membership.classes_included.length === 0 &&
+                    !membership.optionIds.includes("monthly_student_senior") && (
+                      <li class="text-[color:var(--pm-faint)]">—</li>
+                    )}
                 </ul>
               </td>
             ))
@@ -174,8 +189,8 @@ const optionLabel = (id: string, label: string) =>
     </table>
 
     <p class="mt-6 border-t border-[color:var(--pm-line)] pt-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-[color:var(--pm-muted)]">
-      Jednorazowa opłata wpisowa {pln(enrollmentFee)} · brak umowy lojalnościowej ·
-      ceny w złotych, potwierdź aktualność w recepcji
+      Karnety wymagają rejestracji i karty klubowej ({pln(clubCardFee)}) · wejścia jednorazowe
+      nie wymagają rejestracji · brak umowy lojalnościowej
     </p>
   </div>
 
@@ -225,14 +240,9 @@ const optionLabel = (id: string, label: string) =>
             ))}
           </dl>
 
-          {(membership.partner_access.length > 0 || membership.classes_included.length > 0) && (
+          {membership.classes_included.length > 0 && (
             <p class="border-t border-[color:var(--pm-line-soft)] px-5 py-3 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-[color:var(--pm-muted)]">
-              {[
-                membership.partner_access.length > 0 ? partnerNote(membership).join(" · ") : null,
-                membership.classes_included.length > 0 ? "Cross" : null,
-              ]
-                .filter(Boolean)
-                .join(" · ")}
+              Zajęcia grupowe
             </p>
           )}
         </article>
@@ -240,7 +250,7 @@ const optionLabel = (id: string, label: string) =>
     }
 
     <p class="pt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-[color:var(--pm-muted)]">
-      Opłata wpisowa {pln(enrollmentFee)} · bez umowy lojalnościowej
+      Karnety: rejestracja i karta klubowa {pln(clubCardFee)} · wejścia jednorazowe bez rejestracji · bez umowy lojalnościowej
     </p>
   </div>
 </div>

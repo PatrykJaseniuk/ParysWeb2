@@ -1,15 +1,18 @@
 ---
 import LegalPage from "../../4-layouts/LegalPage.astro";
+import { clubCardFee, pln } from "../../1-data/business";
 
 const checklist = [
   "Definicja karnetu, jego zakresu i okresu ważności dla każdego wariantu.",
-  "Zasady opłaty wpisowej oraz zwrotów i reklamacji.",
+  "Zasady płatności za karnet, zwrotów i reklamacji.",
   "Informacja, że karnety nie podlegają blokowaniu ani zawieszaniu.",
+  "Zasady wejść jednorazowych bez rejestracji.",
+  `Zasady rejestracji karnetów i wydania karty klubowej (${pln(clubCardFee)}) oraz dostępu 24/7.`,
   "Zasady korzystania z sal, sprzętu i stref (sauna, rollmasaż, sala cross).",
   "Zasady rezerwacji sauny, badmintona i masażu, w tym odwoływania rezerwacji.",
   "Warunki wejścia dla osób niepełnoletnich.",
   "Zasady bezpieczeństwa, odpowiedzialność i ubezpieczenie.",
-  "Regulamin kart partnerskich (MultiSport, Medicover Sport, FitProfit, PZU).",
+  "Zasady programów partnerskich przy wejściach jednorazowych (MultiSport, Medicover Sport, FitProfit, PZU); weryfikacja tożsamości przy MultiSport oraz uprawnienia FitProfit/Medicover/PZU do karty i terminala.",
   "Dane firmy i data wejścia regulaminu w życie.",
 ];
 ---

@@ -4,7 +4,7 @@ import PageHero from "../../2-ui/ui/PageHero.astro";
 import Icon from "../../2-ui/ui/Icon.astro";
 import CalendarEmbed from "../../2-ui/ui/CalendarEmbed.astro";
 import CtaBand from "../../3-components/sections/CtaBand.astro";
-import { calendarById, contact, groupClasses, personalTraining, pln, trainers, withBase } from "../../1-data/business";
+import { calendarById, contact, groupClasses, personalTraining, trainers, withBase } from "../../1-data/business";
 import { breadcrumbSchema } from "../../2-ui/seo";
 
 const groupsCalendar = calendarById(groupClasses[0]?.calendar);
@@ -20,7 +20,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
     index="03"
     label="Cross"
     title="Cross"
-    description="Cross odbywa się w małych grupach, z trenerem, który widzi każdego. Jest wliczony w karnety „6 stref + Cross” i „4 strefy + Cross”."
+    description="Cross odbywa się w małych grupach, z trenerem, który widzi każdego. Jest wliczony w karnety „6 stref + zajęcia grupowe” i „4 strefy + zajęcia grupowe”."
     breadcrumbs={[{ name: "Cross", href: "/zajecia" }]}
   />
 
@@ -95,7 +95,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
                   </div>
                   <div class="bg-ink-2 p-4">
                     <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist/80">W cenie karnetu</dt>
-                    <dd class="mt-1 text-sm text-bone/85">6 stref + Cross, 4 strefy + Cross</dd>
+                    <dd class="mt-1 text-sm text-bone/85">6 stref + zajęcia grupowe, 4 strefy + zajęcia grupowe</dd>
                   </div>
                 </dl>
 
@@ -124,7 +124,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
           <h2 class="eyebrow">Wolisz indywidualnie?</h2>
           <p class="h2 mt-4">Trening 1:1</p>
           <p class="lead mt-5 max-w-xl">
-            {personalTraining.description} — {trainers.length} trenerów, {pln(personalTraining.price.amount_pln)} za godzinę.
+            {personalTraining.description} — {trainers.length} trenerów.
           </p>
         </div>
         <div class="lg:col-span-5 lg:text-right">

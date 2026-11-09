@@ -87,7 +87,7 @@ Oba fonty są self-hostowane (`@fontsource-variable`), tylko podzbiory latin + l
 - Promień: **2 px** (przyciski, karty) — praktycznie ostre.
 - Brak cieni poza jednym: `shadow-[0_1px_0_0_rgba(255,255,255,0.08)]` pod sticky headerem.
 - Obramowania zawsze 1 px, kolor `line` (`#26262b`).
-- Ikony w kwadratach 40–44 px z obramowaniem — nigdy wypełnionych kół (poza monogramami trenerów).
+- Ikony w kwadratach 40–44 px z obramowaniem — nigdy wypełnionych kół (poza awatarami trenerów).
 
 ---
 
@@ -115,7 +115,7 @@ Zdjęcie 16:10 (grayscale 55% → kolor na hover), numer w rogu, opcjonalna plak
 Macierz `wariant × karnet`. Nagłówek kolumny: numer, nazwa, podtytuł, „od X zł”.
 Wiersz: nazwa wariantu + opis. Cena 20 px bold. Brak wariantu = `—` (`aria-label="niedostępne"`).
 Kolumna wyróżniona: tło `brand/6%`, górna linia 2 px `brand`, plakietka „Pełny zakres”.
-Stopka: karty partnerskie, zajęcia, zniżki.
+Stopka: programy partnerskie, zajęcia, zniżki.
 
 Mobile: 4 karty z listą wariantów (bez poziomego scrolla).
 
@@ -140,7 +140,7 @@ Przewijany pas nazw stref i usług, 38 s, pauza na hover, wyłączony przy `pref
 - **Zdjęcia stref**: 711×400 px źródła, wyświetlane max 500 px szerokości; `grayscale(0.55)`
   w spoczynku, kolor na hover — ujednolica różne warunki zdjęciowe.
 - **Partnerzy**: skany kart (nie wektory) prezentowane jako karty w kaflach 16:10.
-- **Trenerzy**: monogramy (inicjał w czarnym kole) do czasu sesji zdjęciowej.
+- **Trenerzy**: zdjęcia profilowe w kołach (fallback: monogram z inicjałem).
 - **Ikony**: własny zestaw 22 ikon liniowych 24×24, stroke 1,75, `currentColor`.
 
 ---

@@ -6,8 +6,8 @@ import PriceMatrix from "../../3-components/pricing/PriceMatrix.astro";
 import CtaBand from "../../3-components/sections/CtaBand.astro";
 import {
   areas,
+  clubCardFee,
   contact,
-  enrollmentFee,
   entryPrice,
   memberships,
   monthlyFrom,
@@ -23,31 +23,43 @@ const studentMonthly = memberships
 const faq = [
   {
     q: "Czy muszę podpisywać umowę?",
-    a: "Nie. Karnety kupujesz na określony czas — nie podpisujesz umowy lojalnościowej ani zobowiązania na kolejne miesiące. Jednorazowo przy pierwszym zakupie doliczamy opłatę wpisową 15 zł.",
+    a: "Nie. Karnety kupujesz na określony czas — nie podpisujesz umowy lojalnościowej ani zobowiązania na kolejne miesiące.",
   },
   {
-    q: "Który karnet obejmuje Cross?",
-    a: "Cross jest wliczony w karnet „6 stref + Cross”. Karnet „4 strefy + Cross” również daje dostęp do Cross, ale nie do strefy Sala cross.",
+    q: "Który karnet obejmuje zajęcia grupowe?",
+    a: "Zajęcia grupowe są wliczone w karnet „6 stref + zajęcia grupowe”. Karnet „4 strefy + zajęcia grupowe” również daje dostęp do zajęć grupowych, ale nie do strefy Sala cross.",
   },
   {
-    q: "Czym różni się „4 strefy + Cross” od „6 stref + Cross”?",
-    a: "„4 strefy + Cross” to cztery strefy treningowe plus Cross. „6 stref + Cross” to wszystkie sześć stref (w tym Sala cross i rollmasaż) oraz Cross.",
-  },
-  {
-    q: "Czy mogę zawiesić karnet?",
-    a: "Nie. Karnety nie podlegają blokowaniu ani zawieszaniu.",
+    q: "Czym różni się „4 strefy + zajęcia grupowe” od „6 stref + zajęcia grupowe”?",
+    a: "„4 strefy + zajęcia grupowe” to cztery strefy treningowe plus zajęcia grupowe. „6 stref + zajęcia grupowe” to wszystkie sześć stref (w tym Sala cross i rollmasaż) oraz zajęcia grupowe.",
   },
   {
     q: "Czy przysługuje mi zniżka jako uczniowi lub seniorowi?",
     a: `Tak, w zakresie „4 strefy” karnet miesięczny kosztuje ${pln(studentMonthly?.price_pln ?? 0)} dla uczniów oraz studentów do 26 roku życia na studiach dziennych i seniorów od 67 roku życia. Wymagane okazanie dokumentu.`,
   },
   {
-    q: "Czy karta MultiSport działa całą dobę?",
-    a: "MultiSport — dostęp w godzinach pracy recepcji. Medicover Sport i FitProfit — dostęp całodobowy dla zarejestrowanych klientów. Karty działają w karnetach „4 strefy” i „4 strefy + Cross”.",
+    q: "Czy wejście jednorazowe wymaga rejestracji?",
+    a: `Nie. Wejście jednorazowe do wszystkich stref i zajęć grupowych kosztuje ${pln(entryPrice)} i nie wymaga rejestracji ani karty klubowej. Obowiązuje w godzinach pracy recepcji.`,
+  },
+  {
+    q: "Czy karnet wymaga rejestracji?",
+    a: `Tak. Karnet wymaga rejestracji i karty klubowej (${pln(clubCardFee)}), która daje dostęp 24/7.`,
+  },
+  {
+    q: "Czy programy partnerskie opłacają karnety?",
+    a: "Nie. Programy partnerskie pozwalają opłacić wejście jednorazowe do wszystkich stref i zajęć grupowych. Karnet opłacasz bezpośrednio w klubie.",
+  },
+  {
+    q: "Czy MultiSport działa całą dobę?",
+    a: "Nie. MultiSport obowiązuje wyłącznie w godzinach pracy recepcji, ponieważ wymaga weryfikacji tożsamości przez pracownika. FitProfit, Medicover i PZU po rejestracji dają dostęp 24/7.",
+  },
+  {
+    q: "Czy FitProfit, Medicover i PZU dają dostęp 24/7?",
+    a: `Tak. Po rejestracji otrzymasz fizyczną kartę klubową (${pln(clubCardFee)}), która otwiera bramkę poza godzinami recepcji i pozwala płacić samodzielnie w terminalu.`,
   },
   {
     q: "Jakie są godziny pracy recepcji?",
-    a: `Recepcja: poniedziałek–piątek 8:00–22:00, sobota 9:00–14:00. Klub jest czynny całą dobę dla posiadaczy karnetów. W niedziele i święta recepcja jest nieczynna — wejście na kartę.`,
+    a: `Recepcja: poniedziałek–piątek 8:00–22:00, sobota 9:00–14:00. Karnety dają dostęp 24/7 po rejestracji. W niedziele i święta recepcja jest nieczynna — wejście na kartę klubową.`,
   },
   {
     q: "Czy ceny są aktualne?",
@@ -62,18 +74,18 @@ const steps = [
   },
   {
     title: "Wybierz zakres",
-    text: "Cztery strefy, cztery strefy + Cross, pięć stref albo sześć stref + Cross — doradzimy na miejscu.",
+    text: "Cztery strefy, cztery strefy + zajęcia grupowe, pięć stref albo sześć stref + zajęcia grupowe — doradzimy na miejscu.",
   },
   {
-    title: "Odbierz kartę",
-    text: `Po opłaceniu karnetu i jednorazowej opłaty wpisowej (${pln(enrollmentFee)}) dostajesz kartę i wchodzisz 24/7.`,
+    title: "Zarejestruj karnet lub wejdź jednorazowo",
+    text: `Przy karnecie zarejestruj się i odbierz kartę klubową (${pln(clubCardFee)}), aby wchodzić 24/7. Wejście jednorazowe nie wymaga rejestracji.`,
   },
 ];
 ---
 
 <BaseLayout
   title="Karnety i cennik"
-  description={`Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 4 strefy + Cross, 5 stref i 6 stref + Cross. Wejście od ${pln(entryPrice)}, karnet miesięczny od ${pln(monthlyFrom)}, bez umowy.`}
+  description={`Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 4 strefy + zajęcia grupowe, 5 stref i 6 stref + zajęcia grupowe. Wejście od ${pln(entryPrice)}, karnet miesięczny od ${pln(monthlyFrom)}, bez umowy.`}
   canonical="/karnety"
   jsonLd={[
     breadcrumbSchema([{ name: "Karnety", href: "/karnety" }]),
@@ -84,7 +96,7 @@ const steps = [
     index="02"
     label="Karnety"
     title="Cennik karnetów"
-    description={`Cztery zakresy i ${optionCount} wariantów — od pojedynczego wejścia po karnet roczny z dwoma miesiącami gratis. Bez umowy lojalnościowej.`}
+    description={`Cztery zakresy i ${optionCount} wariantów karnetów. Wejście jednorazowe do wszystkich stref i zajęć grupowych kosztuje ${pln(entryPrice)}. Karnety wymagają rejestracji i dają dostęp 24/7, a wejścia jednorazowe nie wymagają rejestracji.`}
     breadcrumbs={[{ name: "Karnety", href: "/karnety" }]}
   >
     <div class="mt-8 flex flex-wrap gap-3">
@@ -94,11 +106,11 @@ const steps = [
       </span>
       <span class="flex items-center gap-2 border border-line px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-bone/70">
         <Icon name="clock" size={12} class="text-brand" />
-        Dostęp 24/7
+        Karnety 24/7
       </span>
       <span class="flex items-center gap-2 border border-line px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-bone/70">
         <Icon name="users" size={12} class="text-brand" />
-        MultiSport i Medicover
+        Wejścia bez rejestracji
       </span>
     </div>
   </PageHero>
@@ -110,10 +122,10 @@ const steps = [
 
       <div class="mt-12 grid gap-px overflow-hidden border border-black/10 bg-black/10 sm:grid-cols-3">
         <div class="bg-bone p-6">
-          <h2 class="font-display text-base font-bold uppercase tracking-tight">Opłata wpisowa</h2>
+          <h2 class="font-display text-base font-bold uppercase tracking-tight">Karta klubowa</h2>
           <p class="mt-2 text-[13px] leading-relaxed text-black/60">
-            Jednorazowo {pln(enrollmentFee)} przy pierwszym zakupie karnetu. Nie dotyczy wejść
-            jednorazowych.
+            {pln(clubCardFee)} przy rejestracji karnetu. Karta umożliwia wejścia 24/7.
+            Wejście jednorazowe nie wymaga rejestracji ani karty.
           </p>
         </div>
         <div class="bg-bone p-6">
@@ -124,10 +136,13 @@ const steps = [
           </p>
         </div>
         <div class="bg-bone p-6">
-          <h2 class="font-display text-base font-bold uppercase tracking-tight">Karty partnerskie</h2>
+          <h2 class="font-display text-base font-bold uppercase tracking-tight">Programy partnerskie</h2>
           <p class="mt-2 text-[13px] leading-relaxed text-black/60">
-            MultiSport w godzinach pracy recepcji. Medicover Sport i FitProfit — 24/7 dla
-            zarejestrowanych klientów.
+            Wejście jednorazowe do wszystkich stref i zajęć grupowych.
+            <strong class="font-semibold text-ink">MultiSport</strong> tylko w godzinach recepcji.
+            <strong class="font-semibold text-ink">FitProfit</strong>,
+            <strong class="font-semibold text-ink">Medicover</strong> i
+            <strong class="font-semibold text-ink">PZU</strong> po rejestracji — karta 24/7 i terminal.
           </p>
         </div>
       </div>
@@ -198,8 +213,8 @@ const steps = [
       </div>
 
       <p class="mt-4 text-[11px] leading-relaxed text-mist/80">
-        Uwaga: karnet „4 strefy + Cross” obejmuje Cross, ale nie strefę Sala cross.
-        Karnet „6 stref + Cross” obejmuje Cross oraz strefę Sala cross.
+        Uwaga: karnet „4 strefy + zajęcia grupowe” obejmuje zajęcia grupowe, ale nie strefę Sala cross.
+        Karnet „6 stref + zajęcia grupowe” obejmuje zajęcia grupowe oraz strefę Sala cross.
       </p>
     </div>
   </section>

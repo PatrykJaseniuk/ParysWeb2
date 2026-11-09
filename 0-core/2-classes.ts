@@ -13,10 +13,31 @@ import type { CalendarKey } from "./1-integrations";
  */
 
 export const trainers = {
-  "trainer-krzysztof": { name: "Krzysztof", role: "Trener osobisty, właściciel" },
-  "trainer-lukasz": { name: "Łukasz", role: "Trener osobisty" },
-  "trainer-rafal": { name: "Rafał", role: "Trener osobisty" },
-  "trainer-andrzej": { name: "Andrzej", role: "Trener osobisty" },
+  "trainer-krzysztof": {
+    name: "Krzysztof",
+    role: "Trener osobisty, właściciel",
+    instagram: "https://www.instagram.com/krzysztofjaseniuk/",
+  },
+  "trainer-lukasz": {
+    name: "Łukasz",
+    role: "Trener osobisty",
+    instagram: "https://www.instagram.com/kowalski_trener/",
+  },
+  "trainer-rafal": {
+    name: "Rafał",
+    role: "Trener osobisty",
+    instagram: "https://www.instagram.com/rafal_trenuje94/",
+  },
+  "trainer-cezary": {
+    name: "Cezary",
+    role: "Trener osobisty",
+    instagram: "https://www.instagram.com/trener_cezary/",
+  },
+  "trainer-artur": {
+    name: "Artur",
+    role: "Trener boksu",
+    instagram: "https://www.instagram.com/yanov.artur_boks/",
+  },
 } satisfies Record<string, Trainer>;
 
 /** Klucze trenerów — jedyny dozwolony sposób odwołania się do trenera. */
@@ -44,7 +65,12 @@ export type ClassKey = keyof typeof classes;
 export const personal_training = {
   name: "Trening personalny",
   description: "Zajęcia indywidualne z trenerem",
-  price: { amount: 110, unit: "hour" },
   booking: { channel: "phone", text: "Zapisy w recepcji lub telefonicznie." },
-  trainers: ["trainer-krzysztof", "trainer-lukasz", "trainer-rafal", "trainer-andrzej"],
+  trainers: [
+    "trainer-krzysztof",
+    "trainer-lukasz",
+    "trainer-rafal",
+    "trainer-cezary",
+    "trainer-artur",
+  ],
 } satisfies PersonalTraining<TrainerKey>;

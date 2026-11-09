@@ -1,7 +1,7 @@
 ---
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
 import Icon from "../../2-ui/ui/Icon.astro";
-import { partners } from "../../1-data/business";
+import { clubCardFee, partners, pln } from "../../1-data/business";
 ---
 
 <section class="border-t border-line bg-ink-2" id="partnerzy">
@@ -10,9 +10,9 @@ import { partners } from "../../1-data/business";
       <div class="lg:col-span-5">
         <SectionHead
           index="06"
-          label="Partnerzy"
-          title="Twoja karta też działa"
-          description="Akceptujemy karty MultiSport, Medicover Sport i FitProfit. Zakres dostępu różni się między karnetami — sprawdź szczegóły albo zapytaj w recepcji."
+          label="Programy partnerskie"
+          title="Zapłać za wejście jednorazowe"
+          description="MultiSport, Medicover Sport, FitProfit i PZU opłacają wejście jednorazowe do wszystkich stref i Cross. Nie służą do opłacania karnetów."
         />
 
         <dl class="mt-8 border-t border-line">
@@ -25,11 +25,6 @@ import { partners } from "../../1-data/business";
                     {partner.name}
                   </dt>
                   <dd class="mt-0.5 text-[12px] leading-relaxed text-mist">{partner.note}</dd>
-                  {partner.scope && (
-                    <dd class="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-mist/75">
-                      {partner.scope}
-                    </dd>
-                  )}
                 </div>
               </div>
             ))
@@ -85,8 +80,8 @@ import { partners } from "../../1-data/business";
         </ul>
 
         <p class="mt-5 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-mist/75">
-          Medicover i FitProfit — dostęp 24/7 dla zarejestrowanych klientów ·
-          MultiSport — w godzinach pracy recepcji
+          FitProfit, Medicover i PZU — po rejestracji karta klubowa ({pln(clubCardFee)}) 24/7
+          i płatność w terminalu · MultiSport — tylko w godzinach recepcji
         </p>
       </div>
     </div>

@@ -20,7 +20,8 @@ business/                 rdzeń — treść i marka, zero zależności
 ├── company.ts            tożsamość, kontakt, godziny, lokalizacja
 ├── brand.ts              nazwa, logo, paleta, typografia, głos, obraz
 ├── areas.ts              6 stref
-├── memberships.ts        4 karnety i 15 wariantów cenowych
+├── memberships.ts        4 karnety i 14 wariantów cenowych
+├── single-entry.ts       samodzielne wejście jednorazowe
 ├── classes.ts            zajęcia, trenerzy, trening personalny
 ├── services.ts           usługi dodatkowe
 ├── partners.ts           partnerzy i promocje
@@ -128,7 +129,8 @@ business/
 ├── meta.ts           wersja, waluta, strefa czasowa, zasady cennika
 ├── company.ts        tożsamość, kontakt, godziny, lokalizacja
 ├── areas.ts          6 stref
-├── memberships.ts    4 karnety i 15 wariantów cenowych
+├── memberships.ts    4 karnety i 14 wariantów cenowych
+├── single-entry.ts   samodzielne wejście jednorazowe
 ├── classes.ts        zajęcia, trenerzy, trening personalny
 ├── services.ts       usługi dodatkowe
 ├── partners.ts       partnerzy i promocje
@@ -165,16 +167,17 @@ Czego w wariancie **nie ma** i dlaczego:
 | Relacja | Miejsce prawdy | Strona wyprowadzana |
 | --- | --- | --- |
 | zajęcia ↔ karnet | `membership.classes` | `class.included_in` |
-| partner ↔ karnet | `membership.partners` | `partner.applies_to` |
-| partner ↔ tryb dostępu | `partner.access_mode` | `membership.partner_access[].mode` |
+| program partnerski ↔ wejście jednorazowe | `catalog.partners` + `entry_policy` | wspólny dla wszystkich programów |
 
 Strony wyprowadzane liczy adapter (`src/data/business.ts`), więc nie istnieją dwie
 listy, które mogą się rozjechać.
 
-### Reguły wspólne (`pricing_policy`)
+### Reguły wspólne (`pricing_policy` i `entry_policy`)
 
-Opłata wpisowa, brak umowy, zasada braku blokowania i **status VAT** są zapisane
-**raz** — nie w 26 obiektach ceny.
+Brak umowy, zasada braku blokowania i **status VAT** są zapisane w
+`pricing_policy`. Wejście jednorazowe bez rejestracji, karnet z rejestracją
+i kartą klubową 24/7 oraz zakres programów partnerskich są zapisane raz
+w `entry_policy`.
 
 ### Marka (`brand.ts`)
 
@@ -287,7 +290,7 @@ Nic z tego pliku nie trafia na stronę.
 | --- | --- | --- |
 | `publishable` | decyzja człowieka: czy wolno wdrożyć | `false` |
 | `questions[]` | brakujące informacje | „Czy ceny są aktualne?” |
-| `issues[]` | znane defekty | „PZU bez logo i zasad dostępu” |
+| `issues[]` | znane defekty | „PZU bez logo” |
 | `unknowns[]` | wartości przyjęte roboczo | kod pocztowy `48-300` |
 | `provenance` | skąd dane, z czego powstał model | commit `8a14e21` |
 
@@ -325,7 +328,7 @@ pola, zły typ wartości → błąd w edytorze i w `astro check`. Zero kosztu w 
 
 | Sprawdzenie | Moduł | Typ |
 | --- | --- | --- |
-| karnet wskazuje nieistniejącą strefę / zajęcia / partnera | rdzeń | błąd |
+| karnet wskazuje nieistniejącą strefę / zajęcia | rdzeń | błąd |
 | cena niedodatnia lub niecałkowita | rdzeń | błąd |
 | nazwa w `brand` rozjechana z `identity.display_name` | rdzeń | błąd |
 | `bindings` wskazuje nieistniejącą encję lub asset | strona | błąd |
@@ -382,7 +385,7 @@ Tylko `site/index.ts` → `media.assets[id].served` / `variants`.
 | `validity: "1 miesiąc"` | `term { value, unit }` | sortowanie i porównywanie |
 | `entries: null` | `{ unlimited }` / `{ count }` | `null` znaczyło dwie rzeczy |
 | `features` z duplikatami | `perks` bez duplikatów | „ważny miesiąc” wynika z `term` |
-| `enrollment_fee_pln` × 4 | `pricing_policy` | jedno źródło prawdy |
+| `enrollment_fee_pln` × 4 | `entry_policy.club_card_fee` | karta klubowa do karnetów, jedno źródło prawdy |
 | referencje do plików w encjach | `site.media.bindings` | rdzeń biznesu bez zależności od mediów |
 | jeden plik, wszystkie warstwy | trzy moduły | osobne cykle zmian i właściciele |
 | JSON + JSON Schema | obiekty TS + `satisfies` + `invariants.ts` | podpowiedzi i kompilacja zamiast walidatora |

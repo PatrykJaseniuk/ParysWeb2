@@ -2,7 +2,6 @@ import type { Membership } from "./0-types";
 import type { PerkKey } from "./1-perks";
 import type { AreaKey } from "./2-areas";
 import type { ClassKey } from "./2-classes";
-import type { PartnerKey } from "./1-partners";
 
 /**
  * Karnety i warianty cenowe — rekord klucz → karnet.
@@ -10,11 +9,12 @@ import type { PartnerKey } from "./1-partners";
  * Klucz jest tożsamością karnetu; nie ma pola `id`. Kolejność kluczy =
  * kolejność kolumn w cenniku (cennik obowiązujący od 1 czerwca 2026 r.).
  *
- * Referencje do stref, zajęć i partnerów są typowane ich kluczami
- * (`AreaKey`, `ClassKey`, `PartnerKey`), a dodatki — `PerkKey`. Nieistniejąca
- * referencja to błąd kompilacji. Wariant opisuje się pięcioma polami — `id`
- * wariantu nie istnieje, bo tożsamością wariantu jest `code`. Etykiety
- * dodatków są w `catalog.perks`.
+ * Referencje do stref i zajęć są typowane ich kluczami (`AreaKey`,
+ * `ClassKey`), a dodatki — `PerkKey`. Nieistniejąca referencja to błąd
+ * kompilacji. Wariant opisuje się pięcioma polami — `id` wariantu nie
+ * istnieje, bo tożsamością wariantu jest `code`. Etykiety dodatków są
+ * w `catalog.perks`. Programy partnerskie dotyczą wejść jednorazowych,
+ * a nie karnetów.
  */
 
 export const memberships = {
@@ -22,7 +22,6 @@ export const memberships = {
     slug: "4-strefy",
     name: "4 strefy",
     areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional"],
-    partners: ["partner-multisport", "partner-medicover", "partner-fitprofit"],
     options: [
       {
         code: "two_weeks",
@@ -61,10 +60,9 @@ export const memberships = {
   },
   "mem-4-areas-cross": {
     slug: "4-strefy-plus-cross",
-    name: "4 strefy + Cross",
+    name: "4 strefy + zajęcia grupowe",
     areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional"],
     classes: ["class-cross-training"],
-    partners: ["partner-multisport", "partner-medicover", "partner-fitprofit"],
     options: [
       {
         code: "eight_entries",
@@ -93,13 +91,6 @@ export const memberships = {
     name: "5 stref",
     areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional", "area-cross"],
     options: [
-      {
-        code: "entry",
-        label: "1 wejście",
-        price: { amount: 35, unit: "entry" },
-        term: { value: 7, unit: "day" },
-        entries: 1,
-      },
       {
         code: "two_weeks",
         label: "2 tygodnie",
@@ -130,7 +121,7 @@ export const memberships = {
   },
   "mem-6-areas": {
     slug: "6-stref-plus-zajecia",
-    name: "6 stref + Cross",
+    name: "6 stref + zajęcia grupowe",
     areas: [
       "area-free-weights",
       "area-machines",
@@ -157,7 +148,7 @@ export const memberships = {
       },
     ],
   },
-} satisfies Record<string, Membership<AreaKey, ClassKey, PartnerKey, PerkKey>>;
+} satisfies Record<string, Membership<AreaKey, ClassKey, PerkKey>>;
 
 /** Klucze karnetów — jedyny dozwolony sposób odwołania się do karnetu. */
 export type MembershipKey = keyof typeof memberships;

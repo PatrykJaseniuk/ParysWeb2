@@ -2,7 +2,7 @@
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
 import PriceMatrix from "../pricing/PriceMatrix.astro";
-import { contact, enrollmentFee, entryPrice, monthlyFrom, optionCount, pln, withBase } from "../../1-data/business";
+import { clubCardFee, contact, entryPrice, monthlyFrom, optionCount, pln, withBase } from "../../1-data/business";
 
 const notes = [
   {
@@ -12,13 +12,13 @@ const notes = [
   },
   {
     icon: "clock" as const,
-    title: `Opłata wpisowa ${pln(enrollmentFee)}`,
-    text: "Jednorazowo przy pierwszym zakupie karnetu. Nie dotyczy wejść jednorazowych.",
+    title: `Karta klubowa ${pln(clubCardFee)}`,
+    text: "Wymagana przy zakupie karnetu. Po rejestracji daje dostęp 24/7. Wejście jednorazowe nie wymaga karty.",
   },
   {
     icon: "users" as const,
-    title: "Karty partnerskie",
-    text: "MultiSport, Medicover Sport i FitProfit. PZU — zakres dostępu potwierdź w recepcji.",
+    title: "Programy partnerskie",
+    text: "Opłacisz wejście jednorazowe do wszystkich stref i zajęć grupowych. MultiSport tylko w recepcji; FitProfit, Medicover i PZU po rejestracji — karta 24/7 i terminal.",
   },
 ];
 ---
@@ -29,7 +29,7 @@ const notes = [
       index="02"
       label="Karnety"
       title="Cennik bez gwiazdek"
-      description={`Cztery zakresy, ${optionCount} wariantów — od wejścia za ${pln(entryPrice)} po karnet roczny z dwoma miesiącami gratis. Karnet miesięczny już od ${pln(monthlyFrom)}.`}
+      description={`Cztery zakresy i ${optionCount} wariantów karnetów. Wejście jednorazowe ${pln(entryPrice)}. Karnet roczny z dwoma miesiącami gratis, miesięczny już od ${pln(monthlyFrom)}.`}
       tone="light"
     />
 

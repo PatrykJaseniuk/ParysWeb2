@@ -11,7 +11,7 @@
  * dopiero błędem runtime.
  */
 
-export type AccessMode = "24_7" | "reception_hours" | "24_7_after_registration" | "unknown";
+export type EntryWindow = "reception_hours" | "24_7";
 export type PriceUnit = "entry" | "term" | "hour" | "item";
 export type PriceType = "exact" | "from";
 export type TermUnit = "day" | "week" | "month" | "year";
@@ -105,13 +105,27 @@ export interface Identity {
 }
 
 export interface PricingPolicy {
-  enrollment_fee: { amount: number; applies_to: "all" | "all_except_single_entry" };
   contract: "none" | "required" | "optional";
   freeze_allowed: boolean;
   /** `null` = nie wiemy, czy ceny zawierają VAT. */
   includes_vat: boolean | null;
   prices_confirmed_by_owner: boolean;
   notes: string[];
+}
+
+/**
+ * Zasady wejścia do obiektu. Karta klubowa jest nośnikiem dostępu;
+ * karty partnerskie służą wyłącznie do opłacenia wejścia jednorazowego.
+ */
+export interface EntryPolicy {
+  single_entry_requires_registration: boolean;
+  single_entry_access: EntryWindow;
+  membership_requires_registration: boolean;
+  membership_access: EntryWindow;
+  partner_single_entry_scope: "all_areas_and_cross";
+  registered_partner_access: EntryWindow;
+  partner_cards_read_by_gate: boolean;
+  club_card_fee: number;
 }
 
 export interface Area<CalendarKey extends string = string> {
@@ -137,7 +151,6 @@ export interface MembershipOption<PerkCode extends string = string> {
 export interface Membership<
   AreaKey extends string = string,
   ClassKey extends string = string,
-  PartnerKey extends string = string,
   PerkCode extends string = string,
 > {
   slug: string;
@@ -147,10 +160,21 @@ export interface Membership<
   areas: AreaKey[];
   /** Klucze zajęć z `catalog.classes`. */
   classes?: ClassKey[];
-  /** Klucze partnerów z `catalog.partners`. */
-  partners?: PartnerKey[];
   featured?: boolean;
   options: MembershipOption<PerkCode>[];
+}
+
+/**
+ * Wejście jednorazowe — samodzielny produkt, nie wariant karnetu.
+ * Zasady rejestracji i godzin wejścia określa `entry_policy`.
+ */
+export interface SingleEntry<AreaKey extends string = string, ClassKey extends string = string> {
+  name: string;
+  description: string;
+  price: Money;
+  term: Term;
+  areas: AreaKey[];
+  classes?: ClassKey[];
 }
 
 export interface GroupClass<TrainerKey extends string = string, CalendarKey extends string = string> {
@@ -165,12 +189,13 @@ export interface GroupClass<TrainerKey extends string = string, CalendarKey exte
 export interface Trainer {
   name: string;
   role: string;
+  /** Profil trenera na Instagramie. Brak = trener nie ma podanego profilu. */
+  instagram?: string;
 }
 
 export interface PersonalTraining<TrainerKey extends string = string> {
   name: string;
   description: string;
-  price: Money;
   booking: { channel: "phone" | "reception" | "online"; text: string };
   trainers: TrainerKey[];
 }
@@ -192,7 +217,10 @@ export interface Service<CalendarKey extends string = string> {
 
 export interface Partner {
   name: string;
-  access_mode: AccessMode;
+  /** Czy po rejestracji można otrzymać fizyczną kartę klubową. */
+  can_register_club_card: boolean;
+  /** Czy karta klubowa pozwala płacić samodzielnie w terminalu. */
+  terminal_payment: boolean;
   note?: string;
 }
 
@@ -206,6 +234,7 @@ export interface Promotion {
 }
 
 export interface Catalog {
+  single_entry: SingleEntry;
   areas: Record<string, Area>;
   memberships: Record<string, Membership>;
   classes: Record<string, GroupClass>;
@@ -242,6 +271,7 @@ export interface BusinessModel {
   /** Marka: reguły nazwy, logo, koloru, typografii i głosu. */
   brand: BrandModel;
   pricing_policy: PricingPolicy;
+  entry_policy: EntryPolicy;
   catalog: Catalog;
   integrations: Integrations;
 }

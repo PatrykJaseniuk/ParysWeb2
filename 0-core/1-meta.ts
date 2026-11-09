@@ -23,7 +23,6 @@ export const meta: Meta = {
  */
 
 export const pricing_policy: PricingPolicy = {
-  enrollment_fee: { amount: 15, applies_to: "all_except_single_entry" },
   contract: "none",
   freeze_allowed: false,
   includes_vat: null,
