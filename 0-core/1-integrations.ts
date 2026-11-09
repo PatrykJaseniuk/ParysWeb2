@@ -44,9 +44,9 @@ export type CalendarKey = keyof typeof calendars;
 export const integrations = {
   calendars,
   analytics: {
-    provider: "google_analytics_4",
-    measurement_id: "G-GKTQMBN0Y8",
+    provider: "none",
+    measurement_id: null,
     status: "inactive",
-    requires_consent: true,
+    requires_consent: false,
   },
 } satisfies Integrations;

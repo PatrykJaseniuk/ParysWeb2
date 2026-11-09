@@ -19,9 +19,8 @@ const stats = [
   >
   </div>
 
-  <div class="container-x relative grid items-center gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-10 lg:py-16">
-    <!-- Tekst -->
-    <div class="lg:col-span-7">
+  <div class="container-x relative py-12 sm:py-16 lg:py-24">
+    <div class="max-w-5xl">
       <div class="flex flex-wrap items-center gap-x-4 gap-y-3">
         <span
           class="inline-flex items-center gap-2 border border-brand/40 bg-brand/10 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-text-dark"
@@ -35,15 +34,14 @@ const stats = [
         <span class="eyebrow">Nysa · {contact.address.street} · od {business.established}</span>
       </div>
 
-      <h1 class="mt-6 display text-[clamp(2.4rem,6.2vw,5.2rem)] sm:mt-8">
+      <h1 class="mt-6 display text-[clamp(2.6rem,7.2vw,6.2rem)] sm:mt-8">
         Siłownia w&nbsp;Nysie.<br />
         <span class="text-brand">Czynna całą dobę.</span>
       </h1>
 
-      <p class="mt-6 max-w-xl text-base leading-relaxed text-bone/75 sm:text-lg">
-        Tysiąc metrów kwadratowych, sześć stref treningowych, zajęcia grupowe i trenerzy
-        z niemal czterdziestoletnim doświadczeniem. Bez umów i bez limitów — trenujesz wtedy,
-        kiedy naprawdę masz czas.
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-bone/75 sm:text-lg">
+        1000 m², sześć stref treningowych, zajęcia w małych grupach i trening personalny.
+        Bez umów i bez limitów — trenujesz wtedy, kiedy naprawdę masz czas.
       </p>
 
       <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -60,47 +58,6 @@ const stats = [
       <p class="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-mist/70">
         Wejście jednorazowe {pln(entryPrice)} · karnety bez umowy lojalnościowej
       </p>
-    </div>
-
-    <!-- Zdjęcie -->
-    <div class="lg:col-span-5">
-      <div class="relative">
-        <!-- Czerwona rama — przesunięta, jako element graficzny. -->
-        <div class="absolute -inset-x-2 -bottom-2 top-2 border border-brand/50" aria-hidden="true"></div>
-
-        <div class="relative aspect-[4/5] overflow-hidden bg-ink-3 sm:aspect-[16/11] lg:aspect-[5/6]">
-          <img
-            src={withBase("/img/hero/silownia-1200.webp")}
-            srcset={[800, 1200, 1800, 2400].map((w) => `${withBase(`/img/hero/silownia-${w}.webp`)} ${w}w`).join(", ")}
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            width="1200"
-            height="672"
-            alt="Sala treningowa Sport Studio Parys w Nysie — maszyny i wolne ciężary"
-            class="h-full w-full object-cover"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent"></div>
-
-          <div class="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-3 p-4 sm:p-5">
-            <div>
-              <p class="font-display text-5xl font-extrabold leading-none tracking-tight text-white sm:text-6xl">
-                24<span class="text-brand">/</span>7
-              </p>
-              <p class="mt-2 font-mono text-[9px] uppercase leading-relaxed tracking-[0.2em] text-white/70">
-                Wejście na kartę<br />o każdej porze
-              </p>
-            </div>
-            <a
-              href={withBase("/strefy")}
-              class="flex h-11 w-11 shrink-0 items-center justify-center border border-white/30 bg-ink/40 text-white backdrop-blur transition-colors hover:border-brand hover:bg-brand"
-              aria-label="Zobacz strefy treningowe"
-            >
-              <Icon name="arrow-up-right" size={18} />
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 import { BASE_PATH, contact, business, seo, accesses } from "../1-data/business";
 
 /** Origin wdrożenia (GitHub Pages). Domena parys.nysa.pl obsługuje starą stronę. */
-export const SITE_ORIGIN = "https://patrykjaseniuk.github.io";
+export const SITE_ORIGIN = "https://parys.nysa.pl";
 export const SITE_URL = `${SITE_ORIGIN}${BASE_PATH}`;
 export const OG_IMAGE = `${SITE_URL}/og/og-default.jpg`;
 

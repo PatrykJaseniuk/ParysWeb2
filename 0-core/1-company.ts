@@ -9,6 +9,9 @@ import type { Identity } from "./0-types";
 
 export const company: Identity = {
   display_name: "Sport Studio Parys",
+  legal_name: "Krzysztof Jaseniuk",
+  nip: "7531030782",
+  regon: "531172448",
   alternate_names: [
     "Siłownia Parys",
     "Parys Nysa",

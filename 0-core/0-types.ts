@@ -72,6 +72,10 @@ export interface IdentityFacts {
 export interface Identity {
   display_name: string;
   legal_name?: string;
+  /** NIP przedsiębiorcy (cyfry, bez separatorów). */
+  nip?: string;
+  /** REGON przedsiębiorcy. */
+  regon?: string;
   alternate_names: string[];
   type: "gym" | "fitness_club" | "sports_center";
   tagline: string;
@@ -226,15 +230,6 @@ export interface Partner {
   note?: string;
 }
 
-export interface Promotion {
-  name: string;
-  state: "active" | "expired" | "unused" | "archived";
-  price?: Money;
-  valid_from?: string;
-  valid_to?: string;
-  conditions?: string;
-}
-
 export interface Catalog {
   single_entry: SingleEntry;
   areas: Record<string, Area>;
@@ -244,7 +239,6 @@ export interface Catalog {
   personal_training: PersonalTraining;
   services: Record<string, Service>;
   partners: Record<string, Partner>;
-  promotions: Record<string, Promotion>;
   /** Słownik dodatków: kod → etykieta. Warianty podają tylko kod. */
   perks: Record<string, string>;
 }

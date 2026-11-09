@@ -8,7 +8,7 @@ import { accesses } from "./3-accesses";
 import { classes, trainers, personal_training } from "./2-classes";
 import { single_entry } from "./3-single-entry";
 import { services } from "./2-services";
-import { partners, promotions } from "./1-partners";
+import { partners } from "./1-partners";
 import { integrations } from "./1-integrations";
 import { perks } from "./1-perks";
 import { terms } from "./1-legal";
@@ -27,7 +27,7 @@ import { membership_agreement } from "./2-membership-agreement";
  *   1-meta.ts           wersja, waluta, strefa czasowa, zasady cennika
  *   1-access.ts         karta klubowa i zasady wejścia
  *   1-company.ts        tożsamość, kontakt, godziny, lokalizacja
- *   1-partners.ts       partnerzy i promocje
+ *   1-partners.ts       programy partnerskie
  *   1-legal.ts          regulamin klubu (wzorzec zasad korzystania)
  *   1-regulamin.ts      przeprojektowany regulamin — wersja następcza 1-legal.ts
  *   1-integrations.ts   kalendarze i analityka
@@ -54,7 +54,7 @@ import { membership_agreement } from "./2-membership-agreement";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "22.0.0",
+  model_version: "23.0.0",
   meta,
   identity: company,
   brand,
@@ -70,7 +70,6 @@ export const business = {
     personal_training,
     services,
     partners,
-    promotions,
     perks,
   },
   integrations,
@@ -80,6 +79,6 @@ export type { AreaKey } from "./2-areas";
 export type { AccessKey } from "./3-accesses";
 export type { ClassKey, TrainerKey } from "./2-classes";
 export type { ServiceKey } from "./2-services";
-export type { PartnerKey, PromotionKey } from "./1-partners";
+export type { PartnerKey } from "./1-partners";
 export type { CalendarKey } from "./1-integrations";
 export type { PerkKey } from "./1-perks";

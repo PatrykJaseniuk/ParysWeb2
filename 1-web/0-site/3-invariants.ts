@@ -44,7 +44,6 @@ export function assertModelIntegrity(): void {
     b.catalog.trainers,
     b.catalog.services,
     b.catalog.partners,
-    b.catalog.promotions,
   ]) {
     for (const key of Object.keys(collection)) entityIds.add(key);
   }
@@ -76,7 +75,6 @@ export function assertModelIntegrity(): void {
     ["design.logo.mark", s.design.logo.mark],
     ["design.logo.full", s.design.logo.full],
     ["design.logo.motto", s.design.logo.motto],
-    ["media.hero", s.media.hero],
     ["site.icons.favicon", s.site.icons.favicon],
     ["site.icons.apple_touch", s.site.icons.apple_touch],
     ["site.seo_defaults.og_image", s.site.seo_defaults.og_image],

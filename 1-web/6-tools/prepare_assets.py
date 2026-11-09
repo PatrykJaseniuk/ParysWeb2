@@ -32,7 +32,7 @@ FONT_REG = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
 
 
 def ensure_dirs() -> None:
-    for d in ("img/hero", "img/strefy", "img/trenerzy", "img/uslugi", "img/partnerzy", "img/promocje", "brand", "og", "media"):
+    for d in ("img/strefy", "img/trenerzy", "img/uslugi", "img/partnerzy", "brand", "og", "media"):
         (OUT / d).mkdir(parents=True, exist_ok=True)
 
 
@@ -51,19 +51,6 @@ def crop_alpha(im: Image.Image, threshold: int = 200) -> Image.Image:
     alpha = im.getchannel("A")
     bbox = alpha.point(lambda p: 255 if p > threshold else 0).getbbox()
     return im.crop(bbox) if bbox else im
-
-
-def build_hero() -> list[dict]:
-    src = SRC / "photos" / "hero" / "SilowniaBackgroundLarge.png"
-    im = Image.open(src).convert("RGB")
-    out = []
-    for w in widths(im.width, [2400, 1800, 1200, 800]):
-        h = round(im.height * w / im.width)
-        resized = im.resize((w, h), Image.LANCZOS)
-        p = OUT / "img" / "hero" / f"silownia-{w}.webp"
-        size = save_webp(resized, p, 78)
-        out.append({"file": str(p.relative_to(ROOT)), "w": w, "kb": round(size / 1024)})
-    return out
 
 
 def build_zones() -> list[dict]:
@@ -136,6 +123,7 @@ def build_partners() -> list[dict]:
         "multisport.png": "multisport",
         "medicover.png": "medicover",
         "fitProfit.png": "fitprofit",
+        "pzu.png": "pzu",
     }
     out = []
     for filename, slug in mapping.items():
@@ -218,7 +206,6 @@ def build_og() -> list[dict]:
 def main() -> None:
     ensure_dirs()
     report = {
-        "hero": build_hero(),
         "strefy": build_zones(),
         "uslugi": build_services(),
         "trenerzy": build_trainers(),

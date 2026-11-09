@@ -33,16 +33,16 @@ const businessModel: BusinessModel = businessModelSource;
 assertModelIntegrity();
 
 /**
- * Bazowa ścieżka wdrożenia (GitHub Pages: `/ParysWeb2`).
- * Wszystkie wewnętrzne URL-e w modelu są zapisane od roota (`/karnety`,
- * `/img/...`), a ta warstwa dokłada prefiks wdrożenia.
+ * Bazowa ścieżka wdrożenia. Na domenie własnej (`parys.nysa.pl`) strona jest
+ * w rootcie, więc prefiks jest pusty; mechanizm zostaje na wypadek wdrożenia
+ * w podkatalogu.
  */
 export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 /**
- * `/karnety` → `/ParysWeb2/karnety`; `#kotwica` i adresy zewnętrzne bez zmian.
- * Strona główna nie dostaje końcowego ukośnika (`/ParysWeb2`), bo
- * `trailingSlash: "never"` — inaczej dev server zwraca 404.
+ * `/karnety` → `/karnety` w rootcie domeny; `#kotwica` i adresy zewnętrzne bez
+ * zmian. Przy wdrożeniu w podkatalogu prefiks dokłada `BASE_PATH`. Strona
+ * główna nie dostaje końcowego ukośnika (`trailingSlash: "never"`).
  */
 export function withBase(path: string): string {
   const alreadyPrefixed =
@@ -131,6 +131,9 @@ export function asset(id: string | null | undefined) {
 
 export const business = {
   name: businessModel.identity.display_name,
+  legalName: businessModel.identity.legal_name ?? null,
+  nip: businessModel.identity.nip ?? null,
+  regon: businessModel.identity.regon ?? null,
   tagline: businessModel.identity.tagline,
   shortDescription: businessModel.identity.description,
   established: businessModel.identity.facts.founded,

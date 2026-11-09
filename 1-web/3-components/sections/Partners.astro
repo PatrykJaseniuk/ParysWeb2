@@ -1,7 +1,6 @@
 ---
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
-import Icon from "../../2-ui/ui/Icon.astro";
-import { clubCardFee, partners, pln } from "../../1-data/business";
+import { partners } from "../../1-data/business";
 ---
 
 <section class="border-t border-line bg-ink-2" id="partnerzy">
@@ -10,79 +9,47 @@ import { clubCardFee, partners, pln } from "../../1-data/business";
       <div class="lg:col-span-5">
         <SectionHead
           index="06"
-          label="Programy partnerskie"
-          title="Zapłać za wejście jednorazowe"
-          description="MultiSport, Medicover Sport, FitProfit i PZU opłacają wejście jednorazowe do wszystkich stref i zajęć grupowych. Nie służą do opłacania karnetów."
+          label="Pracownicze Karty Sportowe"
+          title="Akceptujemy karty sportowe"
+          description="MultiSport, Medicover Sport, FitProfit i PZU. Możesz opłacić kartą wizytę jednorazową do wszystkich stref i zajęć grupowych."
         />
 
-        <dl class="mt-8 border-t border-line">
-          {
-            partners.map((partner) => (
-              <div class="flex items-start gap-3 border-b border-line py-3.5">
-                <Icon name="check" size={14} class="mt-1 shrink-0 text-brand" />
-                <div>
-                  <dt class="font-display text-sm font-semibold uppercase tracking-tight text-bone">
-                    {partner.name}
-                  </dt>
-                  <dd class="mt-0.5 text-[12px] leading-relaxed text-mist">{partner.note}</dd>
-                </div>
-              </div>
-            ))
-          }
-        </dl>
+        <p class="mt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-mist/75">
+          Inna karta? Zapytaj w recepcji
+        </p>
       </div>
 
       <div class="lg:col-span-7">
-        <ul class="grid grid-cols-2 gap-3 sm:gap-4">
+        <ul class="border-t border-line">
           {
-            partners.map((partner, i) => (
-              <li class="group relative overflow-hidden border border-line bg-ink-3">
-                <div class="flex aspect-[16/10] items-center justify-center overflow-hidden">
+            partners.map((partner) => (
+              <li class="flex items-center gap-4 border-b border-line py-4">
+                <span class="flex h-12 w-24 shrink-0 items-center justify-center bg-white px-2">
                   {partner.logoSrc ? (
                     <img
                       src={partner.logoSrc}
-                      alt={`Karta ${partner.name}`}
-                      width="474"
-                      height="300"
-                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      alt={`Logo ${partner.name}`}
+                      class="max-h-8 w-auto max-w-full object-contain"
                       loading="lazy"
                       decoding="async"
                     />
                   ) : (
-                    <span class="font-display text-3xl font-extrabold uppercase tracking-tight text-bone/80">
+                    <span class="font-display text-[11px] font-bold uppercase tracking-tight text-ink">
                       {partner.name}
                     </span>
                   )}
-                </div>
-                <div class="flex items-center justify-between border-t border-line px-4 py-3">
-                  <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-bone/80">
+                </span>
+
+                <div class="min-w-0">
+                  <p class="font-display text-sm font-semibold uppercase tracking-tight text-bone">
                     {partner.name}
-                  </span>
-                  <span class="font-mono text-[9px] uppercase tracking-[0.14em] text-mist/75">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                  </p>
+                  <p class="mt-0.5 text-[12px] leading-relaxed text-mist">{partner.note}</p>
                 </div>
               </li>
             ))
           }
-
-          <li class="flex flex-col justify-between border border-dashed border-line p-4">
-            <Icon name="spark" size={18} class="text-mist/75" />
-            <div>
-              <p class="font-display text-sm font-semibold uppercase tracking-tight text-bone">
-                Inna karta?
-              </p>
-              <p class="mt-1 font-mono text-[9px] uppercase leading-relaxed tracking-[0.14em] text-mist/80">
-                Zapytaj w recepcji
-              </p>
-            </div>
-          </li>
         </ul>
-
-        <p class="mt-5 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-mist/75">
-          FitProfit, Medicover i PZU — po rejestracji karta klubowa ({pln(clubCardFee)}) 24/7
-          i rejestracja wizyty w terminalu · MultiSport — tylko w godzinach recepcji
-        </p>
       </div>
     </div>
   </div>

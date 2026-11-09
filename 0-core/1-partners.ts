@@ -1,7 +1,7 @@
-import type { Partner, Promotion } from "./0-types";
+import type { Partner } from "./0-types";
 
 /**
- * Programy partnerskie i promocje — rekordy klucz → obiekt.
+ * Programy partnerskie — rekordy klucz → obiekt.
  *
  * Programy partnerskie są formami płatności za wejście jednorazowe do
  * wszystkich stref i Cross. Nie opłacają karnetów i nie są nośnikiem dostępu.
@@ -42,18 +42,3 @@ export const partners = {
 /** Klucze partnerów — jedyny dozwolony sposób odwołania się do partnera. */
 export type PartnerKey = keyof typeof partners;
 
-export const promotions = {
-  "promo-student-99": {
-    name: "Karnet studencki 99",
-    state: "unused",
-    price: { amount: 99, unit: "term" },
-  },
-  "promo-student-90": {
-    name: "Karnet studencki 90 (archiwalna)",
-    state: "archived",
-    price: { amount: 90, unit: "term" },
-  },
-} satisfies Record<string, Promotion>;
-
-/** Klucze promocji — jedyny dozwolony sposób odwołania się do promocji. */
-export type PromotionKey = keyof typeof promotions;

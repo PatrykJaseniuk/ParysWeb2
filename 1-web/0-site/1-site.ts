@@ -11,7 +11,7 @@ import { business } from "../../0-core";
  */
 export const site = {
   requires: { business: business.model_version },
-  site_version: "4.15.0",
+  site_version: "4.16.0",
   design: {
     direction: "Ciemny, techniczny interfejs w duchu karty sprzętowej: ostre krawędzie, włosowe linie 1 px, duża typografia wersalikowa i czerwień jako jedyny akcent. Cennik jest jedyną jasną sekcją — wygląda jak wydruk na ścianie recepcji.",
     scale: {
@@ -49,44 +49,6 @@ export const site = {
         ],
         credit: "Sport Studio Parys",
         variants: [],
-        status: "complete"
-      },
-      "asset-hero": {
-        kind: "image",
-        source: "photos/hero/SilowniaBackgroundLarge.png",
-        served: "/img/hero/silownia-1200.webp",
-        mime: "image/webp",
-        width: 2734,
-        height: 1531,
-        duration_s: null,
-        alt: "Sala treningowa Sport Studio Parys w Nysie — maszyny i wolne ciężary",
-        roles: [
-          "hero",
-          "og"
-        ],
-        credit: "Sport Studio Parys",
-        variants: [
-          {
-            width: 800,
-            path: "/img/hero/silownia-800.webp",
-            format: "webp"
-          },
-          {
-            width: 1200,
-            path: "/img/hero/silownia-1200.webp",
-            format: "webp"
-          },
-          {
-            width: 1800,
-            path: "/img/hero/silownia-1800.webp",
-            format: "webp"
-          },
-          {
-            width: 2400,
-            path: "/img/hero/silownia-2400.webp",
-            format: "webp"
-          }
-        ],
         status: "complete"
       },
       "asset-logo-full": {
@@ -143,8 +105,8 @@ export const site = {
         source: "partners/fitProfit.png",
         served: "/img/partnerzy/fitprofit.webp",
         mime: "image/webp",
-        width: 1090,
-        height: 733,
+        width: 778,
+        height: 205,
         duration_s: null,
         alt: "Karta FitProfit — płatność za wejście jednorazowe",
         roles: [
@@ -159,8 +121,8 @@ export const site = {
         source: "partners/medicover.png",
         served: "/img/partnerzy/medicover.webp",
         mime: "image/webp",
-        width: 400,
-        height: 258,
+        width: 778,
+        height: 152,
         duration_s: null,
         alt: "Karta Medicover Sport — płatność za wejście jednorazowe",
         roles: [
@@ -175,10 +137,26 @@ export const site = {
         source: "partners/multisport.png",
         served: "/img/partnerzy/multisport.webp",
         mime: "image/webp",
-        width: 474,
-        height: 300,
+        width: 408,
+        height: 454,
         duration_s: null,
         alt: "Karta MultiSport Plus — płatność za wejście jednorazowe",
+        roles: [
+          "partner-logo"
+        ],
+        credit: "Sport Studio Parys",
+        variants: [],
+        status: "complete"
+      },
+      "asset-logo-partner-pzu": {
+        kind: "logo",
+        source: "partners/pzu.png",
+        served: "/img/partnerzy/pzu.webp",
+        mime: "image/webp",
+        width: 428,
+        height: 428,
+        duration_s: null,
+        alt: "Logo PZU — płatność za wejście jednorazowe",
         roles: [
           "partner-logo"
         ],
@@ -443,38 +421,6 @@ export const site = {
         credit: "Instagram — @yanov.artur_boks",
         variants: [],
         status: "complete"
-      },
-      "asset-promo-student-90": {
-        kind: "image",
-        source: "photos/promotions/archive/karnet-studencki-90-1792x1024.png",
-        served: null,
-        mime: "image/png",
-        width: 1792,
-        height: 1024,
-        duration_s: null,
-        alt: "Archiwalna grafika: karnet studencki za 90 zł",
-        roles: [
-          "promo"
-        ],
-        credit: "Sport Studio Parys",
-        variants: [],
-        status: "not_applicable"
-      },
-      "asset-promo-student-99": {
-        kind: "image",
-        source: "photos/promotions/karnet-studencki-99-1792x1024.png",
-        served: null,
-        mime: "image/png",
-        width: 1792,
-        height: 1024,
-        duration_s: null,
-        alt: "Grafika promocyjna: karnet studencki 99",
-        roles: [
-          "promo"
-        ],
-        credit: "Sport Studio Parys",
-        variants: [],
-        status: "draft"
       },
       "asset-photo-service-badminton": {
         kind: "image",
@@ -785,11 +731,8 @@ export const site = {
       "partner-multisport": {
         logo: "asset-logo-partner-multisport"
       },
-      "promo-student-90": {
-        image: "asset-promo-student-90"
-      },
-      "promo-student-99": {
-        image: "asset-promo-student-99"
+      "partner-pzu": {
+        logo: "asset-logo-partner-pzu"
       },
       "svc-badminton": {
         photo: "asset-photo-service-badminton",
@@ -804,7 +747,7 @@ export const site = {
         video: "asset-video-service-sauna"
       }
     },
-    hero: "asset-hero",
+    hero: null,
     fallbacks: {
       area: "placeholder",
       class: "duotone-reuse",
@@ -813,7 +756,7 @@ export const site = {
     }
   },
   site: {
-    canonical_base: "https://patrykjaseniuk.github.io/ParysWeb2",
+    canonical_base: "https://parys.nysa.pl",
     nav: [
       {
         label: "Strefy",
@@ -887,8 +830,7 @@ export const site = {
             required: true,
             content_refs: [
               "identity.tagline",
-              "identity.facts",
-              "media.hero"
+              "identity.facts"
             ],
             note: null
           },
@@ -1297,33 +1239,6 @@ export const site = {
               "identity.location"
             ],
             note: "Treść opisuje realne przepływy: brak formularzy, embed Google po kliknięciu, logi hostingu."
-          }
-        ]
-      },
-      {
-        id: "terms",
-        path: "/regulamin",
-        title: "Regulamin",
-        description: "Zasady korzystania z obiektu — karnety, karta klubowa, wejścia, rezerwacje i reklamacje.",
-        intent: "Wzorzec umowy dla klubowiczów; treść pochodzi z 0-core/1-legal.ts, strona tylko ją renderuje.",
-        noindex: false,
-        source: null,
-        sections: [
-          {
-            id: "sec-header",
-            type: "page_header",
-            required: true,
-            content_refs: [],
-            note: null
-          },
-          {
-            id: "sec-body",
-            type: "prose",
-            required: true,
-            content_refs: [
-              "legal.terms"
-            ],
-            note: "Treść, wersja i data wejścia w życie pochodzą z rdzenia; adapter podstawia ceny i kontakt."
           }
         ]
       },

@@ -117,10 +117,9 @@ const year = new Date().getFullYear();
     <div
       class="container-x flex flex-col gap-3 py-6 font-mono text-[10px] uppercase tracking-[0.16em] text-mist/70 sm:flex-row sm:items-center sm:justify-between"
     >
-      <p>© {year} Sport Studio Parys · Nysa</p>
+      <p>© {year} Sport Studio Parys · Nysa{business.nip ? ` · NIP ${business.nip}` : ""}</p>
       <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
         <a href={withBase("/polityka-prywatnosci")} class="transition-colors hover:text-bone">Polityka prywatności</a>
-        <a href={withBase("/regulamin")} class="transition-colors hover:text-bone">Regulamin</a>
         <span class="text-mist/80">Ceny brutto · stan na {new Date().getFullYear()}</span>
       </div>
     </div>

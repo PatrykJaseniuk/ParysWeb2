@@ -12,15 +12,15 @@ znajduje się w [`README.md`](README.md).
 
 ## Wdrożenie
 
-- Strona: **https://patrykjaseniuk.github.io/ParysWeb2/** (GitHub Pages, repo
+- Strona: **https://parys.nysa.pl/** (GitHub Pages, domena własna, repo
   `PatrykJaseniuk/ParysWeb2`); push na `main` uruchamia
   [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
-- `base: "/ParysWeb2"` w `1-web/astro.config.mjs`; `SITE_ORIGIN`/`SITE_URL`
-  w `1-web/2-ui/seo.ts`; linki i assety przez `withBase`
-  w `1-web/1-data/business.ts`.
-- **Domena `parys.nysa.pl` należy do starej strony** (repo `ParysWeb`). Nie
-  przypisuj jej do `ParysWeb2` — zmiana `cname` w Pages tego repo zabierze
-  domenę starej stronie.
+- `base` w `1-web/astro.config.mjs` nie jest ustawiony (strona w rootcie
+  domeny); `SITE_ORIGIN`/`SITE_URL` w `1-web/2-ui/seo.ts`; linki i assety przez
+  `withBase` w `1-web/1-data/business.ts`.
+- **Domena `parys.nysa.pl` jest przepięta ze starej strony** (repo `ParysWeb`).
+  Migracja wymaga, żeby stary repo najpierw zwolnił domenę (usunięcie `CNAME` /
+  custom domain w Settings → Pages), inaczej GitHub zgłosi konflikt domeny.
 
 ## Zależności: numer = warstwa
 

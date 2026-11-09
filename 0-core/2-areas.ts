@@ -36,7 +36,7 @@ export const areas = {
     name: "Sala funkcjonalna",
     short: "Rozgrzewka i trening funkcjonalny",
     description:
-      "Przestrzeń do rozgrzewki i treningu z masą własnego ciała. Do dyspozycji są drabinki gimnastyczne, materace i przybory treningowe. Sala sąsiaduje ze strefą cross, więc po rozgrzewce można łatwo przejść do kolejnej części treningu.",
+      "Przestrzeń do rozgrzewki i treningu z masą własnego ciała. Do dyspozycji są drabinki gimnastyczne, materace i przybory treningowe.",
   },
   "area-cross": {
     slug: "sala-cross",
