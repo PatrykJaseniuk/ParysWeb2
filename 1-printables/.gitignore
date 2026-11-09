@@ -1,0 +1,13 @@
+# Zależności
+node_modules/
+
+# Artefakty budowania
+8-output/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Środowisko
+.env
+.env.local

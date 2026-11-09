@@ -24,9 +24,9 @@ const { index, label, title, description, link, tone = "dark", class: className 
   ]}
 >
   <div class="max-w-3xl">
-    <p class:list={["eyebrow", tone === "light" && "text-black/50"]}>
+    <p class:list={["eyebrow", tone === "light" && "text-ink-dim"]}>
       <span class:list={[tone === "light" ? "text-brand-text-paper" : "text-brand-text-dark"]}>{index}</span>
-      <span class="mx-2 text-mist/75">/</span>
+      <span class="mx-2 text-mist-dim">/</span>
       {label}
     </p>
     <h2 class:list={["h2 mt-4", tone === "light" ? "text-ink" : "text-bone"]}>{title}</h2>

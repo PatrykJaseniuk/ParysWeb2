@@ -29,9 +29,9 @@ importy są dozwolone. `0-site/` może też importować `0-core/`.
   BaseLayout.astro  LegalPage.astro
 5-app/                  # srcDir Astro
   pages/                # nazwy plików = URL-e
-6-tools/                # export-model, export-brand, prepare_assets
+6-tools/                # export-model, export-brand, prepare_assets, lighthouse
 7-public/               # publicDir: pliki serwowane (generowane z 0-assets)
-8-output/               # dist, export, docs/BRAND.md, tmp
+8-output/               # dist, export, docs/BRAND.md, lighthouse, tmp
 ```
 
 Poza numeracją zostaje tylko granica narzędzi: `package.json`,
@@ -57,6 +57,7 @@ npm run preview      # podgląd builda
 npm run model:export # 8-output/export/model.json
 npm run brand:md     # 8-output/docs/BRAND.md z 0-core/2-brand.ts
 npm run assets       # 7-public/ z 0-assets/ (Python 3 + Pillow)
+npm run lighthouse   # audyt Lighthouse mobile + desktop → 8-output/lighthouse/
 ```
 
 ## Wdrożenie

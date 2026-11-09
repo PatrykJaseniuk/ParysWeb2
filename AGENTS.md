@@ -5,8 +5,8 @@ znajduje się w [`README.md`](README.md).
 
 ## Zanim zaczniesz
 
-- Pracuj z roota repo; aplikacja i komendy są w `1-web/`.
-- Po każdej zmianie modelu lub kodu uruchom: `cd 1-web && npm run check && npm run build`.
+- Pracuj z roota repo; komendy strony są w `1-web/`, a druku w `1-printables/`.
+- Po każdej zmianie modelu lub kodu uruchom: `cd 1-web && npm run check && npm run build`, a dla druku `cd 1-printables && npm run check && npm run build`.
 - Nie edytuj artefaktów: `1-web/8-output/`, `1-web/.astro/`, `node_modules/`. Nie są źródłem
   prawdy.
 
@@ -28,7 +28,7 @@ znajduje się w [`README.md`](README.md).
   ten sam poziom (bez importów między sobą), `0` nie importuje niczego.
   - `0-core/` — rdzeń modelu, zero zależności zewnętrznych,
   - `1-web/` — konsument rdzenia (strona Astro),
-  - `1-printables/` — kolejny konsument (na razie pusty).
+  - `1-printables/` — kolejny konsument modelu: cennik A4 do druku (PDF/HTML).
 - Ta sama zasada obowiązuje pliki w `0-core/`: prefiks numeru to warstwa,
   import wolno prowadzić tylko do pliku z **niższym** numerem.
   `0-core/index.ts` jest wyjątkiem — to kompozycja i publiczny punkt wejścia.
@@ -113,8 +113,13 @@ cd 1-web
 npm run check        # 0 errors, 0 warnings
 npm run build        # build + assertModelIntegrity() przy starcie
 npm run model:export # opcjonalnie: poprawny 8-output/export/model.json
+
+cd ../1-printables
+npm run check        # tsc --noEmit
+npm run build        # cennik A4: 8-output/cennik-a4.pdf + .html
 ```
 
 Sukces = brak błędów `astro check`, build kończy się `[build] Complete!`,
 a log modelu pokazuje 6 stref · 5 karnetów · 15 wariantów · 1 zajęć ·
-5 trenerów · 3 usługi.
+5 trenerów · 3 usługi. Druk kończy się linią `PDF: …/cennik-a4.pdf`
+i jedną stroną A4.

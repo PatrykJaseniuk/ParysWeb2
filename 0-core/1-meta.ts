@@ -23,14 +23,14 @@ export const meta: Meta = {
  */
 
 export const pricing_policy: PricingPolicy = {
-  contract: "required",
+  contract: "none",
   freeze_allowed: false,
   includes_vat: true,
   prices_confirmed_by_owner: true,
   notes: [
     "Cennik obowiązuje od 1 czerwca 2026 r.",
     "Ceny są brutto — zawierają VAT (potwierdzone przez właściciela).",
-    "Karnety są przedpłacone i wymagają podpisania umowy członkowskiej; nie odnawiają się automatycznie.",
+    "Karnety są przedpłacone i nie odnawiają się automatycznie.",
     "Karnety nie podlegają blokowaniu ani zawieszaniu.",
   ],
 };

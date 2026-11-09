@@ -29,7 +29,7 @@ const themeVars =
     ? [
         "--pm-text:#0a0a0b",
         "--pm-muted:#5f5f66",
-        "--pm-faint:#a2a2a8",
+        "--pm-faint:#5f5f5b",
         "--pm-line:rgba(10,10,11,0.16)",
         "--pm-line-soft:rgba(10,10,11,0.09)",
         "--pm-surface:#fbfaf8",
@@ -254,7 +254,7 @@ const cellClass = (access: (typeof accesses)[number]) =>
             <div>
               <p class="font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--pm-faint)]">
                 {String(i + 1).padStart(2, "0")}
-                {isFeatured(access) && <span class="ml-2 text-brand">· pełny zakres</span>}
+                {isFeatured(access) && <span class="ml-2 text-brand-text-paper">· pełny zakres</span>}
               </p>
               <h3 class="mt-1.5 font-display text-xl font-bold uppercase leading-tight tracking-tight">
                 {access.name}

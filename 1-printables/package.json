@@ -1,0 +1,22 @@
+{
+  "name": "parys-printables",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Materiały drukowane Sport Studio Parys generowane z modelu 0-core",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "tsx 3-tools/build.ts",
+    "cennik": "tsx 3-tools/build.ts",
+    "clean": "rm -rf 8-output"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.2.6",
+    "@fontsource-variable/inter": "^5.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.20.6",
+    "typescript": "^5.8.3"
+  }
+}

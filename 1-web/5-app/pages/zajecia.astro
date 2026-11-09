@@ -82,7 +82,7 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
               <div class:list={["lg:col-span-7", index % 2 === 1 && "lg:order-1"]}>
                 <p class="eyebrow">
                   <span class="text-brand">{String(index + 1).padStart(2, "0")}</span>
-                  <span class="mx-2 text-mist/80">/</span>
+                  <span class="mx-2 text-mist-dim">/</span>
                   małe grupy
                 </p>
                 <h2 class="h2 mt-4">{item.name}</h2>
@@ -90,11 +90,11 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
 
                 <dl class="mt-8 grid gap-px border border-line bg-line sm:grid-cols-2">
                   <div class="bg-ink-2 p-4">
-                    <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist/80">Prowadzenie</dt>
+                    <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist-dim">Prowadzenie</dt>
                     <dd class="mt-1 text-sm text-bone/85">trenerzy Parys</dd>
                   </div>
                   <div class="bg-ink-2 p-4">
-                    <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist/80">W cenie karnetu</dt>
+                    <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist-dim">W cenie karnetu</dt>
                     <dd class="mt-1 text-sm text-bone/85">6 stref + zajęcia grupowe, 4 strefy + zajęcia grupowe</dd>
                   </div>
                 </dl>

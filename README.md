@@ -14,7 +14,7 @@ nawzajem), a `0` jest korzeniem, który nie importuje niczego.
 |---|---|---|
 | `0-core/` | 0 | fakty o firmie, marka, cennik, katalog encji |
 | `1-web/` | 1 | warstwa strony (`site/`) + aplikacja Astro |
-| `1-printables/` | 1 | miejsce na kolejnego konsumenta modelu (pusty) |
+| `1-printables/` | 1 | konsument modelu: cennik A4 do druku (PDF + HTML) |
 
 Ta sama zasada obowiązuje pliki w `0-core/` — prefiks numeru wyznacza warstwę:
 
@@ -77,6 +77,26 @@ Wewnątrz `1-web` obowiązuje ta sama zasada, z numeracją lokalną od 0:
   `package-lock.json`, `node_modules/`, `astro.config.mjs`, `tsconfig.json`,
   `README.md`, `.gitignore`, `.vscode/` — wymagają ich npm, Astro i edytor
   (analogicznie do `.vscode/` w rootcie repo).
+
+## `1-printables` — druk
+
+Drugi konsument modelu, niezależny od strony. Buduje jednostronicowy **cennik
+A4** z tych samych danych co `1-web`: ceny karnetów, wejście jednorazowe,
+zakres stref, usługi, zasady, godziny i kontakt.
+
+Wynik trafia do `1-printables/8-output/`:
+
+- `cennik-a4.pdf` — gotowy do druku (fonty i logo w środku pliku),
+- `cennik-a4.html` — samodzielny podgląd i wydruk przez przeglądarkę.
+
+```bash
+cd 1-printables
+npm install
+npm run check   # tsc --noEmit
+npm run build   # HTML + PDF; PDF wymaga Chrome (albo CHROME_PATH)
+```
+
+Szczegóły i podział warstw opisuje [`1-printables/README.md`](1-printables/README.md).
 
 ## Komendy
 

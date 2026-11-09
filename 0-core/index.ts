@@ -54,7 +54,7 @@ import { membership_agreement } from "./2-membership-agreement";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "23.0.0",
+  model_version: "23.1.0",
   meta,
   identity: company,
   brand,

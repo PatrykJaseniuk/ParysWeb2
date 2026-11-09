@@ -13,7 +13,8 @@
     "model:check": "astro check",
     "model:export": "node 6-tools/export-model.mjs",
     "assets": "python3 6-tools/prepare_assets.py",
-    "brand:md": "node 6-tools/export-brand.mjs"
+    "brand:md": "node 6-tools/export-brand.mjs",
+    "lighthouse": "node 6-tools/lighthouse.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "lighthouse": "^12.8.2",
     "typescript": "^5.8.3"
   }
 }

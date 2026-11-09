@@ -18,6 +18,9 @@
   --color-bone: #f2f1ed;
   --color-bone-2: #e6e4de;
   --color-mist: #9d9da5;
+  /* Warianty czytelne dla małego tekstu (≥4,5:1) — zamiast przezroczystości */
+  --color-mist-dim: #8b8b93;
+  --color-ink-dim: #5f5f5b;
   --color-brand: #e31e24;
   --color-brand-deep: #b01218;
   /* Warianty czytelne dla małego tekstu (≥4,5:1) */

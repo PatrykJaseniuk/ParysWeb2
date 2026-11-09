@@ -4,6 +4,7 @@ node_modules/
 # Artefakty (build, eksport, cache)
 1-web/8-output/
 1-web/.astro/
+1-printables/8-output/
 
 # System / środowisko
 .DS_Store

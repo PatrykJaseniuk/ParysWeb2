@@ -56,7 +56,7 @@ function priceLabel(service: (typeof services)[number]) {
                   {service.name}
                 </h3>
                 <p class="shrink-0 text-right">
-                  <span class="num block font-display text-lg font-bold text-brand sm:text-xl">
+                  <span class="num block font-display text-lg font-bold text-brand-text-dark sm:text-xl">
                     {priceLabel(service)}
                   </span>
                 </p>
@@ -72,7 +72,7 @@ function priceLabel(service: (typeof services)[number]) {
               )}
 
               <div class="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
-                <span class="font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-mist/80">
+                <span class="font-mono text-[10px] uppercase leading-relaxed tracking-[0.12em] text-mist-dim">
                   {service.booking ? "Rezerwacja" : "Kontakt"}
                 </span>
                 <div class="flex items-center gap-4">
@@ -94,7 +94,7 @@ function priceLabel(service: (typeof services)[number]) {
       }
     </div>
 
-    <p class="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-mist/75">
+    <p class="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-mist-dim">
       Rezerwacje sauny i badmintona prowadzimy telefonicznie: {contact.phone}
     </p>
   </div>
