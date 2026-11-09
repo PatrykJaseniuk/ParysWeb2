@@ -167,7 +167,7 @@ export const brand = {
       { label: "godziny", example: "08:00–22:00" },
       { label: "data", example: "1 października 2024" },
     ],
-    example_good: "Karnet miesięczny 149 zł. Bez umowy, z możliwością zablokowania.",
+    example_good: "Karnet miesięczny 149 zł. Bez umowy lojalnościowej.",
     example_bad: "Zapraszamy do skorzystania z naszej bogatej oferty w konkurencyjnych cenach!",
   },
 

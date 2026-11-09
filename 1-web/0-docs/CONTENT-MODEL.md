@@ -140,11 +140,11 @@ business/
 
 ```ts
 {
-  code: "monthly",                        // klucz macierzy cennika
-  label: "Miesięczny",
-  price: { amount: 149, unit: "term" },    // waluta z meta, VAT z pricing_policy
-  term: { value: 1, unit: "month" },
-  perks: ["freeze"],                       // etykieta w catalog.perks
+  code: "yearly",                            // klucz macierzy cennika
+  label: "Roczny",
+  price: { amount: 1490, unit: "term" },     // waluta z meta, VAT z pricing_policy
+  term: { value: 12, unit: "month" },
+  perks: ["two-months-free"],                // etykieta w catalog.perks
 }
 ```
 
@@ -173,7 +173,7 @@ listy, które mogą się rozjechać.
 
 ### Reguły wspólne (`pricing_policy`)
 
-Opłata wpisowa, brak umowy, możliwość blokowania i **status VAT** są zapisane
+Opłata wpisowa, brak umowy, zasada braku blokowania i **status VAT** są zapisane
 **raz** — nie w 26 obiektach ceny.
 
 ### Marka (`brand.ts`)

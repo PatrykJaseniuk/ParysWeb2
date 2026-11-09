@@ -25,11 +25,12 @@ export const meta: Meta = {
 export const pricing_policy: PricingPolicy = {
   enrollment_fee: { amount: 15, applies_to: "all_except_single_entry" },
   contract: "none",
-  freeze_allowed: true,
+  freeze_allowed: false,
   includes_vat: null,
   prices_confirmed_by_owner: true,
   notes: [
     "Cennik obowiązuje od 1 czerwca 2026 r.",
     "Ceny pochodzą z cennika przekazanego przez właściciela; nie potwierdzono, czy są brutto.",
+    "Karnety nie podlegają blokowaniu ani zawieszaniu.",
   ],
 };
