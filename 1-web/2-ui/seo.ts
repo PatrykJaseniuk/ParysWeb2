@@ -1,4 +1,4 @@
-import { BASE_PATH, contact, business, seo, memberships } from "../1-data/business";
+import { BASE_PATH, contact, business, seo, accesses } from "../1-data/business";
 
 /** Origin wdrożenia (GitHub Pages). Domena parys.nysa.pl obsługuje starą stronę. */
 export const SITE_ORIGIN = "https://patrykjaseniuk.github.io";
@@ -12,8 +12,8 @@ export function absoluteUrl(path: string): string {
 
 /** Główny schemat organizacji — zastępuje zakomentowany JSON-LD ze starej strony. */
 export function gymSchema() {
-  const monthly = memberships
-    .flatMap((m) => m.options.map((o) => o.price_pln))
+  const monthly = accesses
+    .flatMap((m) => m.variants.map((o) => o.price_pln))
     .sort((a, b) => a - b);
 
   return {
@@ -105,17 +105,17 @@ export function breadcrumbSchema(items: { name: string; href: string }[]) {
   };
 }
 
-export function offerSchema(membership: {
+export function offerSchema(access: {
   name: string;
   fromPrice: number;
   id: string;
 }) {
   return {
     "@type": "Offer",
-    name: membership.name,
-    price: membership.fromPrice,
+    name: access.name,
+    price: access.fromPrice,
     priceCurrency: "PLN",
-    url: absoluteUrl(`/karnety#${membership.id}`),
+    url: absoluteUrl(`/karnety#${access.id}`),
     availability: "https://schema.org/InStock",
   };
 }

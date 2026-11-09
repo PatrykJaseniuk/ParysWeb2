@@ -25,7 +25,7 @@ export const company: Identity = {
   address: { street: "Poniatowskiego 3", city: "Nysa", postal_code: "48-300", country_code: "PL" },
   contact: { phone_e164: "+48774336301", phone_display: "77 433 63 01", email: "sportstudioparys@gmail.com" },
   hours: {
-    facility: { mode: "24_7", requires: "membership", note: "Dostęp na kartę o każdej porze, także w niedziele i święta." },
+    facility: { mode: "24_7", requires: "access", note: "Dostęp na kartę o każdej porze, także w niedziele i święta." },
     reception: [
       { days: ["mon", "tue", "wed", "thu", "fri"], open: "08:00", close: "22:00" },
       { days: ["sat"], open: "09:00", close: "14:00" },

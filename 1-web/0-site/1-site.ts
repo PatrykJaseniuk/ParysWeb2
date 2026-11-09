@@ -906,7 +906,7 @@ export const site = {
             type: "pricing_matrix",
             required: true,
             content_refs: [
-              "catalog.memberships",
+              "catalog.accesses",
               "pricing_policy"
             ],
             note: null
@@ -984,7 +984,7 @@ export const site = {
             type: "pricing_matrix",
             required: true,
             content_refs: [
-              "catalog.memberships",
+              "catalog.accesses",
               "pricing_policy"
             ],
             note: null
@@ -994,7 +994,7 @@ export const site = {
             type: "scope_table",
             required: true,
             content_refs: [
-              "catalog.memberships",
+              "catalog.accesses",
               "catalog.areas",
               "catalog.classes"
             ],

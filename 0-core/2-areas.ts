@@ -5,7 +5,7 @@ import type { CalendarKey } from "./1-integrations";
  * Strefy treningowe — rekord klucz → strefa.
  *
  * Klucz jest tożsamością strefy: nie ma pola `id`, a inne obiekty odnoszą się
- * do strefy właśnie tym kluczem (`membership.areas`, typowane przez `AreaKey`).
+ * do strefy właśnie tym kluczem (`access.areas`, typowane przez `AreaKey`).
  * Kolejność kluczy = kolejność w UI (nie ma pola `order`).
  */
 

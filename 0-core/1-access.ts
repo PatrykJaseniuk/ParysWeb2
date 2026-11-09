@@ -11,8 +11,8 @@ import type { EntryPolicy } from "./0-types";
 export const entry_policy: EntryPolicy = {
   single_entry_requires_registration: false,
   single_entry_access: "reception_hours",
-  membership_requires_registration: true,
-  membership_access: "24_7",
+  access_requires_registration: true,
+  access_window: "24_7",
   partner_single_entry_scope: "all_areas_and_cross",
   registered_partner_access: "24_7",
   partner_cards_read_by_gate: false,

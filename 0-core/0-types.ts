@@ -87,7 +87,7 @@ export interface Identity {
   };
   contact: { phone_e164: string; phone_display: string; email: string };
   hours: {
-    facility: { mode: "24_7" | "limited"; requires: "membership" | "none"; note: string };
+    facility: { mode: "24_7" | "limited"; requires: "access" | "none"; note: string };
     reception: HoursRule[];
   };
   location: {
@@ -120,8 +120,8 @@ export interface PricingPolicy {
 export interface EntryPolicy {
   single_entry_requires_registration: boolean;
   single_entry_access: EntryWindow;
-  membership_requires_registration: boolean;
-  membership_access: EntryWindow;
+  access_requires_registration: boolean;
+  access_window: EntryWindow;
   partner_single_entry_scope: "all_areas_and_cross";
   registered_partner_access: EntryWindow;
   partner_cards_read_by_gate: boolean;
@@ -137,7 +137,7 @@ export interface Area<CalendarKey extends string = string> {
   calendar?: CalendarKey;
 }
 
-export interface MembershipOption<PerkCode extends string = string> {
+export interface Variant<PerkCode extends string = string> {
   code: string;
   label: string;
   price: Money;
@@ -148,7 +148,7 @@ export interface MembershipOption<PerkCode extends string = string> {
   perks?: PerkCode[];
 }
 
-export interface Membership<
+export interface Access<
   AreaKey extends string = string,
   ClassKey extends string = string,
   PerkCode extends string = string,
@@ -161,7 +161,7 @@ export interface Membership<
   /** Klucze zajęć z `catalog.classes`. */
   classes?: ClassKey[];
   featured?: boolean;
-  options: MembershipOption<PerkCode>[];
+  variants: Variant<PerkCode>[];
 }
 
 /**
@@ -238,7 +238,7 @@ export interface Promotion {
 export interface Catalog {
   single_entry: SingleEntry;
   areas: Record<string, Area>;
-  memberships: Record<string, Membership>;
+  accesses: Record<string, Access>;
   classes: Record<string, GroupClass>;
   trainers: Record<string, Trainer>;
   personal_training: PersonalTraining;
@@ -313,7 +313,8 @@ export interface AgreementField {
   /** Token wartości drukowanej z modelu; puste pole go nie ma. */
   value_token?: string;
   /** Lista albo wartości wyliczane przez konsumenta z wskazanego katalogu. */
-  source?: "catalog.memberships" | "catalog.membership_options";
+  source?: "catalog.accesses" | "catalog.access_variants";
+  /** Lista wartości dla pola typu `choice` (np. forma płatności). */
   options?: string[];
   note?: string;
 }

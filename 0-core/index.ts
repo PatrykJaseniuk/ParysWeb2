@@ -4,7 +4,7 @@ import { entry_policy } from "./1-access";
 import { company } from "./1-company";
 import { brand } from "./2-brand";
 import { areas } from "./2-areas";
-import { memberships } from "./3-memberships";
+import { accesses } from "./3-accesses";
 import { classes, trainers, personal_training } from "./2-classes";
 import { single_entry } from "./3-single-entry";
 import { services } from "./2-services";
@@ -37,7 +37,7 @@ import { membership_agreement } from "./2-membership-agreement";
  *   2-classes.ts        Cross, trenerzy, trening personalny
  *   3-single-entry.ts   samodzielne wejście jednorazowe
  *   2-services.ts       usługi dodatkowe
- *   3-memberships.ts    5 karnetów i 15 wariantów cenowych
+ *   3-accesses.ts    5 karnetów i 15 wariantów cenowych
  *   3-single-entry.ts   wejście jednorazowe poza karnetami
  *   index.ts            kompozycja — najwyższa warstwa, importuje wszystko
  *
@@ -46,7 +46,7 @@ import { membership_agreement } from "./2-membership-agreement";
  * błąd kompilacji, a nie błąd runtime.
  *
  * Relacje są zapisane dokładnie raz. Przynależność zajęć do karnetu siedzi
- * w `membership.classes`, a jej stronę odwrotną (`class.included_in`)
+ * w `access.classes`, a jej stronę odwrotną (`class.included_in`)
  * wyprowadza adapter. Programy partnerskie opłacają wejścia jednorazowe,
  * więc nie mają relacji z karnetem.
  *
@@ -54,7 +54,7 @@ import { membership_agreement } from "./2-membership-agreement";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "21.0.0",
+  model_version: "22.0.0",
   meta,
   identity: company,
   brand,
@@ -64,7 +64,7 @@ export const business = {
   catalog: {
     single_entry,
     areas,
-    memberships,
+    accesses,
     classes,
     trainers,
     personal_training,
@@ -77,7 +77,7 @@ export const business = {
 } satisfies BusinessModel;
 
 export type { AreaKey } from "./2-areas";
-export type { MembershipKey } from "./3-memberships";
+export type { AccessKey } from "./3-accesses";
 export type { ClassKey, TrainerKey } from "./2-classes";
 export type { ServiceKey } from "./2-services";
 export type { PartnerKey, PromotionKey } from "./1-partners";

@@ -207,7 +207,7 @@ export function areaById(id: string) {
  * ------------------------------------------------------------------ */
 
 /** Kolejność wariantów w cenniku — rosnąco po czasie trwania. */
-export const OPTION_ORDER = [
+export const VARIANT_ORDER = [
   "two_weeks",
   "eight_entries",
   "monthly",
@@ -215,7 +215,7 @@ export const OPTION_ORDER = [
   "yearly",
 ] as const;
 
-export const OPTION_META: Record<string, { label: string; short: string; description: string }> = {
+export const VARIANT_META: Record<string, { label: string; short: string; description: string }> = {
   two_weeks: {
     label: "2 tygodnie",
     short: "2 tyg.",
@@ -255,7 +255,7 @@ export const singleEntry = {
   validity: termLabel(businessModel.catalog.single_entry.term),
 };
 
-export type MembershipOptionView = {
+export type VariantView = {
   id: string;
   label: string;
   price_pln: number;
@@ -267,27 +267,27 @@ export type MembershipOptionView = {
   access: string;
 };
 
-export type MembershipView = {
+export type AccessView = {
   id: string;
   slug: string;
   name: string;
   subtitle: string | null;
   areas_included: string[];
   classes_included: string[];
-  options: MembershipOptionView[];
+  variants: VariantView[];
   no_contract: boolean;
   fromPrice: number;
   monthlyFrom: number | null;
-  optionIds: string[];
+  variantIds: string[];
   notes: string[];
   order: number;
   featured: boolean;
 };
 
-export const memberships: MembershipView[] = Object.entries(
-  businessModel.catalog.memberships,
+export const accesses: AccessView[] = Object.entries(
+  businessModel.catalog.accesses,
 ).map(([id, m], index) => {
-  const options: MembershipOptionView[] = m.options.map((o) => ({
+  const variants: VariantView[] = m.variants.map((o) => ({
     id: o.code,
     label: o.label,
     price_pln: o.price.amount,
@@ -299,7 +299,7 @@ export const memberships: MembershipView[] = Object.entries(
     access: businessModel.identity.hours.facility.mode,
   }));
 
-  const monthly = options.filter((o) => o.id === "monthly");
+  const monthly = variants.filter((o) => o.id === "monthly");
 
   return {
     id,
@@ -308,50 +308,50 @@ export const memberships: MembershipView[] = Object.entries(
     subtitle: m.subtitle ?? null,
     areas_included: m.areas,
     classes_included: m.classes ?? [],
-    options,
+    variants,
     no_contract: businessModel.pricing_policy.contract === "none",
-    fromPrice: Math.min(...options.map((o) => o.price_pln)),
+    fromPrice: Math.min(...variants.map((o) => o.price_pln)),
     monthlyFrom: monthly.length ? Math.min(...monthly.map((o) => o.price_pln)) : null,
-    optionIds: options.map((o) => o.id),
+    variantIds: variants.map((o) => o.id),
     notes: [] as string[],
     order: index,
     featured: m.featured === true,
   };
 });
 
-export const optionCount = memberships.reduce((count, membership) => count + membership.options.length, 0);
-export const membershipCount = memberships.length;
+export const variantCount = accesses.reduce((count, access) => count + access.variants.length, 0);
+export const accessCount = accesses.length;
 
 export interface MatrixCell {
   price: number;
-  option: MembershipOptionView;
+  variant: VariantView;
 }
 
 export interface MatrixRow {
-  optionId: string;
+  variantId: string;
   meta: { label: string; short: string; description: string };
   cells: (MatrixCell | null)[];
 }
 
 /** Macierz warianty × karnety — używana w cenniku i na stronie /karnety. */
-export function buildMatrix(): { columns: MembershipView[]; rows: MatrixRow[] } {
-  const rows = OPTION_ORDER.map((optionId) => ({
-    optionId,
-    meta: OPTION_META[optionId]!,
-    cells: memberships.map((m) => {
-      const option = m.options.find((o) => o.id === optionId);
-      return option ? { price: option.price_pln, option } : null;
+export function buildMatrix(): { columns: AccessView[]; rows: MatrixRow[] } {
+  const rows = VARIANT_ORDER.map((variantId) => ({
+    variantId,
+    meta: VARIANT_META[variantId]!,
+    cells: accesses.map((m) => {
+      const variant = m.variants.find((o) => o.id === variantId);
+      return variant ? { price: variant.price_pln, variant } : null;
     }),
   }));
 
-  return { columns: memberships, rows: rows.filter((row) => row.cells.some(Boolean)) };
+  return { columns: accesses, rows: rows.filter((row) => row.cells.some(Boolean)) };
 }
 
 export const entryPrice = singleEntry.price_pln;
 
 export const monthlyFrom = Math.min(
-  ...Object.values(businessModel.catalog.memberships).flatMap((m) =>
-    m.options.filter((o) => o.code === "monthly").map((o) => o.price.amount),
+  ...Object.values(businessModel.catalog.accesses).flatMap((m) =>
+    m.variants.filter((o) => o.code === "monthly").map((o) => o.price.amount),
   ),
 );
 
@@ -368,9 +368,9 @@ export const groupClasses = Object.entries(businessModel.catalog.classes).map(([
   photo: asset(mediaOf(id).photo),
   video: mediaOf(id).video ?? null,
   calendar: c.calendar ?? null,
-  included_in: Object.entries(businessModel.catalog.memberships)
+  included_in: Object.entries(businessModel.catalog.accesses)
     .filter(([, m]) => (m.classes ?? []).some((classKey) => classKey === id))
-    .map(([membershipKey]) => membershipKey),
+    .map(([accessKey]) => accessKey),
 }));
 
 export const trainers = Object.entries(businessModel.catalog.trainers).map(([id, t]) => ({

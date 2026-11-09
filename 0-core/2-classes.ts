@@ -9,7 +9,7 @@ import type { CalendarKey } from "./1-integrations";
  * (`personal_training.trainers`) — oba przez `TrainerKey`.
  *
  * Przynależność Cross do karnetu jest zapisana po stronie karnetu
- * (`membership.classes`), typowanej przez `ClassKey` — tu jej nie duplikujemy.
+ * (`access.classes`), typowanej przez `ClassKey` — tu jej nie duplikujemy.
  */
 
 /**

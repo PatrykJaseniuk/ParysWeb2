@@ -1,4 +1,4 @@
-import type { Membership } from "./0-types";
+import type { Access } from "./0-types";
 import type { PerkKey } from "./1-perks";
 import type { AreaKey } from "./2-areas";
 import type { ClassKey } from "./2-classes";
@@ -17,12 +17,12 @@ import type { ClassKey } from "./2-classes";
  * a nie karnetów.
  */
 
-export const memberships = {
-  "mem-4-areas": {
+export const accesses = {
+  "acc-4-areas": {
     slug: "4-strefy",
     name: "4 strefy",
     areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional"],
-    options: [
+    variants: [
       {
         code: "two_weeks",
         label: "2 tygodnie",
@@ -58,12 +58,12 @@ export const memberships = {
       },
     ],
   },
-  "mem-4-areas-cross": {
+  "acc-4-areas-cross": {
     slug: "4-strefy-plus-cross",
     name: "4 strefy + zajęcia grupowe",
     areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional"],
     classes: ["class-cross-training"],
-    options: [
+    variants: [
       {
         code: "eight_entries",
         label: "8 wejść",
@@ -86,11 +86,11 @@ export const memberships = {
       },
     ],
   },
-  "mem-5-areas": {
+  "acc-5-areas": {
     slug: "5-stref",
     name: "5 stref",
     areas: ["area-free-weights", "area-machines", "area-cardio", "area-functional", "area-cross"],
-    options: [
+    variants: [
       {
         code: "two_weeks",
         label: "2 tygodnie",
@@ -119,7 +119,7 @@ export const memberships = {
       },
     ],
   },
-  "mem-6-areas": {
+  "acc-6-areas": {
     slug: "6-stref-plus-zajecia",
     name: "6 stref + zajęcia grupowe",
     areas: [
@@ -132,7 +132,7 @@ export const memberships = {
     ],
     classes: ["class-cross-training"],
     featured: true,
-    options: [
+    variants: [
       {
         code: "monthly",
         label: "Miesięczny",
@@ -148,12 +148,12 @@ export const memberships = {
       },
     ],
   },
-  "mem-roll-massage": {
+  "acc-roll-massage": {
     slug: "rollmasaz",
     name: "Rollmasaż",
     subtitle: "Tylko rollmasaż",
     areas: ["area-roll-massage"],
-    options: [
+    variants: [
       {
         code: "eight_entries",
         label: "8 wejść",
@@ -162,7 +162,7 @@ export const memberships = {
       },
     ],
   },
-} satisfies Record<string, Membership<AreaKey, ClassKey, PerkKey>>;
+} satisfies Record<string, Access<AreaKey, ClassKey, PerkKey>>;
 
 /** Klucze karnetów — jedyny dozwolony sposób odwołania się do karnetu. */
-export type MembershipKey = keyof typeof memberships;
+export type AccessKey = keyof typeof accesses;

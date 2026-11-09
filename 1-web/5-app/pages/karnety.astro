@@ -8,17 +8,17 @@ import {
   clubCardFee,
   contact,
   entryPrice,
-  membershipCount,
-  memberships,
+  accessCount,
+  accesses,
   monthlyFrom,
-  optionCount,
+  variantCount,
   pln,
 } from "../../1-data/business";
 import { breadcrumbSchema, faqSchema } from "../../2-ui/seo";
 
-const studentMonthly = memberships
-  .find((membership) => membership.id === "mem-4-areas")
-  ?.options.find((option) => option.id === "monthly_student_senior");
+const studentMonthly = accesses
+  .find((access) => access.id === "acc-4-areas")
+  ?.variants.find((variant) => variant.id === "monthly_student_senior");
 
 const faq = [
   {
@@ -96,7 +96,7 @@ const steps = [
     index="02"
     label="Karnety"
     title="Cennik karnetów"
-    description={`Karnety w ${membershipCount} zakresach — ${optionCount} wariantów. Wejście jednorazowe do wszystkich stref i zajęć grupowych kosztuje ${pln(entryPrice)}. Karnety wymagają rejestracji i dają dostęp 24/7, a wejścia jednorazowe nie wymagają rejestracji.`}
+    description={`Karnety w ${accessCount} zakresach — ${variantCount} wariantów. Wejście jednorazowe do wszystkich stref i zajęć grupowych kosztuje ${pln(entryPrice)}. Karnety wymagają rejestracji i dają dostęp 24/7, a wejścia jednorazowe nie wymagają rejestracji.`}
     breadcrumbs={[{ name: "Karnety", href: "/karnety" }]}
   >
     <div class="mt-8 flex flex-wrap gap-3">

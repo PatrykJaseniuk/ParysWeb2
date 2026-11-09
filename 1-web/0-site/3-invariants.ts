@@ -39,7 +39,7 @@ export function assertModelIntegrity(): void {
   const entityIds = new Set<string>();
   for (const collection of [
     b.catalog.areas,
-    b.catalog.memberships,
+    b.catalog.accesses,
     b.catalog.classes,
     b.catalog.trainers,
     b.catalog.services,
@@ -168,11 +168,11 @@ export function assertModelIntegrity(): void {
     );
   }
 
-  const options = Object.values(b.catalog.memberships).reduce((n, m) => n + m.options.length, 0);
+  const variants = Object.values(b.catalog.accesses).reduce((n, m) => n + m.variants.length, 0);
   console.log(
     `[model] ${Object.keys(b.catalog.areas).length} stref · ` +
-    `${Object.keys(b.catalog.memberships).length} karnetów · ` +
-    `${options} wariantów · ${Object.keys(b.catalog.classes).length} zajęć · ` +
+    `${Object.keys(b.catalog.accesses).length} karnetów · ` +
+    `${variants} wariantów · ${Object.keys(b.catalog.classes).length} zajęć · ` +
     `${Object.keys(b.catalog.trainers).length} trenerów · ` +
     `${Object.keys(b.catalog.services).length} usług · ` +
     `${s.site.pages.length} stron · ${Object.keys(s.media.assets).length} assetów · ` +

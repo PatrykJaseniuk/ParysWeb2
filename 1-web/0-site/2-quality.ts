@@ -65,7 +65,7 @@ export const quality = {
       owner: "owner",
       blocks_publish: false,
       affects: [
-        "catalog.memberships.mem-4-areas-cross"
+        "catalog.accesses.acc-4-areas-cross"
       ]
     },
     {

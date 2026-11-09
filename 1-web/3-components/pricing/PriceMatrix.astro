@@ -1,11 +1,11 @@
 ---
 import Icon from "../../2-ui/ui/Icon.astro";
 import {
-  OPTION_ORDER,
+  VARIANT_ORDER,
   areas,
   buildMatrix,
   clubCardFee,
-  memberships,
+  accesses,
   pln,
   singleEntry,
   withBase,
@@ -22,7 +22,7 @@ const { tone = "dark", scope = false } = Astro.props;
 const { rows } = buildMatrix();
 
 /** Karnet wyróżniony pochodzi z modelu (`featured`), nie z nazwy id. */
-const isFeatured = (membership: (typeof memberships)[number]) => membership.featured;
+const isFeatured = (access: (typeof accesses)[number]) => access.featured;
 
 const themeVars =
   tone === "light"
@@ -49,13 +49,13 @@ const themeVars =
         "--pm-featured-hover:rgba(227,30,36,0.1)",
       ].join(";");
 
-const optionLabel = (id: string, label: string) =>
+const variantLabel = (id: string, label: string) =>
   id === "monthly_student_senior" ? "Miesiąc (uczeń/senior)" : label.charAt(0) + label.slice(1).toLowerCase();
 
-const cellClass = (membership: (typeof memberships)[number]) =>
+const cellClass = (access: (typeof accesses)[number]) =>
   [
     "border-b border-[color:var(--pm-line-soft)] px-5 py-4 align-middle transition-colors group-hover:bg-[color:var(--pm-hover)]",
-    isFeatured(membership) && "bg-[color:var(--pm-featured)] group-hover:bg-[color:var(--pm-featured-hover)]",
+    isFeatured(access) && "bg-[color:var(--pm-featured)] group-hover:bg-[color:var(--pm-featured-hover)]",
   ];
 ---
 
@@ -97,29 +97,29 @@ const cellClass = (membership: (typeof memberships)[number]) =>
               <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--pm-muted)]">Wariant</span>
             </th>
             {
-              memberships.map((membership, i) => (
+              accesses.map((access, i) => (
                 <th
                   scope="col"
                   class:list={[
                     "border-b border-[color:var(--pm-line)] px-5 pb-6 pt-2 align-top text-left",
-                    isFeatured(membership) && "border-t-2 border-t-brand bg-[color:var(--pm-featured)]",
+                    isFeatured(access) && "border-t-2 border-t-brand bg-[color:var(--pm-featured)]",
                   ]}
                 >
                   <div class="flex h-[18px] items-center justify-between gap-2">
                     <span class="font-mono text-[10px] tracking-[0.2em] text-[color:var(--pm-faint)]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    {isFeatured(membership) && (
+                    {isFeatured(access) && (
                       <span class="bg-brand px-2 py-0.5 font-mono text-[8px] font-semibold uppercase tracking-[0.16em] text-white">
                         Pełny zakres
                       </span>
                     )}
                   </div>
                   <span class="mt-3 block min-h-[2.625rem] font-display text-xl font-bold uppercase leading-[1.05] tracking-tight">
-                    {membership.name}
+                    {access.name}
                   </span>
                   <span class="mt-1.5 block min-h-[2rem] text-[11px] leading-snug text-[color:var(--pm-muted)]">
-                    {membership.subtitle ?? `${membership.areas_included.length} strefy treningowe`}
+                    {access.subtitle ?? `${access.areas_included.length} strefy treningowe`}
                   </span>
                 </th>
               ))
@@ -147,7 +147,7 @@ const cellClass = (membership: (typeof memberships)[number]) =>
                 </th>
 
                 {row.cells.map((cell, cellIndex) => (
-                  <td class:list={cellClass(memberships[cellIndex])}>
+                  <td class:list={cellClass(accesses[cellIndex])}>
                     {cell ? (
                       <span class="num font-display text-xl font-bold tracking-tight">
                         {pln(cell.price)}
@@ -169,7 +169,7 @@ const cellClass = (membership: (typeof memberships)[number]) =>
                 <tr>
                   <th
                     scope="colgroup"
-                    colspan={memberships.length + 1}
+                    colspan={accesses.length + 1}
                     class="border-b border-[color:var(--pm-line)] px-5 pb-2 pt-8 text-left font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--pm-muted)]"
                   >
                     Zakres
@@ -186,10 +186,10 @@ const cellClass = (membership: (typeof memberships)[number]) =>
                         {area.name}
                       </a>
                     </th>
-                    {memberships.map((membership, cellIndex) => {
-                      const included = membership.areas_included.includes(area.id);
+                    {accesses.map((access, cellIndex) => {
+                      const included = access.areas_included.includes(area.id);
                       return (
-                        <td class:list={cellClass(memberships[cellIndex])}>
+                        <td class:list={cellClass(accesses[cellIndex])}>
                           {included ? (
                             <Icon name="check" size={15} class="text-brand" />
                           ) : (
@@ -212,10 +212,10 @@ const cellClass = (membership: (typeof memberships)[number]) =>
                       Zajęcia grupowe
                     </a>
                   </th>
-                  {memberships.map((membership, cellIndex) => {
-                    const included = membership.classes_included.length > 0;
+                  {accesses.map((access, cellIndex) => {
+                    const included = access.classes_included.length > 0;
                     return (
-                      <td class:list={cellClass(memberships[cellIndex])}>
+                      <td class:list={cellClass(accesses[cellIndex])}>
                         {included ? (
                           <Icon name="check" size={15} class="text-brand" />
                         ) : (
@@ -243,44 +243,44 @@ const cellClass = (membership: (typeof memberships)[number]) =>
   <!-- ============ MOBILE: karty ============ -->
   <div class="space-y-4 lg:hidden">
     {
-      memberships.map((membership, i) => (
+      accesses.map((access, i) => (
         <article
           class:list={[
             "border bg-[color:var(--pm-surface)]",
-            isFeatured(membership) ? "border-brand/60" : "border-[color:var(--pm-line)]",
+            isFeatured(access) ? "border-brand/60" : "border-[color:var(--pm-line)]",
           ]}
         >
           <header class="flex items-start justify-between gap-3 p-5 pb-4">
             <div>
               <p class="font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--pm-faint)]">
                 {String(i + 1).padStart(2, "0")}
-                {isFeatured(membership) && <span class="ml-2 text-brand">· pełny zakres</span>}
+                {isFeatured(access) && <span class="ml-2 text-brand">· pełny zakres</span>}
               </p>
               <h3 class="mt-1.5 font-display text-xl font-bold uppercase leading-tight tracking-tight">
-                {membership.name}
+                {access.name}
               </h3>
               <p class="mt-1 text-[11px] leading-snug text-[color:var(--pm-muted)]">
-                {membership.subtitle ?? `${membership.areas_included.length} strefy treningowe`}
+                {access.subtitle ?? `${access.areas_included.length} strefy treningowe`}
               </p>
             </div>
             <p class="shrink-0 text-right">
               <span class="block font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--pm-muted)]">od</span>
               <span class="num block font-display text-2xl font-extrabold tracking-tight text-brand">
-                {pln(membership.fromPrice)}
+                {pln(access.fromPrice)}
               </span>
             </p>
           </header>
 
           <dl class="divide-y divide-[color:var(--pm-line-soft)] border-t border-[color:var(--pm-line-soft)]">
-            {[...membership.options]
+            {[...access.variants]
               .sort(
-                (a, b) => OPTION_ORDER.indexOf(a.id as never) - OPTION_ORDER.indexOf(b.id as never),
+                (a, b) => VARIANT_ORDER.indexOf(a.id as never) - VARIANT_ORDER.indexOf(b.id as never),
               )
-              .map((option) => (
+              .map((variant) => (
               <div class="flex items-baseline justify-between gap-4 px-5 py-2.5">
-                <dt class="text-[13px] opacity-80">{optionLabel(option.id, option.label)}</dt>
+                <dt class="text-[13px] opacity-80">{variantLabel(variant.id, variant.label)}</dt>
                 <dd class="num shrink-0 font-display text-base font-semibold">
-                  {pln(option.price_pln)}
+                  {pln(variant.price_pln)}
                 </dd>
               </div>
             ))}
@@ -293,7 +293,7 @@ const cellClass = (membership: (typeof memberships)[number]) =>
               </p>
               <ul class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] leading-snug text-[color:var(--pm-muted)]">
                 {areas
-                  .filter((area) => membership.areas_included.includes(area.id))
+                  .filter((area) => access.areas_included.includes(area.id))
                   .map((area) => (
                     <li class="flex items-center gap-1">
                       <Icon name="check" size={11} class="shrink-0 text-brand" />
@@ -302,7 +302,7 @@ const cellClass = (membership: (typeof memberships)[number]) =>
                       </a>
                     </li>
                   ))}
-                {membership.classes_included.length > 0 && (
+                {access.classes_included.length > 0 && (
                   <li class="flex items-center gap-1">
                     <Icon name="check" size={11} class="shrink-0 text-brand" />
                     <a href={withBase("/zajecia")} class="underline decoration-[color:var(--pm-muted)] underline-offset-2 transition-colors hover:text-brand">
