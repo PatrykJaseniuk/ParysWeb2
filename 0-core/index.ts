@@ -11,6 +11,9 @@ import { services } from "./2-services";
 import { partners, promotions } from "./1-partners";
 import { integrations } from "./1-integrations";
 import { perks } from "./1-perks";
+import { terms } from "./1-legal";
+import { regulamin } from "./1-regulamin";
+import { membership_agreement } from "./2-membership-agreement";
 
 /**
  * Rdzeń biznesu — fakty o firmie, bez ani jednej referencji do pliku graficznego.
@@ -25,7 +28,10 @@ import { perks } from "./1-perks";
  *   1-access.ts         karta klubowa i zasady wejścia
  *   1-company.ts        tożsamość, kontakt, godziny, lokalizacja
  *   1-partners.ts       partnerzy i promocje
+ *   1-legal.ts          regulamin klubu (wzorzec zasad korzystania)
+ *   1-regulamin.ts      przeprojektowany regulamin — wersja następcza 1-legal.ts
  *   1-integrations.ts   kalendarze i analityka
+ *   2-membership-agreement.ts  wzór umowy karnetu i klauzula RODO klubowicza
  *   2-brand.ts          marka: nazwa, logo, paleta, typografia, głos, obraz
  *   2-areas.ts          6 stref treningowych
  *   2-classes.ts        Cross, trenerzy, trening personalny
@@ -48,12 +54,13 @@ import { perks } from "./1-perks";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "16.0.0",
+  model_version: "21.0.0",
   meta,
   identity: company,
   brand,
   pricing_policy,
   entry_policy,
+  legal: { terms, regulamin, membership_agreement },
   catalog: {
     single_entry,
     areas,

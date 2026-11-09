@@ -11,7 +11,7 @@ import { site } from "./1-site";
  */
 export const quality = {
   requires: { business: business.model_version, site: site.site_version },
-  quality_version: "1.8.0",
+  quality_version: "1.12.0",
   publishable: false,
   questions: [
     {
@@ -25,12 +25,20 @@ export const quality = {
     },
     {
       id: "q-legal-docs",
-      question: "Czy istnieją regulamin i polityka prywatności? Kto je przygotuje?",
+      question: "Czy regulamin został przygotowany i zaakceptowany przez prawnika?",
       owner: "lawyer",
       blocks_publish: true,
       affects: [
-        "site.pages.privacy",
         "site.pages.terms"
+      ]
+    },
+    {
+      id: "q-privacy-clause",
+      question: "Czy polityka prywatności na /polityka-prywatnosci jest zaakceptowana przez prawnika?",
+      owner: "lawyer",
+      blocks_publish: true,
+      affects: [
+        "site.pages.privacy"
       ]
     },
     {
@@ -155,8 +163,8 @@ export const quality = {
     },
     {
       path: "pricing_policy",
-      assumption: "ceny z cennika od 1 czerwca 2026; VAT nieznany (includes_vat = null)",
-      risk: "medium"
+      assumption: "ceny z cennika od 1 czerwca 2026; potwierdzone jako brutto (includes_vat = true)",
+      risk: "low"
     },
     {
       path: "identity.legal_name",
@@ -167,6 +175,16 @@ export const quality = {
       path: "identity.hours.reception",
       assumption: "niedziela i święta: recepcja nieczynna, klub 24/7 na kartę",
       risk: "low"
+    },
+    {
+      path: "identity.monitoring",
+      assumption: "monitoring obiektu istnieje; retencja 30 dni przyjęta w regulaminie i polityce — do potwierdzenia",
+      risk: "medium"
+    },
+    {
+      path: "identity.minors",
+      assumption: "poniżej 13 lat tylko z opiekunem; 13–18 pisemna zgoda rodzica — przyjęte w regulaminie",
+      risk: "medium"
     }
   ],
   provenance: {

@@ -7,14 +7,15 @@ interface Props {
   title: string;
   description: string;
   canonical: string;
-  /** Lista sekcji, które musi uzupełnić właściciel przed publikacją. */
-  checklist: string[];
+  /** Sekcje do uzupełnienia przez właściciela. Gdy podane — dokument jest wersją roboczą. */
+  checklist?: string[];
 }
 
 const { title, description, canonical, checklist } = Astro.props;
+const isDraft = Boolean(checklist && checklist.length > 0);
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical} noindex>
+<BaseLayout title={title} description={description} canonical={canonical} noindex={isDraft}>
   <PageHero
     label="Dokument"
     title={title}
@@ -24,29 +25,35 @@ const { title, description, canonical, checklist } = Astro.props;
 
   <section class="container-x py-14 sm:py-16 lg:py-20">
     <div class="max-w-3xl">
-      <div class="border border-brand/40 bg-brand/[0.07] p-5">
-        <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-brand">
-          Wersja robocza — do uzupełnienia
-        </p>
-        <p class="mt-2 text-sm leading-relaxed text-bone/75">
-          Ten dokument wymaga danych prawnych, których nie ma w materiale źródłowym.
-          Strona startowa nie powinna być publikowana bez jego uzupełnienia.
-        </p>
-      </div>
+      {
+        isDraft && checklist ? (
+          <>
+            <div class="border border-brand/40 bg-brand/[0.07] p-5">
+              <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-brand">
+                Wersja robocza — do uzupełnienia
+              </p>
+              <p class="mt-2 text-sm leading-relaxed text-bone/75">
+                Ten dokument wymaga danych prawnych, których nie ma w materiale źródłowym.
+                Strona startowa nie powinna być publikowana bez jego uzupełnienia.
+              </p>
+            </div>
 
-      <h2 class="h3 mt-10">Co musi trafić do dokumentu</h2>
-      <ul class="mt-5 space-y-3">
-        {
-          checklist.map((item) => (
-            <li class="flex gap-3 border-b border-line pb-3 text-sm leading-relaxed text-bone/75">
-              <span class="mt-2 h-1 w-1 shrink-0 rotate-45 bg-brand" />
-              {item}
-            </li>
-          ))
-        }
-      </ul>
+            <h2 class="h3 mt-10">Co musi trafić do dokumentu</h2>
+            <ul class="mt-5 space-y-3">
+              {checklist.map((item) => (
+                <li class="flex gap-3 border-b border-line pb-3 text-sm leading-relaxed text-bone/75">
+                  <span class="mt-2 h-1 w-1 shrink-0 rotate-45 bg-brand" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <slot />
+        )
+      }
 
-      <p class="mt-10 text-sm leading-relaxed text-mist">
+      <p class="mt-10 border-t border-line pt-6 text-sm leading-relaxed text-mist">
         W razie pytań o przetwarzanie danych kontaktuj się pod adresem
         <a href="mailto:sportstudioparys@gmail.com" class="text-bone underline decoration-brand underline-offset-4">
           sportstudioparys@gmail.com</a>.

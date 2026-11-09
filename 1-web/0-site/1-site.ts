@@ -11,7 +11,7 @@ import { business } from "../../0-core";
  */
 export const site = {
   requires: { business: business.model_version },
-  site_version: "4.9.0",
+  site_version: "4.15.0",
   design: {
     direction: "Ciemny, techniczny interfejs w duchu karty sprzętowej: ostre krawędzie, włosowe linie 1 px, duża typografia wersalikowa i czerwień jako jedyny akcent. Cennik jest jedyną jasną sekcją — wygląda jak wydruk na ścianie recepcji.",
     scale: {
@@ -476,6 +476,117 @@ export const site = {
         variants: [],
         status: "draft"
       },
+      "asset-photo-service-badminton": {
+        kind: "image",
+        source: "photos/services/badminton.png",
+        served: "/img/uslugi/badminton-1152.webp",
+        mime: "image/webp",
+        width: 1152,
+        height: 720,
+        duration_s: null,
+        alt: "Kort do badmintona w Sport Studio Parys",
+        roles: [
+          "service-photo"
+        ],
+        credit: "Sport Studio Parys",
+        variants: [
+          {
+            width: 500,
+            path: "/img/uslugi/badminton-500.webp",
+            format: "webp"
+          },
+          {
+            width: 711,
+            path: "/img/uslugi/badminton-711.webp",
+            format: "webp"
+          },
+          {
+            width: 900,
+            path: "/img/uslugi/badminton-900.webp",
+            format: "webp"
+          },
+          {
+            width: 1152,
+            path: "/img/uslugi/badminton-1152.webp",
+            format: "webp"
+          }
+        ],
+        status: "complete"
+      },
+      "asset-photo-service-buffet": {
+        kind: "image",
+        source: "photos/services/bufet.png",
+        served: "/img/uslugi/bufet-sklep-1152.webp",
+        mime: "image/webp",
+        width: 1152,
+        height: 720,
+        duration_s: null,
+        alt: "Bufet i sklep z odżywkami w Sport Studio Parys",
+        roles: [
+          "service-photo"
+        ],
+        credit: "Sport Studio Parys",
+        variants: [
+          {
+            width: 500,
+            path: "/img/uslugi/bufet-sklep-500.webp",
+            format: "webp"
+          },
+          {
+            width: 711,
+            path: "/img/uslugi/bufet-sklep-711.webp",
+            format: "webp"
+          },
+          {
+            width: 900,
+            path: "/img/uslugi/bufet-sklep-900.webp",
+            format: "webp"
+          },
+          {
+            width: 1152,
+            path: "/img/uslugi/bufet-sklep-1152.webp",
+            format: "webp"
+          }
+        ],
+        status: "complete"
+      },
+      "asset-photo-service-sauna": {
+        kind: "image",
+        source: "photos/services/sauna.png",
+        served: "/img/uslugi/sauna-1152.webp",
+        mime: "image/webp",
+        width: 1152,
+        height: 720,
+        duration_s: null,
+        alt: "Wnętrze sauny w Sport Studio Parys",
+        roles: [
+          "service-photo"
+        ],
+        credit: "Sport Studio Parys",
+        variants: [
+          {
+            width: 500,
+            path: "/img/uslugi/sauna-500.webp",
+            format: "webp"
+          },
+          {
+            width: 711,
+            path: "/img/uslugi/sauna-711.webp",
+            format: "webp"
+          },
+          {
+            width: 900,
+            path: "/img/uslugi/sauna-900.webp",
+            format: "webp"
+          },
+          {
+            width: 1152,
+            path: "/img/uslugi/sauna-1152.webp",
+            format: "webp"
+          }
+        ],
+        status: "complete"
+      },
       "asset-video-service-badminton": {
         kind: "video",
         source: "videos/services/Badminton.mp4",
@@ -681,12 +792,15 @@ export const site = {
         image: "asset-promo-student-99"
       },
       "svc-badminton": {
+        photo: "asset-photo-service-badminton",
         video: "asset-video-service-badminton"
       },
       "svc-buffet": {
+        photo: "asset-photo-service-buffet",
         video: "asset-video-service-buffet"
       },
       "svc-sauna": {
+        photo: "asset-photo-service-sauna",
         video: "asset-video-service-sauna"
       }
     },
@@ -712,7 +826,7 @@ export const site = {
         kind: "link"
       },
       {
-        label: "Cross",
+        label: "Zajęcia",
         href: "/zajecia",
         kind: "link"
       },
@@ -746,7 +860,7 @@ export const site = {
     },
     seo_defaults: {
       title_template: "{title} — Sport Studio Parys, Nysa",
-      description: "Siłownia i klub fitness w Nysie, czynne całą dobę. Sześć stref treningowych na 1000 m², Cross, trening personalny, sauna i badminton.",
+      description: "Siłownia i klub fitness w Nysie, czynne całą dobę. Sześć stref treningowych na 1000 m², zajęcia grupowe, trening personalny, sauna i badminton.",
       locale: "pl_PL",
       og_image: "asset-og-default"
     },
@@ -993,9 +1107,9 @@ export const site = {
       {
         id: "classes",
         path: "/zajecia",
-        title: "Cross",
-        description: "Cross w małych grupach. Harmonogram i zasady zapisów.",
-        intent: "Zaprezentować Cross i pokazać terminy.",
+        title: "Zajęcia grupowe",
+        description: "Zajęcia grupowe w małych grupach. Cross, harmonogram i zasady zapisów.",
+        intent: "Zaprezentować zajęcia grupowe i pokazać terminy.",
         noindex: false,
         source: null,
         sections: [
@@ -1161,9 +1275,9 @@ export const site = {
         id: "privacy",
         path: "/polityka-prywatnosci",
         title: "Polityka prywatności",
-        description: "Informacje o przetwarzaniu danych osobowych i plikach cookies.",
-        intent: "Dokument prawny. Do czasu uzupełnienia treści — noindex.",
-        noindex: true,
+        description: "Kto przetwarza dane w serwisie, co trafia do Google i jak realizować swoje prawa.",
+        intent: "Dokument prawny opisujący wyłącznie serwis internetowy; link dyskretny w stopce.",
+        noindex: false,
         source: null,
         sections: [
           {
@@ -1175,10 +1289,14 @@ export const site = {
           },
           {
             id: "sec-body",
-            type: "legal_placeholder",
+            type: "prose",
             required: true,
-            content_refs: [],
-            note: null
+            content_refs: [
+              "identity.contact",
+              "identity.address",
+              "identity.location"
+            ],
+            note: "Treść opisuje realne przepływy: brak formularzy, embed Google po kliknięciu, logi hostingu."
           }
         ]
       },
@@ -1186,9 +1304,9 @@ export const site = {
         id: "terms",
         path: "/regulamin",
         title: "Regulamin",
-        description: "Regulamin korzystania z obiektu: karnety, strefy, rezerwacje.",
-        intent: "Dokument prawny. Do czasu uzupełnienia treści — noindex.",
-        noindex: true,
+        description: "Zasady korzystania z obiektu — karnety, karta klubowa, wejścia, rezerwacje i reklamacje.",
+        intent: "Wzorzec umowy dla klubowiczów; treść pochodzi z 0-core/1-legal.ts, strona tylko ją renderuje.",
+        noindex: false,
         source: null,
         sections: [
           {
@@ -1200,10 +1318,12 @@ export const site = {
           },
           {
             id: "sec-body",
-            type: "legal_placeholder",
+            type: "prose",
             required: true,
-            content_refs: [],
-            note: null
+            content_refs: [
+              "legal.terms"
+            ],
+            note: "Treść, wersja i data wejścia w życie pochodzą z rdzenia; adapter podstawia ceny i kontakt."
           }
         ]
       },

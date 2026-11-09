@@ -20,6 +20,7 @@ const KNOWN_HEADS = new Set([
   "identity",
   "catalog",
   "pricing_policy",
+  "legal",
   "integrations",
   "design",
   "media",

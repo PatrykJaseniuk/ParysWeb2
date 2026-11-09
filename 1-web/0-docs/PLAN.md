@@ -122,13 +122,13 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 ├── /trenerzy           Czterech trenerów + cena + jak to działa
 ├── /uslugi             Sauna, badminton, bufet + kalendarze
 ├── /kontakt            Dane, godziny, mapa, rezerwacje
-├── /polityka-prywatnosci   (noindex do uzupełnienia)
-├── /regulamin              (noindex do uzupełnienia)
+├── /polityka-prywatnosci   Dokument prawny, link dyskretny w stopce
+├── /regulamin              Dokument prawny (treść w `0-core/1-legal.ts`)
 └── 404
 ```
 
 **Nawigacja główna (6 pozycji):** Strefy · Karnety · Zajęcia · Trenerzy · Usługi · Kontakt.
-**Nawigacja w stopce:** dodatkowo Polityka prywatności.
+**Nawigacja w stopce:** dodatkowo Polityka prywatności — dyskretny link w pasku dolnym.
 **CTA w nagłówku:** „Cennik” (jedyny przycisk — nie konkuruje z niczym).
 
 ---
@@ -241,7 +241,8 @@ Brak frameworka, brak hydratacji, brak `client:load`.
 ### 10.5 Formularze
 **Brak formularza kontaktowego** — świadomie. Stara strona go nie miała i nie ma
 procesu obsługi zgłoszeń. Kontakt = telefon i e-mail. Jeśli w przyszłości ma być
-formularz, potrzebny jest odbiorca (e-mail/CRM) i polityka prywatności.
+formularz, potrzebny jest odbiorca (e-mail/CRM) i rozszerzona polityka prywatności
+(zgody, okresy retencji dla zgłoszeń).
 
 ---
 
@@ -290,7 +291,7 @@ formularz, potrzebny jest odbiorca (e-mail/CRM) i polityka prywatności.
 | --- | --- | --- |
 | Google Calendar (4 kalendarze) | iframe w modalu | iframe ładowany po kliknięciu (fasada) + link „Otwórz w Google Calendar” |
 | Google Maps | iframe | fasada + link do nawigacji |
-| MultiSport / Medicover / FitProfit / PZU | informacja tekstowa | płatność za wejście jednorazowe; FitProfit/Medicover/PZU karta 24/7 i terminal; MultiSport tylko recepcja |
+| MultiSport / Medicover / FitProfit / PZU | informacja tekstowa | płatność za wejście jednorazowe; FitProfit/Medicover/PZU karta 24/7 i rejestracja wizyty w terminalu; MultiSport tylko recepcja |
 | Facebook / Instagram | linki w stopce | linki w stopce i sekcji kontaktu |
 | GA4 | zakomentowane | do włączenia po decyzji o zgodach |
 | System rezerwacji | brak | poza zakresem; strona przygotowana na podmianę kalendarzy na link do systemu |
@@ -321,7 +322,7 @@ formularz, potrzebny jest odbiorca (e-mail/CRM) i polityka prywatności.
 | **1. Treści** | Potwierdzenie cen, uzupełnienie opisu Sali funkcjonalnej, dane prawne | 1–2 dni pracy właściciela | lista pytań § 18 |
 | **2. Zdjęcia** | Sesja: strefy (min. 1600 px), trenerzy, sauna, badminton | 0,5 dnia sesji + 2 dni obróbki | zgoda na wizerunek trenerów |
 | **3. Wideo** | Kompresja 11 filmów (189 MB → ~15 MB), postery | 1 dzień | decyzja: wideo na stronie czy tylko w tle |
-| **4. Prawo** | Regulamin, polityka prywatności, NIP | 1–3 dni | prawnik / właściciel |
+| **4. Prawo** | Regulamin, NIP, akceptacja polityki prywatności | 1–3 dni | prawnik / właściciel |
 | **5. Analityka** | GA4 + zgody + zdarzenia | 0,5 dnia | decyzja o banerze cookies |
 | **6. Publikacja** | DNS, HTTPS, Search Console, wizytówka Google | 0,5 dnia | etapy 1–5 |
 | **7. Po starcie** | Monitoring, korekty treści, zdjęcia | ciągłe | — |
@@ -351,7 +352,7 @@ Kod jest gotowy — blokują dane, nie technologia.
 1. Czy ceny i zakresy karnetów są aktualne (stan z eksportu)?
 2. Jaki jest kod pocztowy i pełne dane firmy (NIP, nazwa do stopki)?
 3. Czy „4 strefy + Cross” ma obejmować strefę Sala cross, czy tylko Cross?
-4. Czy regulamin i polityka prywatności istnieją? Jeśli nie — kto je przygotuje?
+4. Kto z prawem potwierdzi regulamin i politykę prywatności? Brakuje też NIP.
 
 **Ważne:**
 5. Opis Sali funkcjonalnej (w źródle był pusty) — czy zaakceptować tekst roboczy?
@@ -372,7 +373,8 @@ Kod jest gotowy — blokują dane, nie technologia.
 
 - [ ] Ceny potwierdzone przez właściciela i zaktualizowane w `business/memberships.ts`.
 - [ ] Opis Sali funkcjonalnej zaakceptowany.
-- [ ] Regulamin i polityka prywatności uzupełnione (i zdjęty `noindex`).
+- [ ] Regulamin zaakceptowany przez prawnika.
+- [ ] Polityka prywatności zaakceptowana przez prawnika.
 - [ ] Zdjęcia: strefy ≥ 1600 px, trenerzy.
 - [ ] Wizytówka Google zaktualizowana (godziny, zdjęcia, link do cennika).
 - [ ] `sitemap.xml` i `robots.txt` dostępne publicznie.

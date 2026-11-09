@@ -404,6 +404,7 @@ export const services = Object.entries(businessModel.catalog.services).map(([id,
   booking: s.booking?.text ?? null,
   bookingChannel: s.booking?.channel ?? null,
   calendar: s.calendar,
+  photo: asset(mediaOf(id).photo),
   video: mediaOf(id).video ?? null,
 }));
 
@@ -417,7 +418,7 @@ export const partners = Object.entries(businessModel.catalog.partners).map(([id,
     logoSrc: logo?.src ?? null,
     logoAlt: logo?.alt ?? p.name,
     can_register_club_card: p.can_register_club_card,
-    terminal_payment: p.terminal_payment,
+    terminal_visit_registration: p.terminal_visit_registration,
     note: p.note ?? null,
   };
 });
@@ -458,3 +459,51 @@ export const seo = {
 
 /** Czy model pozwala publikować (bramka z `_quality`). */
 export const publishable: boolean = quality.publishable;
+
+/* ------------------------------------------------------------------ *
+ *  Dokumenty prawne
+ * ------------------------------------------------------------------ */
+
+/** Tokeny wstawiane do treści regulaminu — jedno źródło prawdy dla cen i kontaktu. */
+const legalTokens: Record<string, string> = {
+  address: contact.address.full,
+  email: contact.email,
+  phone: contact.phone,
+  club_card_fee: pln(clubCardFee),
+  entry_price: pln(entryPrice),
+};
+
+const LEGAL_DATE = new Intl.DateTimeFormat("pl-PL", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+/** `{token}` → wartość z modelu. Nieznany token zostaje w tekście jako widoczny błąd. */
+function fillLegalTokens(text: string): string {
+  return Object.entries(legalTokens).reduce(
+    (result, [token, value]) => result.split(`{${token}}`).join(value),
+    text,
+  );
+}
+
+/**
+ * Regulamin z podstawionymi tokenami. Data jest formatowana tutaj, żeby
+ * komponent nie znał formatu ISO ani polskich nazw miesięcy.
+ */
+export const terms = {
+  ...businessModel.legal.terms,
+  effective_label: LEGAL_DATE.format(new Date(`${businessModel.legal.terms.effective_from}T00:00:00Z`)),
+  intro: businessModel.legal.terms.intro.map(fillLegalTokens),
+  sections: Object.fromEntries(
+    Object.entries(businessModel.legal.terms.sections).map(([key, section]) => [
+      key,
+      {
+        ...section,
+        paragraphs: section.paragraphs?.map(fillLegalTokens) ?? [],
+        items: section.items?.map(fillLegalTokens) ?? [],
+      },
+    ]),
+  ),
+};

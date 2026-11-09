@@ -221,8 +221,8 @@ export interface Partner {
   name: string;
   /** Czy po rejestracji można otrzymać fizyczną kartę klubową. */
   can_register_club_card: boolean;
-  /** Czy karta klubowa pozwala płacić samodzielnie w terminalu. */
-  terminal_payment: boolean;
+  /** Czy karta klubowa pozwala samodzielnie zarejestrować wizytę w terminalu. */
+  terminal_visit_registration: boolean;
   note?: string;
 }
 
@@ -266,6 +266,96 @@ export interface Integrations {
   };
 }
 
+/* ------------------------------------------------------------------ *
+ *  1-legal.ts
+ * ------------------------------------------------------------------ */
+
+export interface LegalSection {
+  title: string;
+  /** Akapity poprzedzają listę. Teksty mogą zawierać tokeny w klamrach. */
+  paragraphs?: string[];
+  items?: string[];
+}
+
+export interface LegalDocument {
+  slug: string;
+  title: string;
+  description: string;
+  version: string;
+  /** ISO 8601 (`YYYY-MM-DD`). */
+  effective_from: string;
+  /** Akapity wprowadzające, renderowane przed pierwszą sekcją. */
+  intro: string[];
+  /** Klucz sekcji jest jej tożsamością i kotwicą; kolejność kluczy = kolejność dokumentu. */
+  sections: Record<string, LegalSection>;
+}
+
+/* ------------------------------------------------------------------ *
+ *  2-membership-agreement.ts
+ * ------------------------------------------------------------------ */
+
+export type AgreementFieldKind =
+  | "text"
+  | "date"
+  | "money"
+  | "choice"
+  | "checkbox"
+  | "signature";
+
+export interface AgreementField {
+  /** Stabilny klucz pola formularza, nie identyfikator osoby. */
+  key: string;
+  label: string;
+  kind: AgreementFieldKind;
+  required: boolean;
+  /** Pole warunkowe, np. wyłącznie dla klubowicza niepełnoletniego. */
+  condition?: "minor";
+  /** Token wartości drukowanej z modelu; puste pole go nie ma. */
+  value_token?: string;
+  /** Lista albo wartości wyliczane przez konsumenta z wskazanego katalogu. */
+  source?: "catalog.memberships" | "catalog.membership_options";
+  options?: string[];
+  note?: string;
+}
+
+export interface AgreementFormSection {
+  key: string;
+  title: string;
+  paragraphs?: string[];
+  fields: AgreementField[];
+}
+
+export interface AgreementDeclaration {
+  key: string;
+  text: string;
+  /** Oświadczenia wymagane nie są odrębnymi zgodami marketingowymi. */
+  required: boolean;
+  condition?: "minor";
+}
+
+export interface MembershipAgreementDocument {
+  slug: string;
+  title: string;
+  description: string;
+  version: string;
+  effective_from: string;
+  /** Wzór nie może trafić do podpisu, dopóki status pozostaje `draft`. */
+  status: "draft" | "approved";
+  draft_notice: string;
+  /** Tokeny, których konsument nie może zastąpić pustym ciągiem. */
+  required_tokens: string[];
+  intro: string[];
+  form_sections: AgreementFormSection[];
+  declarations: AgreementDeclaration[];
+  /** Klauzula dotyczy klubowiczów, nie statycznej strony internetowej. */
+  privacy_notice: {
+    title: string;
+    intro: string[];
+    /** Klucz sekcji jest jej tożsamością i kotwicą; kolejność kluczy = kolejność dokumentu. */
+    sections: Record<string, LegalSection>;
+  };
+}
+
 export interface BusinessModel {
   model_version: string;
   meta: Meta;
@@ -274,6 +364,13 @@ export interface BusinessModel {
   brand: BrandModel;
   pricing_policy: PricingPolicy;
   entry_policy: EntryPolicy;
+  legal: {
+    /** Obecnie publikowany regulamin (`1-legal.ts`). */
+    terms: LegalDocument;
+    /** Przeprojektowany regulamin — wersja następcza (`1-regulamin.ts`). */
+    regulamin: LegalDocument;
+    membership_agreement: MembershipAgreementDocument;
+  };
   catalog: Catalog;
   integrations: Integrations;
 }

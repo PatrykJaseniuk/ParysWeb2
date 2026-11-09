@@ -13,11 +13,7 @@ export default defineConfig({
   base: "/ParysWeb2",
   trailingSlash: "never",
   integrations: [
-    sitemap({
-      // Dokumenty prawne są `noindex` do czasu uzupełnienia — nie trafiają do sitemapy.
-      filter: (page) =>
-        !page.includes("/polityka-prywatnosci") && !page.includes("/regulamin"),
-    }),
+    sitemap(),
   ],
   devToolbar: { enabled: false },
   vite: {

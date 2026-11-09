@@ -32,7 +32,7 @@ FONT_REG = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
 
 
 def ensure_dirs() -> None:
-    for d in ("img/hero", "img/strefy", "img/trenerzy", "img/partnerzy", "img/promocje", "brand", "og", "media"):
+    for d in ("img/hero", "img/strefy", "img/trenerzy", "img/uslugi", "img/partnerzy", "img/promocje", "brand", "og", "media"):
         (OUT / d).mkdir(parents=True, exist_ok=True)
 
 
@@ -83,6 +83,25 @@ def build_zones() -> list[dict]:
             h = round(im.height * w / im.width)
             resized = im.resize((w, h), Image.LANCZOS)
             p = OUT / "img" / "strefy" / f"{slug}-{w}.webp"
+            size = save_webp(resized, p, 80)
+            out.append({"file": str(p.relative_to(ROOT)), "w": w, "kb": round(size / 1024)})
+    return out
+
+
+def build_services() -> list[dict]:
+    mapping = {
+        "badminton.png": "badminton",
+        "sauna.png": "sauna",
+        "bufet.png": "bufet-sklep",
+    }
+    out = []
+    for filename, slug in mapping.items():
+        src = SRC / "photos" / "services" / filename
+        im = Image.open(src).convert("RGB")
+        for w in widths(im.width, [1152, 900, 711, 500]):
+            h = round(im.height * w / im.width)
+            resized = im.resize((w, h), Image.LANCZOS)
+            p = OUT / "img" / "uslugi" / f"{slug}-{w}.webp"
             size = save_webp(resized, p, 80)
             out.append({"file": str(p.relative_to(ROOT)), "w": w, "kb": round(size / 1024)})
     return out
@@ -201,6 +220,7 @@ def main() -> None:
     report = {
         "hero": build_hero(),
         "strefy": build_zones(),
+        "uslugi": build_services(),
         "trenerzy": build_trainers(),
         "partnerzy": build_partners(),
         "brand": build_brand(),

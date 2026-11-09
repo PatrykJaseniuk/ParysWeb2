@@ -14,11 +14,6 @@ export const GET: APIRoute = ({ site }) => {
     "User-agent: *",
     `Allow: ${basePath || ""}/`,
     "",
-    "# Dokumenty robocze (polityka prywatności, regulamin) — do odblokowania",
-    "# po uzupełnieniu treści prawnej.",
-    `Disallow: ${basePath}/polityka-prywatnosci`,
-    `Disallow: ${basePath}/regulamin`,
-    "",
     `Sitemap: ${sitemap.toString()}`,
     "",
   ].join("\n");

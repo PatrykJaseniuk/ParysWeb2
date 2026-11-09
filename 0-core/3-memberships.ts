@@ -151,7 +151,7 @@ export const memberships = {
   "mem-roll-massage": {
     slug: "rollmasaz",
     name: "Rollmasaż",
-    subtitle: "8 wejść do strefy rollmasażu",
+    subtitle: "Tylko rollmasaż",
     areas: ["area-roll-massage"],
     options: [
       {

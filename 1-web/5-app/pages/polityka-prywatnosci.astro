@@ -1,20 +1,97 @@
 ---
 import LegalPage from "../../4-layouts/LegalPage.astro";
-
-const checklist = [
-  "Pełna nazwa firmy, adres siedziby i NIP administratora danych.",
-  "Zakres przetwarzanych danych (formularz kontaktowy, rezerwacje, monitoring).",
-  "Podstawa prawna i okres przechowywania danych.",
-  "Lista odbiorców danych (np. Google Analytics, Google Maps, Google Calendar — jeśli są używane).",
-  "Informacja o plikach cookies i sposobie zarządzania zgodami.",
-  "Prawa osób, których dane dotyczą (dostęp, sprostowanie, usunięcie, sprzeciw).",
-  "Dane kontaktowe inspektora ochrony danych lub osoby odpowiedzialnej.",
-];
+import { contact } from "../../1-data/business";
 ---
 
 <LegalPage
   title="Polityka prywatności"
-  description="Informacje o przetwarzaniu danych osobowych i plikach cookies w serwisie parys.nysa.pl."
+  description="Kto przetwarza dane w serwisie Sport Studio Parys, jakie dane trafiają do Google i jak realizować swoje prawa."
   canonical="/polityka-prywatnosci"
-  checklist={checklist}
-/>
+>
+  <h2 class="h3">Kto jest administratorem</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Administratorem danych jest <strong class="text-bone">Sport Studio Parys</strong>,
+    {" "}{contact.address.street}, {contact.address.postal_code} {contact.address.city}.
+    W sprawach dotyczących danych osobowych możesz się kontaktować pod adresem
+    <a href={`mailto:${contact.email}`} class="text-bone underline decoration-brand underline-offset-4">
+      {contact.email}
+    </a>
+    {" "}lub telefonicznie pod numerem
+    <a href={`tel:${contact.phone_e164}`} class="num text-bone underline decoration-brand underline-offset-4">
+      {contact.phone}
+    </a>.
+  </p>
+
+  <h2 class="h3 mt-10">Strona nie zbiera danych</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Serwis jest statyczny. Nie ma formularza kontaktowego, konta użytkownika, newslettera,
+    komentarzy ani narzędzi analitycznych. Nie zapisujemy plików cookies ani danych w pamięci
+    przeglądarki, nie profilujemy użytkowników i nie podejmujemy wobec nich decyzji
+    automatycznych. Samo przeglądanie strony nie wymaga podania żadnych danych.
+  </p>
+
+  <h2 class="h3 mt-10">Kontakt telefoniczny i e-mail</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Jeśli zadzwonisz lub napiszesz, przekazujesz nam dane dobrowolnie: imię, adres e-mail,
+    numer telefonu i treść wiadomości. Używamy ich wyłącznie po to, aby odpowiedzieć i obsłużyć
+    sprawę, której dotyczy kontakt — na podstawie art. 6 ust. 1 lit. b i f RODO. Korespondencję
+    przechowujemy do zakończenia sprawy, a następnie przez okres przedawnienia ewentualnych
+    roszczeń. Podanie danych nie jest obowiązkowe, ale bez nich nie możemy odpowiedzieć.
+  </p>
+
+  <h2 class="h3 mt-10">Mapa i kalendarz Google</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Mapa dojazdu i kalendarze są osadzone, ale nie ładują się automatycznie — dopiero po
+    kliknięciu przycisku „Pokaż mapę” lub „Pokaż kalendarz”. Do tego momentu Twoja przeglądarka
+    nie łączy się z Google. Po kliknięciu Google otrzymuje m.in. adres IP i informacje o
+    przeglądarce oraz może zapisać własne cookies; dalsze przetwarzanie odbywa się na
+    <a
+      href="https://policies.google.com/privacy"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-bone underline decoration-brand underline-offset-4"
+    >
+      zasadach Google
+    </a>. Podstawą jest nasz uzasadniony interes — ułatwienie dojazdu i sprawdzenie
+    dostępności (art. 6 ust. 1 lit. f RODO).
+  </p>
+
+  <h2 class="h3 mt-10">Monitoring obiektu</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Teren klubu przy {contact.address.street} jest objęty monitoringiem wizyjnym. Celem jest
+    bezpieczeństwo osób i mienia, a podstawą prawną nasz uzasadniony interes (art. 6 ust. 1
+    lit. f RODO). Obszary monitorowane oznaczone są tablicami informacyjnymi. Nagrania
+    przechowujemy przez 30 dni, chyba że stanowią dowód w postępowaniu — wtedy dłużej.
+    Odbiorcami mogą być wyłącznie osoby upoważnione przez administratora oraz uprawnione
+    organy, takie jak Policja, prokuratura i sąd. Monitoring dotyczy terenu obiektu, nie
+    strony internetowej.
+  </p>
+
+  <h2 class="h3 mt-10">Hosting</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Stronę serwuje GitHub Pages (GitHub Inc., USA). Dostawca zapisuje techniczne logi, w tym
+    adresy IP, w celu zapewnienia bezpieczeństwa i przeciwdziałania nadużyciom. Nie mamy
+    dostępu do tych logów i nie łączymy ich z innymi danymi. Przekazanie danych poza EOG
+    opiera się na standardowych klauzulach umownych lub unijnej decyzji o adekwatności
+    (Data Privacy Framework).
+  </p>
+
+  <h2 class="h3 mt-10">Twoje prawa</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia
+    przetwarzania, przenoszenia oraz sprzeciwu wobec przetwarzania. Możesz też złożyć skargę
+    do Prezesa Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa. Odpowiadamy
+    na zgłoszenia w ciągu miesiąca.
+  </p>
+
+  <h2 class="h3 mt-10">Czego ta informacja nie obejmuje</h2>
+  <p class="mt-4 text-sm leading-relaxed text-bone/75">
+    Ta strona opisuje serwis internetowy oraz monitoring obiektu. Zasady przetwarzania danych
+    klubowiczów — umowa, wejścia na kartę, rozliczenia — określa odrębna klauzula przekazywana
+    przy zapisie.
+  </p>
+
+  <p class="mt-10 border-t border-line pt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-mist">
+    Stan na 9 listopada 2026
+  </p>
+</LegalPage>
