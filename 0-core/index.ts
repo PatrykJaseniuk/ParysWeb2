@@ -31,7 +31,7 @@ import { perks } from "./1-perks";
  *   2-classes.ts        Cross, trenerzy, trening personalny
  *   3-single-entry.ts   samodzielne wejście jednorazowe
  *   2-services.ts       usługi dodatkowe
- *   3-memberships.ts    4 karnety i 14 wariantów cenowych
+ *   3-memberships.ts    5 karnetów i 15 wariantów cenowych
  *   3-single-entry.ts   wejście jednorazowe poza karnetami
  *   index.ts            kompozycja — najwyższa warstwa, importuje wszystko
  *
@@ -48,7 +48,7 @@ import { perks } from "./1-perks";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "13.0.0",
+  model_version: "16.0.0",
   meta,
   identity: company,
   brand,

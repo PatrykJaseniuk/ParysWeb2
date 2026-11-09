@@ -67,7 +67,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 
 ### Biznesowe
 1. **Zmniejszyć liczbę telefonów „ile kosztuje karnet”** — cennik ma odpowiadać w 10 sekund.
-2. **Zwiększyć liczbę zapytań o trening personalny i usługi** (sauna, badminton, masaż).
+2. **Zwiększyć liczbę zapytań o trening personalny i usługi** (sauna, badminton).
 3. **Poprawić wiarygodność**: prawdziwe zdjęcia, konkretne godziny, jasne zasady.
 4. **Być widocznym lokalnie** na frazy „siłownia Nysa”, „karnet Nysa”, „sauna Nysa”.
 
@@ -120,7 +120,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 │   └── /strefy/rollmasaz-platforma-wibrujaca
 ├── /zajecia            Cross + harmonogram
 ├── /trenerzy           Czterech trenerów + cena + jak to działa
-├── /uslugi             Sauna, badminton, masaż, bufet + kalendarze
+├── /uslugi             Sauna, badminton, bufet + kalendarze
 ├── /kontakt            Dane, godziny, mapa, rezerwacje
 ├── /polityka-prywatnosci   (noindex do uzupełnienia)
 ├── /regulamin              (noindex do uzupełnienia)
@@ -143,7 +143,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 | 4 | Cennik | **Zamknąć pytanie o cenę** | Macierz 6 wariantów × 4 karnety na jasnym tle |
 | 5 | Cross | Pokazać ofertę poza siłownią | 1 karta + link do harmonogramu |
 | 6 | Trening personalny | Sprzedać usługę 1:1 | 4 trenerzy, cena 110 zł/h |
-| 7 | Usługi dodatkowe | Dowieźć saunę/badminton/masaż | 4 karty z cenami i rezerwacją |
+| 7 | Usługi dodatkowe | Dowieźć saunę/badminton | 3 karty z cenami i rezerwacją |
 | 8 | Programy partnerskie | Pokazać sposoby opłacenia wejścia | Cztery programy + zasady wejścia jednorazowego |
 | 9 | Kontakt | Doprowadzić do wizyty | Telefon, adres, parking, godziny, mapa (na klik) |
 
@@ -319,7 +319,7 @@ formularz, potrzebny jest odbiorca (e-mail/CRM) i polityka prywatności.
 | --- | --- | --- | --- |
 | **0. Fundament** ✅ | Audyt, dane, design system, szkielet 16 podstron | zrobione | — |
 | **1. Treści** | Potwierdzenie cen, uzupełnienie opisu Sali funkcjonalnej, dane prawne | 1–2 dni pracy właściciela | lista pytań § 18 |
-| **2. Zdjęcia** | Sesja: strefy (min. 1600 px), trenerzy, sauna, badminton, masaż | 0,5 dnia sesji + 2 dni obróbki | zgoda na wizerunek trenerów |
+| **2. Zdjęcia** | Sesja: strefy (min. 1600 px), trenerzy, sauna, badminton | 0,5 dnia sesji + 2 dni obróbki | zgoda na wizerunek trenerów |
 | **3. Wideo** | Kompresja 11 filmów (189 MB → ~15 MB), postery | 1 dzień | decyzja: wideo na stronie czy tylko w tle |
 | **4. Prawo** | Regulamin, polityka prywatności, NIP | 1–3 dni | prawnik / właściciel |
 | **5. Analityka** | GA4 + zgody + zdarzenia | 0,5 dnia | decyzja o banerze cookies |
@@ -363,7 +363,7 @@ Kod jest gotowy — blokują dane, nie technologia.
 
 **Opcjonalne:**
 11. Czy wideo (11 filmów, 189 MB) ma być na stronie, czy wystarczą zdjęcia?
-12. Czy planowany jest system rezerwacji online (sauna, badminton, masaż)?
+12. Czy planowany jest system rezerwacji online (sauna, badminton)?
 13. Czy dochodzą nowe zajęcia lub strefy?
 
 ---

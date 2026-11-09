@@ -2,7 +2,7 @@ import type { Service } from "./0-types";
 import type { CalendarKey } from "./1-integrations";
 
 /**
- * Usługi dodatkowe (badminton, sauna, masaż, bufet) — rekord klucz → usługa.
+ * Usługi dodatkowe (badminton, sauna, bufet) — rekord klucz → usługa.
  *
  * Klucz jest tożsamością usługi; `calendar` odwołuje się do wpisu
  * w `integrations.calendars` przez `CalendarKey`.
@@ -33,13 +33,6 @@ export const services = {
       text: "Rezerwacja przynajmniej godzinę przed planowaną wizytą.",
     },
     calendar: "cal-sauna",
-  },
-  "svc-massage": {
-    slug: "masaz",
-    name: "Masaż",
-    description: "Wybierz masaż klasyczny, sportowy, próżniowy lub relaksacyjny.",
-    price: { amount: 120, unit: "hour", type: "from" },
-    booking: { channel: "reception", text: "Zapisy w recepcji lub telefonicznie." },
   },
   "svc-buffet": {
     slug: "bufet-sklep",

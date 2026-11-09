@@ -9,6 +9,7 @@ import {
   clubCardFee,
   contact,
   entryPrice,
+  membershipCount,
   memberships,
   monthlyFrom,
   optionCount,
@@ -74,7 +75,7 @@ const steps = [
   },
   {
     title: "Wybierz zakres",
-    text: "Cztery strefy, cztery strefy + zajęcia grupowe, pięć stref albo sześć stref + zajęcia grupowe — doradzimy na miejscu.",
+    text: "Cztery strefy, cztery strefy + zajęcia grupowe, pięć stref, sześć stref + zajęcia grupowe albo karnet tylko na rollmasaż — doradzimy na miejscu.",
   },
   {
     title: "Zarejestruj karnet lub wejdź jednorazowo",
@@ -85,7 +86,7 @@ const steps = [
 
 <BaseLayout
   title="Karnety i cennik"
-  description={`Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 4 strefy + zajęcia grupowe, 5 stref i 6 stref + zajęcia grupowe. Wejście od ${pln(entryPrice)}, karnet miesięczny od ${pln(monthlyFrom)}, bez umowy.`}
+  description={`Cennik karnetów Sport Studio Parys w Nysie: 4 strefy, 4 strefy + zajęcia grupowe, 5 stref, 6 stref + zajęcia grupowe oraz karnet 8 wejść na rollmasaż. Wejście od ${pln(entryPrice)}, karnet miesięczny od ${pln(monthlyFrom)}, bez umowy.`}
   canonical="/karnety"
   jsonLd={[
     breadcrumbSchema([{ name: "Karnety", href: "/karnety" }]),
@@ -96,7 +97,7 @@ const steps = [
     index="02"
     label="Karnety"
     title="Cennik karnetów"
-    description={`Cztery zakresy i ${optionCount} wariantów karnetów. Wejście jednorazowe do wszystkich stref i zajęć grupowych kosztuje ${pln(entryPrice)}. Karnety wymagają rejestracji i dają dostęp 24/7, a wejścia jednorazowe nie wymagają rejestracji.`}
+    description={`Karnety w ${membershipCount} zakresach — ${optionCount} wariantów. Wejście jednorazowe do wszystkich stref i zajęć grupowych kosztuje ${pln(entryPrice)}. Karnety wymagają rejestracji i dają dostęp 24/7, a wejścia jednorazowe nie wymagają rejestracji.`}
     breadcrumbs={[{ name: "Karnety", href: "/karnety" }]}
   >
     <div class="mt-8 flex flex-wrap gap-3">
@@ -131,7 +132,7 @@ const steps = [
         <div class="bg-bone p-6">
           <h2 class="font-display text-base font-bold uppercase tracking-tight">Czas trwania</h2>
           <p class="mt-2 text-[13px] leading-relaxed text-black/60">
-            Warianty 2-tygodniowe, miesięczne, 2-miesięczne (wejścia) i roczne. Karnet roczny
+            Warianty 2-tygodniowe, miesięczne, 8 wejść i roczne. Karnet roczny
             zawiera dwa miesiące gratis.
           </p>
         </div>

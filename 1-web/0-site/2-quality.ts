@@ -11,7 +11,7 @@ import { site } from "./1-site";
  */
 export const quality = {
   requires: { business: business.model_version, site: site.site_version },
-  quality_version: "1.7.0",
+  quality_version: "1.8.0",
   publishable: false,
   questions: [
     {
@@ -116,6 +116,13 @@ export const quality = {
       area: "Media",
       issue: "Zdjęcia trenerów to profile 150×150 px z Instagrama — wystarczają na awatary, ale nie na większe portrety.",
       resolution: "Przy sesji zdjęciowej zastąpić portretami w rozdzielczości min. 800 px."
+    },
+    {
+      id: "dq-trainer-krzysztof-specialty",
+      severity: "low",
+      area: "Trenerzy",
+      issue: "Profil Krzysztofa nie ma publicznego opisu specjalności — karta nie ma tagów specjalizacji.",
+      resolution: "Potwierdzić specjalność u właściciela lub uzupełnić profil Instagram."
     },
     {
       id: "dq-pzu",

@@ -191,6 +191,8 @@ export interface Trainer {
   role: string;
   /** Profil trenera na Instagramie. Brak = trener nie ma podanego profilu. */
   instagram?: string;
+  /** Krótkie specjalizacje z publicznego opisu profilu. */
+  specialties?: string[];
 }
 
 export interface PersonalTraining<TrainerKey extends string = string> {

@@ -148,6 +148,20 @@ export const memberships = {
       },
     ],
   },
+  "mem-roll-massage": {
+    slug: "rollmasaz",
+    name: "Rollmasaż",
+    subtitle: "8 wejść do strefy rollmasażu",
+    areas: ["area-roll-massage"],
+    options: [
+      {
+        code: "eight_entries",
+        label: "8 wejść",
+        price: { amount: 100, unit: "term" },
+        entries: 8,
+      },
+    ],
+  },
 } satisfies Record<string, Membership<AreaKey, ClassKey, PerkKey>>;
 
 /** Klucze karnetów — jedyny dozwolony sposób odwołania się do karnetu. */

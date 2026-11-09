@@ -224,7 +224,7 @@ export const OPTION_META: Record<string, { label: string; short: string; descrip
   eight_entries: {
     label: "8 wejść",
     short: "8 wejść",
-    description: "Osiem wejść ważnych 2 miesiące.",
+    description: "Osiem wejść do wykorzystania w wybranych strefach.",
   },
   monthly: {
     label: "Karnet miesięczny",
@@ -320,6 +320,7 @@ export const memberships: MembershipView[] = Object.entries(
 });
 
 export const optionCount = memberships.reduce((count, membership) => count + membership.options.length, 0);
+export const membershipCount = memberships.length;
 
 export interface MatrixCell {
   price: number;
@@ -377,6 +378,7 @@ export const trainers = Object.entries(businessModel.catalog.trainers).map(([id,
   name: t.name,
   description: t.role,
   instagram: t.instagram ?? null,
+  specialties: t.specialties ?? [],
   photo: asset(mediaOf(id).photo),
 }));
 

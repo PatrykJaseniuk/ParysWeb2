@@ -59,6 +59,18 @@ const description = `Trenerzy Sport Studio Parys w Nysie: ${trainerNames}. Treni
               <p class="mt-2 text-sm leading-relaxed text-mist">{trainer.description}</p>
 
               {
+                trainer.specialties.length > 0 && (
+                  <ul class="mt-3 flex flex-wrap gap-1.5">
+                    {trainer.specialties.map((specialty) => (
+                      <li class="border border-line px-2 py-1 font-mono text-[9px] uppercase leading-none tracking-[0.12em] text-mist">
+                        {specialty}
+                      </li>
+                    ))}
+                  </ul>
+                )
+              }
+
+              {
                 trainer.instagram && (
                   <a
                     href={trainer.instagram}

@@ -11,7 +11,7 @@ import { business } from "../../0-core";
  */
 export const site = {
   requires: { business: business.model_version },
-  site_version: "4.6.0",
+  site_version: "4.9.0",
   design: {
     direction: "Ciemny, techniczny interfejs w duchu karty sprzętowej: ostre krawędzie, włosowe linie 1 px, duża typografia wersalikowa i czerwień jako jedyny akcent. Cennik jest jedyną jasną sekcją — wygląda jak wydruk na ścianie recepcji.",
     scale: {
@@ -508,22 +508,6 @@ export const site = {
         variants: [],
         status: "missing"
       },
-      "asset-video-service-massage": {
-        kind: "video",
-        source: "videos/services/Masaz.mp4",
-        served: null,
-        mime: "video/mp4",
-        width: 1280,
-        height: 720,
-        duration_s: 4.4,
-        alt: "Wideo: pokój masażu",
-        roles: [
-          "video"
-        ],
-        credit: "Sport Studio Parys",
-        variants: [],
-        status: "missing"
-      },
       "asset-video-service-sauna": {
         kind: "video",
         source: "videos/services/Sauna.mp4",
@@ -702,9 +686,6 @@ export const site = {
       "svc-buffet": {
         video: "asset-video-service-buffet"
       },
-      "svc-massage": {
-        video: "asset-video-service-massage"
-      },
       "svc-sauna": {
         video: "asset-video-service-sauna"
       }
@@ -870,7 +851,7 @@ export const site = {
         id: "pricing",
         path: "/karnety",
         title: "Karnety i cennik",
-        description: "Cennik karnetów: 4 strefy, 4 strefy + zajęcia grupowe, 5 stref i 6 stref + zajęcia grupowe. Wejście jednorazowe 35 zł, bez umowy.",
+        description: "Cennik karnetów: 4 strefy, 4 strefy + zajęcia grupowe, 5 stref, 6 stref + zajęcia grupowe oraz karnet 8 wejść na rollmasaż. Wejście jednorazowe 35 zł, bez umowy.",
         intent: "Zamknąć pytanie o cenę bez kontaktu z recepcją. Macierz wariantów, zakresy, FAQ.",
         noindex: false,
         source: null,
@@ -1097,7 +1078,7 @@ export const site = {
         id: "services",
         path: "/uslugi",
         title: "Usługi dodatkowe",
-        description: "Sauna, badminton, masaż i bufet — ceny, rezerwacje i kalendarze dostępności.",
+        description: "Sauna, badminton i bufet — ceny, rezerwacje i kalendarze dostępności.",
         intent: "Pokazać ofertę poza siłownią i doprowadzić do rezerwacji telefonicznej.",
         noindex: false,
         source: null,

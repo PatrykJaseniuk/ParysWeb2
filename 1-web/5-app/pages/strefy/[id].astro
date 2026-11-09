@@ -4,7 +4,7 @@ import PageHero from "../../../2-ui/ui/PageHero.astro";
 import Icon from "../../../2-ui/ui/Icon.astro";
 import CalendarEmbed from "../../../2-ui/ui/CalendarEmbed.astro";
 import CtaBand from "../../../3-components/sections/CtaBand.astro";
-import { areas, calendarById, withBase } from "../../../1-data/business";
+import { areas, calendarById, memberships, pln, withBase } from "../../../1-data/business";
 import { breadcrumbSchema } from "../../../2-ui/seo";
 
 export function getStaticPaths() {
@@ -14,6 +14,10 @@ export function getStaticPaths() {
 const { area } = Astro.props;
 const calendar = calendarById(area.calendarId);
 const others = areas.filter((a) => a.id !== area.id).slice(0, 3);
+const areaMembership = memberships.find(
+  (membership) => membership.areas_included.length === 1 && membership.areas_included.includes(area.id),
+);
+const areaPassOption = areaMembership?.options[0];
 ---
 
 <BaseLayout
@@ -75,6 +79,20 @@ const others = areas.filter((a) => a.id !== area.id).slice(0, 3);
             <Icon name="arrow-right" size={14} />
           </a>
         </div>
+
+        {areaMembership && areaPassOption && (
+          <div class="mt-6 border border-brand/30 bg-brand/5 p-5">
+            <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-brand">
+              Karnet strefowy
+            </p>
+            <p class="mt-2 font-display text-lg font-bold uppercase tracking-tight text-bone">
+              {areaPassOption.label} — {pln(areaPassOption.price_pln)}
+            </p>
+            <p class="mt-1 text-sm leading-relaxed text-mist">
+              Karnet obejmuje wyłącznie tę strefę. Do kupienia w recepcji.
+            </p>
+          </div>
+        )}
       </div>
 
       <aside class="lg:col-span-5">

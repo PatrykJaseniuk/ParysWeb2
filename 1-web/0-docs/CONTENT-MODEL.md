@@ -20,7 +20,7 @@ business/                 rdzeń — treść i marka, zero zależności
 ├── company.ts            tożsamość, kontakt, godziny, lokalizacja
 ├── brand.ts              nazwa, logo, paleta, typografia, głos, obraz
 ├── areas.ts              6 stref
-├── memberships.ts        4 karnety i 14 wariantów cenowych
+├── memberships.ts        5 karnetów i 15 wariantów cenowych
 ├── single-entry.ts       samodzielne wejście jednorazowe
 ├── classes.ts            zajęcia, trenerzy, trening personalny
 ├── services.ts           usługi dodatkowe
@@ -129,7 +129,7 @@ business/
 ├── meta.ts           wersja, waluta, strefa czasowa, zasady cennika
 ├── company.ts        tożsamość, kontakt, godziny, lokalizacja
 ├── areas.ts          6 stref
-├── memberships.ts    4 karnety i 14 wariantów cenowych
+├── memberships.ts    5 karnetów i 15 wariantów cenowych
 ├── single-entry.ts   samodzielne wejście jednorazowe
 ├── classes.ts        zajęcia, trenerzy, trening personalny
 ├── services.ts       usługi dodatkowe

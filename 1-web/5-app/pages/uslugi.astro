@@ -10,7 +10,6 @@ import { breadcrumbSchema } from "../../2-ui/seo";
 const icons = {
   badminton: "shuttle" as const,
   sauna: "flame" as const,
-  masaz: "spark" as const,
   "bufet-sklep": "cup" as const,
 };
 
@@ -29,21 +28,21 @@ const withCalendar = services
 
 <BaseLayout
   title="Usługi dodatkowe"
-  description="Sauna, badminton, masaż i bufet w Sport Studio Parys w Nysie. Ceny, rezerwacje i kalendarze dostępności."
+  description="Sauna, badminton i bufet w Sport Studio Parys w Nysie. Ceny, rezerwacje i kalendarze dostępności."
   canonical="/uslugi"
   jsonLd={[breadcrumbSchema([{ name: "Usługi", href: "/uslugi" }])]}
 >
   <PageHero
     index="05"
     label="Usługi dodatkowe"
-    title="Sauna, badminton, masaż"
+    title="Sauna, badminton i bufet"
     description="Rzeczy, które robią różnicę między „chodzę na siłownię” a „trenuję w klubie”. Rezerwacje przyjmujemy w recepcji i telefonicznie."
     breadcrumbs={[{ name: "Usługi", href: "/uslugi" }]}
   />
 
   <!-- Karty usług -->
   <section class="container-x py-14 sm:py-16 lg:py-20">
-    <div class="grid gap-4 sm:grid-cols-2 lg:gap-5">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
       {
         services.map((service, index) => (
           <article
@@ -137,7 +136,7 @@ const withCalendar = services
 
   <CtaBand
     title="Zarezerwuj termin"
-    text="Saunę, kort i masaż rezerwujesz telefonicznie lub w recepcji. Kalendarze pokazują aktualną dostępność."
+    text="Saunę i kort rezerwujesz telefonicznie lub w recepcji. Kalendarze pokazują aktualną dostępność."
     primary={{ label: "Kontakt", href: "/kontakt" }}
   />
 </BaseLayout>

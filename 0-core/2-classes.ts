@@ -12,31 +12,39 @@ import type { CalendarKey } from "./1-integrations";
  * (`membership.classes`), typowanej przez `ClassKey` — tu jej nie duplikujemy.
  */
 
+/**
+ * Specjalności pochodzą z publicznych opisów profili Instagram (2026-11-09).
+ * Krzysztof nie ma publicznego opisu — pole zostaje puste.
+ */
 export const trainers = {
   "trainer-krzysztof": {
     name: "Krzysztof",
     role: "Trener osobisty, właściciel",
     instagram: "https://www.instagram.com/krzysztofjaseniuk/",
   },
+  "trainer-cezary": {
+    name: "Cezary",
+    role: "Trener osobisty",
+    instagram: "https://www.instagram.com/trener_cezary/",
+    specialties: ["Gimnastyka sportowa", "Kalistenika"],
+  },
   "trainer-lukasz": {
     name: "Łukasz",
     role: "Trener osobisty",
     instagram: "https://www.instagram.com/kowalski_trener/",
+    specialties: ["Przygotowanie fizyczne (S&C)"],
   },
   "trainer-rafal": {
     name: "Rafał",
     role: "Trener osobisty",
     instagram: "https://www.instagram.com/rafal_trenuje94/",
-  },
-  "trainer-cezary": {
-    name: "Cezary",
-    role: "Trener osobisty",
-    instagram: "https://www.instagram.com/trener_cezary/",
+    specialties: ["Trening funkcjonalny", "Diagnostyka", "Powrót po kontuzji"],
   },
   "trainer-artur": {
     name: "Artur",
     role: "Trener boksu",
     instagram: "https://www.instagram.com/yanov.artur_boks/",
+    specialties: ["Boks od podstaw", "Technika i obrona"],
   },
 } satisfies Record<string, Trainer>;
 
@@ -68,9 +76,9 @@ export const personal_training = {
   booking: { channel: "phone", text: "Zapisy w recepcji lub telefonicznie." },
   trainers: [
     "trainer-krzysztof",
+    "trainer-cezary",
     "trainer-lukasz",
     "trainer-rafal",
-    "trainer-cezary",
     "trainer-artur",
   ],
 } satisfies PersonalTraining<TrainerKey>;

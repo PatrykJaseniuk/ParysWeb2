@@ -2,7 +2,7 @@
 import Icon from "../../2-ui/ui/Icon.astro";
 import SectionHead from "../../2-ui/ui/SectionHead.astro";
 import PriceMatrix from "../pricing/PriceMatrix.astro";
-import { clubCardFee, contact, entryPrice, monthlyFrom, optionCount, pln, withBase } from "../../1-data/business";
+import { clubCardFee, contact, entryPrice, membershipCount, monthlyFrom, optionCount, pln, withBase } from "../../1-data/business";
 
 const notes = [
   {
@@ -29,7 +29,7 @@ const notes = [
       index="02"
       label="Karnety"
       title="Cennik bez gwiazdek"
-      description={`Cztery zakresy i ${optionCount} wariantów karnetów. Wejście jednorazowe ${pln(entryPrice)}. Karnet roczny z dwoma miesiącami gratis, miesięczny już od ${pln(monthlyFrom)}.`}
+      description={`Karnety w ${membershipCount} zakresach — ${optionCount} wariantów. Wejście jednorazowe ${pln(entryPrice)}. Karnet roczny z dwoma miesiącami gratis, miesięczny już od ${pln(monthlyFrom)}.`}
       tone="light"
     />
 
