@@ -72,6 +72,18 @@ Ustaw np.:
 CHROME_PATH=/usr/bin/google-chrome npm run build
 ```
 
+## GitHub Actions
+
+Cennik buduje workflow [`.github/workflows/cennik.yml`](../.github/workflows/cennik.yml)
+przy pushu na `main` i w pull requestach, gdy zmienia się `0-core/`,
+`1-printables/` albo sam workflow. Można go też uruchomić ręcznie
+(`workflow_dispatch`).
+
+Workflow robi `npm ci`, `npm run check` i `npm run build`, a następnie
+publikuje artefakt **`cennik-a4`** z plikami PDF i HTML (30 dni). Pliki pobierzesz
+z zakładki **Actions → wybrane uruchomienie → Artifacts**. Build w CI wymaga
+Chrome — na `ubuntu-latest` jest zainstalowany domyślnie.
+
 ## Wydruk
 
 - Format: **A4 pion, jedna strona**, marginesy 12/13/7 mm wpisane w arkusz

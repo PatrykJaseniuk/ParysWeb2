@@ -1,0 +1,64 @@
+name: Cennik A4
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "0-core/**"
+      - "1-printables/**"
+      - ".github/workflows/cennik.yml"
+  pull_request:
+    paths:
+      - "0-core/**"
+      - "1-printables/**"
+      - ".github/workflows/cennik.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cennik-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: 1-printables/package-lock.json
+
+      - name: Instalacja zależności
+        working-directory: 1-printables
+        run: npm ci
+
+      - name: Kontrola typów
+        working-directory: 1-printables
+        run: npm run check
+
+      - name: Build cennika (HTML + PDF)
+        working-directory: 1-printables
+        run: npm run build
+
+      - name: Sprawdzenie artefaktów
+        working-directory: 1-printables
+        run: |
+          test -s 8-output/cennik-a4.html
+          test -s 8-output/cennik-a4.pdf
+          ls -lh 8-output/cennik-a4.html 8-output/cennik-a4.pdf
+
+      - name: Publikacja artefaktu
+        uses: actions/upload-artifact@v4
+        with:
+          name: cennik-a4
+          path: |
+            1-printables/8-output/cennik-a4.pdf
+            1-printables/8-output/cennik-a4.html
+          if-no-files-found: error
+          retention-days: 30

@@ -96,7 +96,10 @@ npm run check   # tsc --noEmit
 npm run build   # HTML + PDF; PDF wymaga Chrome (albo CHROME_PATH)
 ```
 
-Szczegóły i podział warstw opisuje [`1-printables/README.md`](1-printables/README.md).
+Automatyczny build: workflow **„Cennik A4”**
+([`.github/workflows/cennik.yml`](.github/workflows/cennik.yml)) publikuje
+artefakt `cennik-a4` z PDF i HTML. Szczegóły i podział warstw opisuje
+[`1-printables/README.md`](1-printables/README.md).
 
 ## Komendy
 
