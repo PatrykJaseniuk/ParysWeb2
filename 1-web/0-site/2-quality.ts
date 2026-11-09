@@ -11,18 +11,9 @@ import { site } from "./1-site";
  */
 export const quality = {
   requires: { business: business.model_version, site: site.site_version },
-  quality_version: "1.1.0",
+  quality_version: "1.2.0",
   publishable: false,
   questions: [
-    {
-      id: "q-6-streft-scope",
-      question: "Cennik wymienia w karnecie 6 stref tylko zajęcia Cross — czy nadal obejmuje on także zajęcia bokserskie?",
-      owner: "owner",
-      blocks_publish: false,
-      affects: [
-        "catalog.memberships.mem-6-areas"
-      ]
-    },
     {
       id: "q-legal-data",
       question: "Jaki jest NIP, pełna nazwa firmy i adres rejestrowy?",
@@ -131,13 +122,6 @@ export const quality = {
       resolution: "Zaakceptować tekst roboczy lub dostarczyć własny."
     },
     {
-      id: "dq-boxing-photo",
-      severity: "medium",
-      area: "Media",
-      issue: "Zajęcia bokserskie używają zdjęcia sali cross (ten sam asset co strefa).",
-      resolution: "Dostarczyć zdjęcie z zajęć bokserskich."
-    },
-    {
       id: "dq-zone-photos",
       severity: "medium",
       area: "Media",
@@ -211,8 +195,8 @@ export const quality = {
         reason: "Zakomentowana w kodzie, dane to tylko link do Facebooka."
       },
       {
-        item: "Modal promocyjny BOKS",
-        reason: "Wygasł 2024-10-01; w modelu jako promo-boxing ze stanem expired."
+        item: "Modal promocyjny zajęć grupowych",
+        reason: "Nieaktualny; wpis pominięty w nowym modelu."
       },
       {
         item: "Grafika „KARNET STUDENCKI 99”",

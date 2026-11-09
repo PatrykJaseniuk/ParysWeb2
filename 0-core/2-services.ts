@@ -24,7 +24,7 @@ export const services = {
   "svc-sauna": {
     slug: "sauna",
     name: "Sauna",
-    description: "Sauna sucha z leżakownią i prysznicem do 6 osób. Cena za wynajęcia całego pomieszczenia. Prosimy o rezerwacja przynajmniej 1 godzinę przed planowaną wizytą.",
+    description: "Sucha sauna z leżakownią i prysznicem. Cena dotyczy wynajęcia całego pomieszczenia na wyłączność.",
     price: { amount: 60, unit: "hour" },
     features: ["wynajęcie na 1 godzinę", "maksymalnie 6 osób"],
     booking: {
@@ -37,14 +37,14 @@ export const services = {
   "svc-massage": {
     slug: "masaz",
     name: "Masaż",
-    description: "Różne rodzaje masaży: klasyczny, sportowy, próżniowy, relaksacyjny. Zapraszamy do zapisów w recepcji, lub telefonicznie.",
+    description: "Wybierz masaż klasyczny, sportowy, próżniowy lub relaksacyjny.",
     price: { amount: 120, unit: "hour", type: "from" },
     booking: { channel: "reception", text: "Zapisy w recepcji lub telefonicznie." },
   },
   "svc-buffet": {
     slug: "bufet-sklep",
     name: "Bufet i sklep z odżywkami",
-    description: "W sklepie znajdziesz, napoje, odżywki, suplementy diety, odzież sportową, akcesoria treningowe, natomiast bufet serwuje koktajle proteinowe i kawę.",
+    description: "W sklepie kupisz napoje, odżywki, suplementy diety, odzież sportową i akcesoria treningowe. W bufecie zamówisz koktajle proteinowe i kawę.",
     price_note: "Ceny w sklepie",
   },
 } satisfies Record<string, Service<CalendarKey>>;

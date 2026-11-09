@@ -47,12 +47,6 @@ export const promotions = {
     state: "archived",
     price: { amount: 90, unit: "term" },
   },
-  "promo-boxing": {
-    name: "Boks — nowe zajęcia grupowe",
-    state: "expired",
-    valid_to: "2024-10-01",
-    conditions: "Modal promocyjny wyświetlany tylko przed 2024-10-01.",
-  },
 } satisfies Record<string, Promotion>;
 
 /** Klucze promocji — jedyny dozwolony sposób odwołania się do promocji. */

@@ -9,14 +9,14 @@ import { groupClasses, calendarById, withBase } from "../../1-data/business";
     <SectionHead
       index="03"
       label="Zajęcia grupowe"
-      title="Dwie grupy, jeden prowadzący, zero tłoku"
-      description="Cross trening i boks w małych grupach — trener ogarnia technikę każdego uczestnika, a nie tylko pierwszy rząd."
+      title="Cross trening w małych grupach"
+      description="Cross trening w małych grupach — trener prowadzi technikę każdego uczestnika, a nie tylko pierwszy rząd."
       link={{ label: "Terminy i kalendarz", href: withBase("/zajecia") }}
     />
 
-    <div class="mt-10 grid gap-4 lg:grid-cols-2 lg:gap-6">
+    <div class="mt-10 grid max-w-3xl gap-4">
       {
-        groupClasses.map((item, i) => {
+        groupClasses.map((item) => {
           const calendar = calendarById(item.calendar);
           const photo = "sala-cross";
           return (
@@ -34,9 +34,8 @@ import { groupClasses, calendarById, withBase } from "../../1-data/business";
                   decoding="async"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-ink-2 via-ink-2/20 to-transparent"></div>
-                {i === 1 && <div class="absolute inset-0 bg-brand/55 mix-blend-multiply"></div>}
                 <span class="absolute left-4 top-4 bg-brand px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-white">
-                  {i === 0 ? "Nowi w cross" : "Sztuki walki"}
+                  Małe grupy
                 </span>
               </a>
 

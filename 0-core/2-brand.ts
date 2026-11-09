@@ -173,7 +173,7 @@ export const brand = {
 
   /* --- obraz ------------------------------------------------------- */
   imagery: {
-    treatment: "Zdjęcia stref w skali szarości 55% i kolor dopiero na hover; brakujące zdjęcie boksu zastąpione duotonem w czerwieni.",
+    treatment: "Zdjęcia stref w skali szarości 55% i kolor dopiero na hover.",
     do: [
       "naturalne światło",
       "kadry poziome 16:10",

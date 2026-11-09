@@ -11,7 +11,7 @@ import { business } from "../../0-core";
  */
 export const site = {
   requires: { business: business.model_version },
-  site_version: "2.0.0",
+  site_version: "2.1.0",
   design: {
     direction: "Ciemny, techniczny interfejs w duchu karty sprzętowej: ostre krawędzie, włosowe linie 1 px, duża typografia wersalikowa i czerwień jako jedyny akcent. Cennik jest jedyną jasną sekcją — wygląda jak wydruk na ścianie recepcji.",
     scale: {
@@ -396,22 +396,6 @@ export const site = {
         variants: [],
         status: "draft"
       },
-      "asset-video-boxing": {
-        kind: "video",
-        source: "videos/group-classes/boks.mp4",
-        served: null,
-        mime: "video/mp4",
-        width: 1280,
-        height: 720,
-        duration_s: 20.04,
-        alt: "Wideo: zajęcia bokserskie na sali cross",
-        roles: [
-          "video"
-        ],
-        credit: "Sport Studio Parys",
-        variants: [],
-        status: "missing"
-      },
       "asset-video-service-badminton": {
         kind: "video",
         source: "videos/services/Badminton.mp4",
@@ -597,10 +581,6 @@ export const site = {
       "area-roll-massage": {
         photo: "asset-photo-zone-roll-massage",
         video: "asset-video-zone-roll-massage"
-      },
-      "class-boxing": {
-        photo: "asset-photo-zone-cross",
-        video: "asset-video-boxing"
       },
       "class-cross-training": {
         photo: "asset-photo-zone-cross",
@@ -938,7 +918,7 @@ export const site = {
         id: "classes",
         path: "/zajecia",
         title: "Zajęcia grupowe",
-        description: "Cross trening i boks w małych grupach. Harmonogram i zasady zapisów.",
+        description: "Cross trening w małych grupach. Harmonogram i zasady zapisów.",
         intent: "Sprzedać zajęcia grupowe i pokazać terminy.",
         noindex: false,
         source: null,

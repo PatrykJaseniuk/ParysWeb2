@@ -12,15 +12,15 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
 
 <BaseLayout
   title="Zajęcia grupowe"
-  description="Cross trening i boks w Sport Studio Parys w Nysie. Małe grupy, trener przy każdym uczestniku, harmonogram w kalendarzu online."
+  description="Cross trening w Sport Studio Parys w Nysie. Małe grupy, indywidualne podejście i harmonogram w kalendarzu online."
   canonical="/zajecia"
   jsonLd={[breadcrumbSchema([{ name: "Zajęcia grupowe", href: "/zajecia" }])]}
 >
   <PageHero
     index="03"
     label="Zajęcia grupowe"
-    title="Cross trening i boks"
-    description="Dwie grupy, małe składy, trener, który widzi każdego. Zajęcia są wliczone w karnet „6 stref + zajęcia grupowe” — Cross trening także w „4 strefy + cross”."
+    title="Cross trening"
+    description="Zajęcia w małych grupach, z trenerem, który widzi każdego. Cross trening jest wliczony w karnety „6 stref + zajęcia grupowe” i „4 strefy + cross”."
     breadcrumbs={[{ name: "Zajęcia", href: "/zajecia" }]}
   />
 
@@ -37,7 +37,6 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
         </div>
         <div class="flex flex-wrap gap-3">
           <a href="#cross-trening" class="link-arrow">Cross trening <Icon name="arrow-down" size={14} /></a>
-          <a href="#boks" class="link-arrow">Boks <Icon name="arrow-down" size={14} /></a>
         </div>
       </div>
 
@@ -77,7 +76,6 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
                     loading="lazy"
                     decoding="async"
                   />
-                  {index === 1 && <div class="absolute inset-0 bg-brand/55 mix-blend-multiply"></div>}
                 </div>
               </div>
 
@@ -93,15 +91,11 @@ const groupsCalendar = calendarById(groupClasses[0]?.calendar);
                 <dl class="mt-8 grid gap-px border border-line bg-line sm:grid-cols-2">
                   <div class="bg-ink-2 p-4">
                     <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist/80">Prowadzenie</dt>
-                    <dd class="mt-1 text-sm text-bone/85">
-                      {index === 1 ? "Andrzej — trener boksu" : "trenerzy Parys"}
-                    </dd>
+                    <dd class="mt-1 text-sm text-bone/85">trenerzy Parys</dd>
                   </div>
                   <div class="bg-ink-2 p-4">
                     <dt class="font-mono text-[9px] uppercase tracking-[0.18em] text-mist/80">W cenie karnetu</dt>
-                    <dd class="mt-1 text-sm text-bone/85">
-                      {index === 1 ? "6 stref + zajęcia grupowe" : "6 stref + zajęcia, 4 strefy + cross"}
-                    </dd>
+                    <dd class="mt-1 text-sm text-bone/85">6 stref + zajęcia grupowe, 4 strefy + cross</dd>
                   </div>
                 </dl>
 

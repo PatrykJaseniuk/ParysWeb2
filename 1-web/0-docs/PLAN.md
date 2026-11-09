@@ -100,7 +100,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 | --- | --- |
 | „Ile kosztuje karnet?” | Google → `/karnety` → macierz → telefon (sticky na mobile) |
 | „Czy jest sauna i ile kosztuje?” | Google → `/uslugi#sauna` → kalendarz → telefon |
-| „Czy jest cross / boks?” | `/zajecia` → harmonogram → karnet z zajęciami |
+| „Czy są zajęcia cross?” | `/zajecia` → harmonogram → karnet z zajęciami |
 | „Gdzie zaparkować?” | `/kontakt` → mapa (1 klik) |
 | „Czy dostanę zniżkę jako student?” | `/karnety` → FAQ „Czy przysługuje mi zniżka…” |
 
@@ -118,7 +118,7 @@ produkcyjnym (`astro preview`). Liczby dla starej strony to realny transfer
 │   ├── /strefy/sala-funkcjonalna
 │   ├── /strefy/sala-cross
 │   └── /strefy/rollmasaz-platforma-wibrujaca
-├── /zajecia            Cross trening i boks + harmonogram
+├── /zajecia            Cross trening + harmonogram
 ├── /trenerzy           Czterech trenerów + cena + jak to działa
 ├── /uslugi             Sauna, badminton, masaż, bufet + kalendarze
 ├── /kontakt            Dane, godziny, mapa, rezerwacje
@@ -320,7 +320,7 @@ formularz, potrzebny jest odbiorca (e-mail/CRM) i polityka prywatności.
 | --- | --- | --- | --- |
 | **0. Fundament** ✅ | Audyt, dane, design system, szkielet 16 podstron | zrobione | — |
 | **1. Treści** | Potwierdzenie cen, uzupełnienie opisu Sali funkcjonalnej, dane prawne | 1–2 dni pracy właściciela | lista pytań § 18 |
-| **2. Zdjęcia** | Sesja: strefy (min. 1600 px), trenerzy, boks, sauna, badminton, masaż | 0,5 dnia sesji + 2 dni obróbki | zgoda na wizerunek trenerów |
+| **2. Zdjęcia** | Sesja: strefy (min. 1600 px), trenerzy, sauna, badminton, masaż | 0,5 dnia sesji + 2 dni obróbki | zgoda na wizerunek trenerów |
 | **3. Wideo** | Kompresja 11 filmów (189 MB → ~15 MB), postery | 1 dzień | decyzja: wideo na stronie czy tylko w tle |
 | **4. Prawo** | Regulamin, polityka prywatności, NIP | 1–3 dni | prawnik / właściciel |
 | **5. Analityka** | GA4 + zgody + zdarzenia | 0,5 dnia | decyzja o banerze cookies |
@@ -337,7 +337,7 @@ Kod jest gotowy — blokują dane, nie technologia.
 | Ryzyko | Prawdopodobieństwo | Wpływ | Mitygacja |
 | --- | --- | --- | --- |
 | Ceny w danych są nieaktualne | wysokie | wysoki | Zastrzeżenie w UI + potwierdzenie przed publikacją |
-| Brak zdjęć trenerów i boksu | wysokie | średni | Monogramy; duotone dla boksu; sesja w etapie 2 |
+| Brak zdjęć trenerów | wysokie | średni | Monogramy; sesja w etapie 2 |
 | Zdjęcia 711×400 px na dużych ekranach | wysokie | średni | Ograniczone rozmiary wyświetlania, sesja zdjęciowa |
 | Brak danych prawnych | średnie | wysoki (formalny) | Dokumenty `noindex` do czasu uzupełnienia |
 | Usługi (sauna/badminton) rezerwowane przez telefon — ryzyko podwójnych rezerwacji | średnie | średni | Kalendarz jako źródło prawdy + informacja „potwierdź telefonicznie” |
@@ -359,7 +359,7 @@ Kod jest gotowy — blokują dane, nie technologia.
 6. Opis Sali funkcjonalnej (w źródle był pusty) — czy zaakceptować tekst roboczy?
 7. Czy promocja „Karnet studencki 99” obowiązuje? Jakie ma warunki i daty?
 8. Godziny recepcji w niedziele i święta.
-9. Czy są prawdziwe zdjęcia trenerów i zajęć bokserskich?
+9. Czy są prawdziwe zdjęcia trenerów?
 10. Czy potrzebna jest analityka (GA4) i baner cookies?
 
 **Opcjonalne:**
@@ -374,7 +374,7 @@ Kod jest gotowy — blokują dane, nie technologia.
 - [ ] Ceny potwierdzone przez właściciela i zaktualizowane w `business/memberships.ts`.
 - [ ] Opis Sali funkcjonalnej zaakceptowany.
 - [ ] Regulamin i polityka prywatności uzupełnione (i zdjęty `noindex`).
-- [ ] Zdjęcia: strefy ≥ 1600 px, trenerzy, boks.
+- [ ] Zdjęcia: strefy ≥ 1600 px, trenerzy.
 - [ ] Wizytówka Google zaktualizowana (godziny, zdjęcia, link do cennika).
 - [ ] `sitemap.xml` i `robots.txt` dostępne publicznie.
 - [ ] Test na urządzeniu mobilnym (iOS Safari + Android Chrome).

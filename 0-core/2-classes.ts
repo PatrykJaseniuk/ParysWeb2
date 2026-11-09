@@ -16,7 +16,7 @@ export const trainers = {
   "trainer-krzysztof": { name: "Krzysztof", role: "Trener osobisty, właściciel" },
   "trainer-lukasz": { name: "Łukasz", role: "Trener osobisty" },
   "trainer-rafal": { name: "Rafał", role: "Trener osobisty" },
-  "trainer-andrzej": { name: "Andrzej", role: "Trener boksu" },
+  "trainer-andrzej": { name: "Andrzej", role: "Trener osobisty" },
 } satisfies Record<string, Trainer>;
 
 /** Klucze trenerów — jedyny dozwolony sposób odwołania się do trenera. */
@@ -26,19 +26,10 @@ export const classes = {
   "class-cross-training": {
     slug: "cross-trening",
     name: "Cross trening",
-    summary: "Gimnastyka, podnoszenie ciężarów, boks i lekkoatletyka w jednym treningu — małe grupy, indywidualne podejście do każdego uczestnika.",
+    summary: "Gimnastyka, podnoszenie ciężarów i lekkoatletyka w jednym treningu — małe grupy, indywidualne podejście do każdego uczestnika.",
     calendar: "cal-classes",
     description:
-      "Trening, który charakteryzuje się wszechstronnością ćwiczeń z różnych dyscyplin sportowych takich jak: gimnastyka, podnoszenie ciężarów, boks, lekkoatletka. Na treningu kształtujemy wszystkie cechy motoryczne, poprawiamy wzorce ruchowe, mobilizujemy, aktywizujemy mięśnie, oraz poprawiamy wydolność sercowo-naczyniową organizmu. Treningi prowadzone są w małych grupach, co pozwala na indywidualne podejście do każdego uczestnika.",
-  },
-  "class-boxing": {
-    slug: "boks",
-    name: "Boks",
-    summary: "Technika uderzeń, defensywa i poruszanie się po ringu. Rozgrzewka, ćwiczenia techniczne i sparingi w parach — od podstaw.",
-    calendar: "cal-classes",
-    trainer: "trainer-andrzej",
-    description:
-      "Zajęcia bokserskie w naszej siłowni to świetna okazja, aby nauczyć się podstaw tego ekscytującego sportu walki. Poprowadzi je doświadczony trener, który wprowadzi uczestników w tajniki prawidłowej techniki uderzeń, defensywy i przemieszczania się po ringu. Zajęcia składają się z rozgrzewki, rozmaitych ćwiczeń technicznych, oraz sparingów w parach. Niezależnie od poziomu zaawansowania, każdy może wziąć udział i podnieść swoją kondycję fizyczną, siłę i koordynację. Zapraszamy wszystkich chętnych do dołączenia do naszej grupy bokserskiej!",
+      "Trening łączy ćwiczenia gimnastyczne, pracę z ciężarami oraz ćwiczenia lekkoatletyczne. Rozwija siłę, mobilność, koordynację i wydolność. Zajęcia w małych grupach pozwalają dostosować ćwiczenia do możliwości uczestników.",
   },
 } satisfies Record<string, GroupClass<TrainerKey, CalendarKey>>;
 

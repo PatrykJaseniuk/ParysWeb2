@@ -46,7 +46,7 @@ export const memberships = {
       },
       {
         code: "monthly_student_senior",
-        label: "Uczniowski i senior",
+        label: "Uczniowski, studencki i seniorski",
         price: { amount: 139, unit: "term" },
         term: { value: 1, unit: "month" },
         perks: ["freeze", "student-senior-eligibility"],
@@ -98,7 +98,7 @@ export const memberships = {
     options: [
       {
         code: "entry",
-        label: "Jednorazowo",
+        label: "1 wejście",
         price: { amount: 35, unit: "entry" },
         term: { value: 7, unit: "day" },
         entries: 1,
@@ -135,7 +135,7 @@ export const memberships = {
   "mem-6-areas": {
     slug: "6-stref-plus-zajecia",
     name: "6 stref + zajęcia grupowe",
-    subtitle: "6 stref + Cross trening i boks",
+    subtitle: "6 stref + Cross trening",
     areas: [
       "area-free-weights",
       "area-machines",
@@ -144,7 +144,7 @@ export const memberships = {
       "area-cross",
       "area-roll-massage",
     ],
-    classes: ["class-cross-training", "class-boxing"],
+    classes: ["class-cross-training"],
     featured: true,
     options: [
       {

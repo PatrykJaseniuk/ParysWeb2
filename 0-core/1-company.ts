@@ -18,7 +18,7 @@ export const company: Identity = {
   ],
   type: "gym",
   tagline: "Nie pozwól, aby przypadek uformował Twoje ciało",
-  description: "Siłownia i klub fitness w Nysie działający od 1989 roku. Sześć stref treningowych na 1000 m², zajęcia grupowe, trening personalny oraz sauna, badminton i masaż. Klub jest czynny całą dobę.",
+  description: "Sport Studio Parys to siłownia w Nysie działająca od 1989 roku. Na 1000 m² znajdziesz 6 stref treningowych, zajęcia grupowe i trening personalny. Klub jest dostępny dla klubowiczów 24/7. Dodatkowo możesz skorzystać z sauny, badmintona i masażu.",
   facts: { founded: 1989, area_m2: 1000, rooms: 6, open_24_7: true },
   languages: ["pl"],
   website: "https://parys.nysa.pl/",

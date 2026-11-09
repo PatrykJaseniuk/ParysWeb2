@@ -139,8 +139,6 @@ Przewijany pas nazw stref i usług, 38 s, pauza na hover, wyłączony przy `pref
 
 - **Zdjęcia stref**: 711×400 px źródła, wyświetlane max 500 px szerokości; `grayscale(0.55)`
   w spoczynku, kolor na hover — ujednolica różne warunki zdjęciowe.
-- **Boks**: to samo zdjęcie co sala cross, ale z nakładką `brand/55` + `mix-blend-multiply`
-  (duotone) — świadomy zabieg, nie udawanie zdjęcia boksu.
 - **Partnerzy**: skany kart (nie wektory) prezentowane jako karty w kaflach 16:10.
 - **Trenerzy**: monogramy (inicjał w czarnym kole) do czasu sesji zdjęciowej.
 - **Ikony**: własny zestaw 22 ikon liniowych 24×24, stroke 1,75, `currentColor`.

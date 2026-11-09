@@ -42,7 +42,7 @@ import { perks } from "./1-perks";
  * `Object.entries` / `Object.values`.
  */
 export const business = {
-  model_version: "7.0.0",
+  model_version: "8.0.0",
   meta,
   identity: company,
   brand,

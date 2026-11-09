@@ -238,7 +238,6 @@ export const site = {
     },
     bindings: {
       "area-cross": { photo: "asset-photo-zone-cross", video: "asset-video-zone-cross" },
-      "class-boxing": { photo: "asset-photo-zone-cross", video: "asset-video-boxing" },
     },
     hero: "asset-hero",
     fallbacks: { area: "placeholder", class: "duotone-reuse", trainer: "monogram", partner: "wordmark" },
