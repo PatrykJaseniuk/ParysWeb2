@@ -98,7 +98,9 @@ npm run build   # HTML + PDF; PDF wymaga Chrome (albo CHROME_PATH)
 
 Automatyczny build: workflow **„Cennik A4”**
 ([`.github/workflows/cennik.yml`](.github/workflows/cennik.yml)) publikuje
-artefakt `cennik-a4` z PDF i HTML. Szczegóły i podział warstw opisuje
+artefakt `cennik-a4` oraz stały GitHub Release:
+[`cennik-a4.pdf`](https://github.com/PatrykJaseniuk/ParysWeb2/releases/download/cennik/cennik-a4.pdf).
+Szczegóły i podział warstw opisuje
 [`1-printables/README.md`](1-printables/README.md).
 
 ## Komendy

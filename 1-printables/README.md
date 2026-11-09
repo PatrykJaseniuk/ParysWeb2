@@ -79,10 +79,18 @@ przy pushu na `main` i w pull requestach, gdy zmienia się `0-core/`,
 `1-printables/` albo sam workflow. Można go też uruchomić ręcznie
 (`workflow_dispatch`).
 
-Workflow robi `npm ci`, `npm run check` i `npm run build`, a następnie
-publikuje artefakt **`cennik-a4`** z plikami PDF i HTML (30 dni). Pliki pobierzesz
-z zakładki **Actions → wybrane uruchomienie → Artifacts**. Build w CI wymaga
-Chrome — na `ubuntu-latest` jest zainstalowany domyślnie.
+Workflow robi `npm ci`, `npm run check` i `npm run build`, a następnie:
+
+- publikuje artefakt **`cennik-a4`** z plikami PDF i HTML (30 dni) — do pobrania
+  z zakładki **Actions → wybrane uruchomienie → Artifacts**,
+- aktualizuje publiczny **GitHub Release `cennik`** ze stałymi linkami:
+
+  - `https://github.com/PatrykJaseniuk/ParysWeb2/releases/download/cennik/cennik-a4.pdf`
+  - `https://github.com/PatrykJaseniuk/ParysWeb2/releases/download/cennik/cennik-a4.html`
+
+Release powstaje tylko dla buildów z `main`; tag `cennik` wskazuje na commit
+ostatniego builda. Build w CI wymaga Chrome — na `ubuntu-latest` jest
+zainstalowany domyślnie.
 
 ## Wydruk
 

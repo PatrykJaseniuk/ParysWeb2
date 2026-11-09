@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: cennik-${{ github.ref }}
@@ -62,3 +62,20 @@ jobs:
             1-printables/8-output/cennik-a4.html
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publikacja w GitHub Release
+        if: github.ref == 'refs/heads/main'
+        working-directory: 1-printables
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="cennik"
+          TITLE="Cennik A4"
+          NOTES="Cennik A4 z modelu 0-core — PDF (1 strona A4) i HTML. Build: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --title "$TITLE" --notes "$NOTES"
+          else
+            gh release create "$TAG" --title "$TITLE" --notes "$NOTES" --target "$GITHUB_SHA"
+          fi
+          gh release upload "$TAG" 8-output/cennik-a4.pdf 8-output/cennik-a4.html --clobber
+          gh api --method PATCH "repos/${GITHUB_REPOSITORY}/git/refs/tags/${TAG}" -f sha="${GITHUB_SHA}" -F force=true
