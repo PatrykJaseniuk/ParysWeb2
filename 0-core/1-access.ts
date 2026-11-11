@@ -16,5 +16,5 @@ export const entry_policy: EntryPolicy = {
   partner_single_entry_scope: "all_areas_and_cross",
   registered_partner_access: "24_7",
   partner_cards_read_by_gate: false,
-  club_card_fee: 15,
+  club_card_fee: 20,
 };

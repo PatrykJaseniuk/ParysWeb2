@@ -7,7 +7,7 @@
  * w wariancie to błąd kompilacji.
  */
 export const perks = {
-  "student-senior-eligibility": "Uczniowie oraz studenci do 26 lat na studiach dziennych i seniorzy od 67 lat",
+  "student-retiree-eligibility": "Uczniowie oraz studenci do 26 lat na studiach dziennych i emeryci w wieku emerytalnym",
   "two-months-free": "Dwa miesiące gratis",
 } satisfies Record<string, string>;
 

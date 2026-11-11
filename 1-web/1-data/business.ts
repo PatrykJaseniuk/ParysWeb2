@@ -214,7 +214,7 @@ export const VARIANT_ORDER = [
   "two_weeks",
   "eight_entries",
   "monthly",
-  "monthly_student_senior",
+  "monthly_student_retiree",
   "yearly",
 ] as const;
 
@@ -234,10 +234,10 @@ export const VARIANT_META: Record<string, { label: string; short: string; descri
     short: "Miesiąc",
     description: "Nielimitowane wejścia przez miesiąc.",
   },
-  monthly_student_senior: {
-    label: "Miesiąc — uczeń/senior",
-    short: "Miesiąc uczeń/senior",
-    description: "Uczniowie oraz studenci do 26 lat na studiach dziennych, a także seniorzy od 67 lat.",
+  monthly_student_retiree: {
+    label: "Miesiąc — uczeń/emeryt",
+    short: "Miesiąc uczeń/emeryt",
+    description: "Uczniowie oraz studenci do 26 lat na studiach dziennych, a także emeryci w wieku emerytalnym.",
   },
   yearly: {
     label: "Karnet roczny",

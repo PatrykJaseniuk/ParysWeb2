@@ -50,7 +50,7 @@ const themeVars =
       ].join(";");
 
 const variantLabel = (id: string, label: string) =>
-  id === "monthly_student_senior" ? "Miesiąc (uczeń/senior)" : label.charAt(0) + label.slice(1).toLowerCase();
+  id === "monthly_student_retiree" ? "Miesiąc (uczeń/emeryt)" : label.charAt(0) + label.slice(1).toLowerCase();
 
 const cellClass = (access: (typeof accesses)[number]) =>
   [
@@ -258,7 +258,7 @@ const cellClass = (access: (typeof accesses)[number]) =>
               </p>
               <h2 class="mt-1.5 font-display text-xl font-bold uppercase leading-tight tracking-tight">
                 {access.name}
-              </h3>
+              </h2>
               <p class="mt-1 text-[11px] leading-snug text-[color:var(--pm-muted)]">
                 {access.subtitle ?? `${access.areas_included.length} strefy treningowe`}
               </p>

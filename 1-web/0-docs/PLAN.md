@@ -162,9 +162,9 @@ w modalu, przez co użytkownik nie mógł porównać.
   od najkrótszego do najdłuższego. Kolumna „6 stref + Cross” wyróżniona jako
   pełny zakres. Puste komórki to myślnik, nie „0 zł”.
 - **Mobile:** 4 karty (po jednej na zakres) z listą wariantów — czytelne bez poziomego scrolla.
-- **Etykiety:** zamiast krzyczących „MIESIĘCZNY uczeń/senior” — „Miesiąc (uczeń/senior)”,
+- **Etykiety:** zamiast krzyczących „MIESIĘCZNY uczeń/emeryt” — „Miesiąc (uczeń/emeryt)”,
   z krótkim opisem pod spodem.
-- **Karta klubowa 15 zł** pokazana raz, pod tabelą, jako wymóg rejestracji karnetu i dostęp 24/7.
+- **Karta klubowa 20 zł** pokazana raz, pod tabelą, jako wymóg rejestracji karnetu i dostęp 24/7.
 - **Zastrzeżenie:** „ceny potwierdź w recepcji” — bo eksport odzwierciedla stan kodu, nie cennik na ścianie.
 
 **Niespójność do rozstrzygnięcia:** karnet „4 strefy + Cross” obejmuje Cross, ale

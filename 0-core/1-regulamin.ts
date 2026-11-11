@@ -93,7 +93,7 @@ export const regulamin: LegalDocument = {
         "Karnet obowiązuje przez okres wskazany w Cenniku, liczony od dnia zakupu.",
         "Karnety są przedpłacone, nie odnawiają się automatycznie i nie podlegają zawieszaniu ani blokowaniu.",
         "Karnet jest imienny; nie można przenieść go na inną osobę ani odstąpić praw z niego wynikających.",
-        "Karnety ulgowe (uczniowski, studencki, seniorski) wymagają dokumentu potwierdzającego uprawnienie. Brak dokumentu może skutkować odmową zastosowania ceny ulgowej.",
+        "Karnety ulgowe (uczniowski, studencki, emerycki) wymagają dokumentu potwierdzającego uprawnienie. Brak dokumentu może skutkować odmową zastosowania ceny ulgowej.",
         "Zmiana Cennika nie wpływa na karnety już opłacone.",
       ],
     },

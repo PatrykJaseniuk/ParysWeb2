@@ -43,11 +43,11 @@ export const accesses = {
         term: { value: 1, unit: "month" },
       },
       {
-        code: "monthly_student_senior",
-        label: "Uczniowski, studencki i seniorski",
+        code: "monthly_student_retiree",
+        label: "Uczniowski, studencki i emerycki",
         price: { amount: 139, unit: "term" },
         term: { value: 1, unit: "month" },
-        perks: ["student-senior-eligibility"],
+        perks: ["student-retiree-eligibility"],
       },
       {
         code: "yearly",

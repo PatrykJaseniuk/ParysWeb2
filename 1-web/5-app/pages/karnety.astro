@@ -16,9 +16,9 @@ import {
 } from "../../1-data/business";
 import { breadcrumbSchema, faqSchema } from "../../2-ui/seo";
 
-const studentMonthly = accesses
+const discountedMonthly = accesses
   .find((access) => access.id === "acc-4-areas")
-  ?.variants.find((variant) => variant.id === "monthly_student_senior");
+  ?.variants.find((variant) => variant.id === "monthly_student_retiree");
 
 const faq = [
   {
@@ -34,8 +34,8 @@ const faq = [
     a: "„4 strefy + zajęcia grupowe” to cztery strefy treningowe plus zajęcia grupowe. „6 stref + zajęcia grupowe” to wszystkie sześć stref (w tym Sala cross i rollmasaż) oraz zajęcia grupowe.",
   },
   {
-    q: "Czy przysługuje mi zniżka jako uczniowi lub seniorowi?",
-    a: `Tak, w zakresie „4 strefy” karnet miesięczny kosztuje ${pln(studentMonthly?.price_pln ?? 0)} dla uczniów oraz studentów do 26 roku życia na studiach dziennych i seniorów od 67 roku życia. Wymagane okazanie dokumentu.`,
+    q: "Czy przysługuje mi zniżka jako uczniowi, studentowi lub emerytowi?",
+    a: `Tak, w zakresie „4 strefy” karnet miesięczny kosztuje ${pln(discountedMonthly?.price_pln ?? 0)} dla uczniów oraz studentów do 26 roku życia na studiach dziennych i emerytów w wieku emerytalnym. Wymagane okazanie dokumentu.`,
   },
   {
     q: "Czy wejście jednorazowe wymaga rejestracji?",

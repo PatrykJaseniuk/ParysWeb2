@@ -40,7 +40,7 @@ const VARIANT_ORDER: readonly string[] = [
   "two_weeks",
   "eight_entries",
   "monthly",
-  "monthly_student_senior",
+  "monthly_student_retiree",
   "yearly",
 ];
 
