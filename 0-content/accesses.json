@@ -5,6 +5,7 @@
       "order": 1,
       "slug": "4-strefy",
       "name": "4 strefy",
+      "featured": true,
       "areas": [
         "area-free-weights",
         "area-machines",
@@ -86,6 +87,7 @@
       "order": 2,
       "slug": "4-strefy-plus-cross",
       "name": "4 strefy + zajęcia grupowe",
+      "featured": false,
       "areas": [
         "area-free-weights",
         "area-machines",
@@ -143,6 +145,7 @@
       "order": 3,
       "slug": "5-stref",
       "name": "5 stref",
+      "featured": false,
       "areas": [
         "area-free-weights",
         "area-machines",
@@ -210,6 +213,7 @@
       "order": 4,
       "slug": "6-stref-plus-zajecia",
       "name": "6 stref + zajęcia grupowe",
+      "featured": true,
       "areas": [
         "area-free-weights",
         "area-machines",
@@ -221,7 +225,6 @@
       "classes": [
         "class-cross-training"
       ],
-      "featured": true,
       "variants": [
         {
           "code": "monthly",
@@ -258,6 +261,7 @@
       "slug": "rollmasaz",
       "name": "Rollmasaż",
       "subtitle": "Tylko rollmasaż",
+      "featured": false,
       "areas": [
         "area-roll-massage"
       ],
