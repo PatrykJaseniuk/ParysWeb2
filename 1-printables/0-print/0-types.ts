@@ -53,6 +53,8 @@ export interface PrintColumn {
 
 export interface PrintPriceCell {
   price: string;
+  /** Sama liczba, bez waluty — do gęstych tabel ściennych. */
+  price_value: string;
   /** Numery odnośników do `PrintPassTable.perk_notes`. */
   perk_numbers: number[];
 }
@@ -79,6 +81,8 @@ export interface PrintPassTable {
 export interface PrintScopeRow {
   key: string;
   name: string;
+  /** Linie pionowego nagłówka plakatu, od lewej do prawej. */
+  wall_lines: string[];
   /** Wyrównane z kolumnami tabeli cen. */
   cells: boolean[];
 }
@@ -141,7 +145,15 @@ export interface PrintPriceList {
   scope: PrintScopeTable;
   services: PrintService[];
   policy_notes: string[];
+  /** Krótkie kroki zakupu karnetu — rewers plakatu ściennego. */
+  how_to_start: string[];
   club_card_note: string;
+  /** Opłata za kartę klubową gotowa do druku, np. „20 zł”. */
+  club_card_fee: string;
+  /** „24/7” albo „w godzinach pracy recepcji”. */
+  access_window: string;
+  /** Zdanie o okresie obowiązywania cennika, np. „Cennik obowiązuje od…”. */
+  validity_note: string;
   partners: PrintPartner[];
   partners_note: string;
   contact: PrintContact;

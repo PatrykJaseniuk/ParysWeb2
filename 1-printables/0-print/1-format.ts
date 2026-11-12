@@ -13,9 +13,14 @@ const plnFormatter = new Intl.NumberFormat("pl-PL", {
   useGrouping: true,
 });
 
+/** 1490 → „1 490” — sama liczba, bez waluty. */
+export function plnValue(amount: number): string {
+  return plnFormatter.format(amount);
+}
+
 /** 1490 → „1 490 zł” (niełamliwa spacja z `Intl`). */
 export function pln(amount: number): string {
-  return `${plnFormatter.format(amount)}\u00a0zł`;
+  return `${plnValue(amount)}\u00a0zł`;
 }
 
 /**

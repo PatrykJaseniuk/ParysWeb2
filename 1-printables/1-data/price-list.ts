@@ -9,7 +9,7 @@ import type {
   PrintScopeTable,
   PrintService,
 } from "../0-print/0-types";
-import { pln, plural, validityLabel, websiteLabel } from "../0-print/1-format";
+import { pln, plnValue, plural, validityLabel, websiteLabel } from "../0-print/1-format";
 import { assertPriceListIntegrity } from "./invariants";
 
 /**
@@ -64,6 +64,9 @@ const themeToken = (key: string): string => model.brand.palette.tokens[key]?.hex
 
 const moneyText = (money: Money): string =>
   `${money.type === "from" ? "od " : ""}${pln(money.amount)}`;
+
+const moneyValue = (money: Money): string =>
+  `${money.type === "from" ? "od " : ""}${plnValue(money.amount)}`;
 
 const moneyWithUnit = (money: Money): string =>
   `${moneyText(money)}${money.unit === "hour" ? " / godz." : ""}`;
@@ -133,6 +136,7 @@ const rows: PrintPriceRow[] = orderedCodes.map((code) => ({
     return variant
       ? {
           price: moneyText(variant.price),
+          price_value: moneyValue(variant.price),
           perk_numbers: printPerks(variant)
             .map((perk) => perkNumbers.get(perk) ?? 0)
             .filter((number) => number > 0),
@@ -156,9 +160,28 @@ const passes: PrintPassTable = {
   perk_notes: perkNotes,
 };
 
+const howToStart = [
+  "Wybierz karnet z tabeli",
+  "Zarejestruj się w recepcji",
+  `Odbierz kartę klubową (${clubCardFee})`,
+  `Wejdź o dowolnej porze — ${accessWindow}`,
+];
+
+const validityNote =
+  model.pricing_policy.notes.find((note) => note.startsWith("Cennik obowiązuje od")) ?? "";
+
 const clubCardNote = model.entry_policy.access_requires_registration
   ? `Karnet wymaga rejestracji i karty klubowej (${clubCardFee}); karta daje dostęp ${accessWindow}.`
   : "Karnet nie wymaga karty klubowej.";
+
+const WALL_ZONE_LINES: Record<string, string[]> = {
+  "area-free-weights": ["WOLNE", "CIĘŻARY"],
+  "area-machines": ["MASZYNY", "ZE STOSEM"],
+  "area-cardio": ["CARDIO"],
+  "area-functional": ["SALA", "FUNKCJONALNA"],
+  "area-cross": ["SALA", "CROSS"],
+  "area-roll-massage": ["ROLLMASZAŻ", "I PLATFORMA", "WIBRUJĄCA"],
+};
 
 const scope: PrintScopeTable = {
   label: "Zakres",
@@ -167,11 +190,13 @@ const scope: PrintScopeTable = {
     ...Object.entries(model.catalog.areas).map(([key, area]) => ({
       key,
       name: area.name,
+      wall_lines: WALL_ZONE_LINES[key] ?? [area.name],
       cells: accessScopes.map((scope) => scope.area_keys.includes(key)),
     })),
     {
       key: "classes",
       name: "Zajęcia grupowe",
+      wall_lines: ["ZAJĘCIA", "GRUPOWE"],
       cells: accessScopes.map((scope) => scope.has_classes),
     },
   ],
@@ -226,8 +251,8 @@ const singleEntry = {
   validity: validityLabel(model.catalog.single_entry.term),
   facts: [
     model.entry_policy.single_entry_access === "reception_hours"
-      ? "W godzinach pracy recepcji"
-      : "Całodobowo",
+      ? "w godzinach pracy recepcji"
+      : "całodobowo",
   ],
 };
 
@@ -252,7 +277,11 @@ const doc: PrintPriceList = {
   scope,
   services,
   policy_notes: [...model.pricing_policy.notes],
+  how_to_start: howToStart,
   club_card_note: clubCardNote,
+  club_card_fee: clubCardFee,
+  access_window: accessWindow,
+  validity_note: validityNote,
   partners,
   partners_note: partnersNote,
   contact: {

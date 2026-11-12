@@ -1,4 +1,4 @@
-name: Cennik A4
+name: Cennik
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
         working-directory: 1-printables
         run: npm run check
 
-      - name: Build cennika (HTML + PDF)
+      - name: Build cenników (HTML + PDF)
         working-directory: 1-printables
         run: npm run build
 
@@ -51,15 +51,19 @@ jobs:
         run: |
           test -s 8-output/cennik-a4.html
           test -s 8-output/cennik-a4.pdf
-          ls -lh 8-output/cennik-a4.html 8-output/cennik-a4.pdf
+          test -s 8-output/cennik-sciana-a4.html
+          test -s 8-output/cennik-sciana-a4.pdf
+          ls -lh 8-output/cennik-a4.* 8-output/cennik-sciana-a4.*
 
       - name: Publikacja artefaktu
         uses: actions/upload-artifact@v7
         with:
-          name: cennik-a4
+          name: cennik
           path: |
             1-printables/8-output/cennik-a4.pdf
             1-printables/8-output/cennik-a4.html
+            1-printables/8-output/cennik-sciana-a4.pdf
+            1-printables/8-output/cennik-sciana-a4.html
           if-no-files-found: error
           retention-days: 30
 
@@ -70,12 +74,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="cennik"
-          TITLE="Cennik A4"
-          NOTES="Cennik A4 z modelu 0-core — PDF (1 strona A4) i HTML. Build: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          TITLE="Cennik"
+          NOTES="Cennik z modelu 0-core — ulotka A4 pion (2 strony) i plakat ścienny A4 poziom (2 strony), PDF i HTML. Build: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --title "$TITLE" --notes "$NOTES"
           else
             gh release create "$TAG" --title "$TITLE" --notes "$NOTES" --target "$GITHUB_SHA"
           fi
-          gh release upload "$TAG" 8-output/cennik-a4.pdf 8-output/cennik-a4.html --clobber
+          gh release upload "$TAG" 8-output/cennik-a4.pdf 8-output/cennik-a4.html 8-output/cennik-sciana-a4.pdf 8-output/cennik-sciana-a4.html --clobber
           gh api --method PATCH "repos/${GITHUB_REPOSITORY}/git/refs/tags/${TAG}" -f sha="${GITHUB_SHA}" -F force=true
