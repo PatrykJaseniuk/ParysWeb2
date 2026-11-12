@@ -2,7 +2,13 @@
 
 Repozytorium zawiera typowany model danych siłowni (**`0-core`**) oraz
 generowaną z niego statyczną stronę (**`1-web`**, Astro 5 + Tailwind 4).
-Źródłem prawdy są moduły TypeScript — nie JSON, CMS ani baza danych.
+
+Dane katalogu (firma, cennik, strefy, zajęcia, trenerzy, usługi, partnerzy,
+dodatki, wejście jednorazowe) są edytowane w **Pages CMS** jako pliki
+`0-content/*.json`. Generator `tools/cms/generate.mjs` zamienia je na typowane
+moduły `0-core/` — to one pozostają kontraktem dla strony i cennika A4.
+Marka, dokumenty prawne, `quality`, `site` i layout są nadal utrzymywane
+w TypeScripcie przez dewelopera.
 
 ## Struktura i kolejność zależności
 
@@ -12,26 +18,30 @@ nawzajem), a `0` jest korzeniem, który nie importuje niczego.
 
 | Katalog | Warstwa | Rola |
 |---|---|---|
-| `0-core/` | 0 | fakty o firmie, marka, cennik, katalog encji |
+| `0-content/` | 0 | edytowalne dane CMS (JSON); czyta je tylko generator |
+| `0-core/` | 0 | fakty o firmie, marka, cennik, katalog encji (część generowana) |
 | `1-web/` | 1 | warstwa strony (`site/`) + aplikacja Astro |
 | `1-printables/` | 1 | konsument modelu: cennik A4 do druku (PDF + HTML) |
+| `tools/cms/` | — | generator `0-content` → `0-core`; poza warstwami |
 
 Ta sama zasada obowiązuje pliki w `0-core/` — prefiks numeru wyznacza warstwę:
 
 ```text
 0-types          kontrakt kształtu (korzeń, zero importów)
-1-perks          słownik dodatków
+1-perks          * słownik dodatków
 1-meta           wersja, waluta, strefa czasowa, cennik
-1-company        tożsamość, kontakt, godziny, lokalizacja
-1-partners       partnerzy i promocje
+1-company        * tożsamość, kontakt, godziny, lokalizacja
+1-partners       * partnerzy i promocje
 1-integrations   kalendarze i analityka
 2-brand          marka: nazwa, logo, paleta, typografia, głos
-2-areas          6 stref treningowych
-2-classes        zajęcia, trenerzy, trening personalny
-2-services       usługi dodatkowe
-3-memberships    5 karnetów i 15 wariantów cenowych
-3-single-entry   samodzielne wejście jednorazowe
+2-areas          * 6 stref treningowych
+2-classes        * zajęcia, trenerzy, trening personalny
+2-services       * usługi dodatkowe
+3-accesses       * 5 karnetów i 15 wariantów cenowych
+3-single-entry   * samodzielne wejście jednorazowe
 index.ts         kompozycja i publiczny punkt wejścia rdzenia
+
+* moduł generowany z `0-content/` — nie edytuj ręcznie.
 ```
 
 ## `0-core` — model
@@ -48,6 +58,20 @@ index.ts         kompozycja i publiczny punkt wejścia rdzenia
   Zmiana kontraktu wymaga podbicia `model_version` w `0-core/index.ts`.
 - `1-web/0-site/3-invariants.ts` dokłada reguły warstwy strony (powiązania
   z plikami, assety, wersje, bramka publikacji).
+
+## CMS (Pages CMS)
+
+- Konfiguracja: [`.pages.yml`](.pages.yml); CMS edytuje pliki `0-content/*.json`.
+- Po zmianie w CMS uruchom `cd 1-web && npm run cms:sync`, a potem
+  `npm run check` i `npm run build` (oraz build w `1-printables/`).
+- `npm run cms:check` sprawdza lokalnie, czy `0-core/` odpowiada `0-content/`
+  (jest częścią `npm run check`). Build strony i cennika synchronizuje model
+  przed budową, a workflow **CMS sync** commituje wygenerowane pliki po zmianie
+  w `0-content/`.
+- Klucze encji (`key`, `code`) są tożsamością — nie zmieniaj ich po utworzeniu.
+  Kolejność w UI wyznacza pole `order`.
+- Media, dokumenty prawne, marka, SEO i layout nie są jeszcze w CMS-ie.
+- Instrukcja redaktora: [`1-web/0-docs/PAGES-CMS.md`](1-web/0-docs/PAGES-CMS.md).
 
 ## `1-web` — strona
 
@@ -109,8 +133,10 @@ Wszystkie uruchamiane w `1-web/`:
 
 ```bash
 npm install
-npm run dev          # serwer developerski (http://localhost:4321/ParysWeb2/)
-npm run check        # astro check — typy całego projektu
+npm run dev          # serwer developerski (http://localhost:4321/)
+npm run cms:sync     # 0-content/*.json → typowane 0-core
+npm run cms:check    # czy 0-core jest zsynchronizowane z 0-content
+npm run check        # cms:check + astro check — typy całego projektu
 npm run build        # build statyczny + reguły spójności modelu
 npm run preview      # podgląd builda
 npm run model:export # eksport modelu do JSON (8-output/export/model.json)

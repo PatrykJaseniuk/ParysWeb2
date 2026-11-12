@@ -1,0 +1,81 @@
+{
+  "trainers": [
+    {
+      "key": "trainer-krzysztof",
+      "order": 1,
+      "name": "Krzysztof",
+      "role": "Trener osobisty, właściciel",
+      "instagram": "https://www.instagram.com/krzysztofjaseniuk/"
+    },
+    {
+      "key": "trainer-cezary",
+      "order": 2,
+      "name": "Cezary",
+      "role": "Trener osobisty",
+      "instagram": "https://www.instagram.com/trener_cezary/",
+      "specialties": [
+        "Gimnastyka sportowa",
+        "Kalistenika"
+      ]
+    },
+    {
+      "key": "trainer-lukasz",
+      "order": 3,
+      "name": "Łukasz",
+      "role": "Trener osobisty",
+      "instagram": "https://www.instagram.com/kowalski_trener/",
+      "specialties": [
+        "Przygotowanie fizyczne (S&C)"
+      ]
+    },
+    {
+      "key": "trainer-rafal",
+      "order": 4,
+      "name": "Rafał",
+      "role": "Trener osobisty",
+      "instagram": "https://www.instagram.com/rafal_trenuje94/",
+      "specialties": [
+        "Trening funkcjonalny",
+        "Diagnostyka",
+        "Powrót po kontuzji"
+      ]
+    },
+    {
+      "key": "trainer-artur",
+      "order": 5,
+      "name": "Artur",
+      "role": "Trener boksu",
+      "instagram": "https://www.instagram.com/yanov.artur_boks/",
+      "specialties": [
+        "Boks od podstaw",
+        "Technika i obrona"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "key": "class-cross-training",
+      "order": 1,
+      "slug": "cross-trening",
+      "name": "Cross",
+      "summary": "Cross łączy gimnastykę, podnoszenie ciężarów i lekkoatletykę — małe grupy, indywidualne podejście do każdego uczestnika.",
+      "calendar": "cal-classes",
+      "description": "Cross łączy ćwiczenia gimnastyczne, pracę z ciężarami oraz ćwiczenia lekkoatletyczne. Rozwija siłę, mobilność, koordynację i wydolność. Zajęcia w małych grupach pozwalają dostosować ćwiczenia do możliwości uczestników."
+    }
+  ],
+  "personal_training": {
+    "name": "Trening personalny",
+    "description": "Zajęcia indywidualne z trenerem",
+    "booking": {
+      "channel": "phone",
+      "text": "Zapisy w recepcji lub telefonicznie."
+    },
+    "trainers": [
+      "trainer-krzysztof",
+      "trainer-cezary",
+      "trainer-lukasz",
+      "trainer-rafal",
+      "trainer-artur"
+    ]
+  }
+}

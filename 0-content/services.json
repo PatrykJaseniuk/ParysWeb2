@@ -1,0 +1,51 @@
+{
+  "services": [
+    {
+      "key": "svc-badminton",
+      "order": 1,
+      "slug": "badminton",
+      "name": "Badminton",
+      "description": "Pełnowymiarowy kort do gry w badmintona",
+      "price": {
+        "amount": 70,
+        "unit": "hour"
+      },
+      "features": [
+        "1 godzina gry"
+      ],
+      "booking": {
+        "channel": "reception"
+      },
+      "calendar": "cal-room-availability"
+    },
+    {
+      "key": "svc-sauna",
+      "order": 2,
+      "slug": "sauna",
+      "name": "Sauna",
+      "description": "Sucha sauna z leżakownią i prysznicem. Cena dotyczy wynajęcia całego pomieszczenia na wyłączność.",
+      "price": {
+        "amount": 70,
+        "unit": "hour"
+      },
+      "features": [
+        "wynajęcie na 1 godzinę",
+        "maksymalnie 6 osób"
+      ],
+      "booking": {
+        "channel": "phone",
+        "lead_time_hours": 1,
+        "text": "Rezerwacja przynajmniej godzinę przed planowaną wizytą."
+      },
+      "calendar": "cal-sauna"
+    },
+    {
+      "key": "svc-buffet",
+      "order": 3,
+      "slug": "bufet-sklep",
+      "name": "Bufet i sklep z odżywkami",
+      "description": "W sklepie kupisz napoje, odżywki, suplementy diety, odzież sportową i akcesoria treningowe. W bufecie zamówisz koktajle proteinowe i kawę.",
+      "price_note": "Ceny w sklepie"
+    }
+  ]
+}

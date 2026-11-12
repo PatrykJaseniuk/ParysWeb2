@@ -8,7 +8,8 @@
     "check": "tsc --noEmit",
     "build": "tsx 3-tools/build.ts",
     "cennik": "tsx 3-tools/build.ts",
-    "clean": "rm -rf 8-output"
+    "clean": "rm -rf 8-output",
+    "prebuild": "node ../tools/cms/generate.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.2.6",

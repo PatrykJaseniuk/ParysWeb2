@@ -9,6 +9,10 @@ znajduje się w [`README.md`](README.md).
 - Po każdej zmianie modelu lub kodu uruchom: `cd 1-web && npm run check && npm run build`, a dla druku `cd 1-printables && npm run check && npm run build`.
 - Nie edytuj artefaktów: `1-web/8-output/`, `1-web/.astro/`, `node_modules/`. Nie są źródłem
   prawdy.
+- Nie edytuj wygenerowanych modułów `0-core/1-company.ts`, `1-perks.ts`,
+  `1-partners.ts`, `2-areas.ts`, `2-classes.ts`, `2-services.ts`,
+  `3-single-entry.ts`, `3-accesses.ts` — zmieniaj `0-content/*.json` i uruchom
+  `cd 1-web && npm run cms:sync`.
 
 ## Wdrożenie
 
@@ -26,13 +30,31 @@ znajduje się w [`README.md`](README.md).
 
 - Katalogi w rootcie: **większy numer zależy od mniejszego**, ten sam numer =
   ten sam poziom (bez importów między sobą), `0` nie importuje niczego.
+  - `0-content/` — edytowalne dane CMS (JSON); czyta je tylko generator,
   - `0-core/` — rdzeń modelu, zero zależności zewnętrznych,
   - `1-web/` — konsument rdzenia (strona Astro),
   - `1-printables/` — kolejny konsument modelu: cennik A4 do druku (PDF/HTML).
+- Poza numeracją warstw leży `tools/cms/` — generator `0-content` → `0-core`;
+  nie importuje go żadna warstwa, więc nie może wejść do bundla strony.
 - Ta sama zasada obowiązuje pliki w `0-core/`: prefiks numeru to warstwa,
   import wolno prowadzić tylko do pliku z **niższym** numerem.
   `0-core/index.ts` jest wyjątkiem — to kompozycja i publiczny punkt wejścia.
 - Nie twórz importów „w górę" ani między plikami o tym samym numerze.
+
+## CMS (`0-content`)
+
+- Źródłem danych katalogu (firma, cennik, strefy, zajęcia, trenerzy, usługi,
+  partnerzy, dodatki, wejście jednorazowe) są pliki `0-content/*.json`
+  edytowane w Pages CMS (`.pages.yml`).
+- Generator `tools/cms/generate.mjs` waliduje dane i zapisuje typowane moduły
+  w `0-core/`. Uruchamiaj `cd 1-web && npm run cms:sync`; `npm run cms:check`
+  (część `npm run check`) wykrywa rozjazd bez zapisu.
+- W JSON-ie kolejność wyznacza pole `order` (1 = pierwszy); generator składa
+  rekord w tej kolejności. Klucz (`key` / `code`) jest tożsamością i nie wolno
+  go zmieniać po utworzeniu.
+- Dokumenty prawne, marka, `quality`, `site` i layout pozostają poza CMS-em.
+- Media (zdjęcia) nie są jeszcze podłączone do CMS-a; edycja plików i bindingów
+  w `1-web/0-site/1-site.ts` odbywa się ręcznie.
 
 ## Model (`0-core`)
 
@@ -110,7 +132,8 @@ Zasady:
 
 ```bash
 cd 1-web
-npm run check        # 0 errors, 0 warnings
+npm run cms:check    # 0-content ↔ 0-core bez rozjazdu
+npm run check        # cms:check + astro check (0 errors, 0 warnings)
 npm run build        # build + assertModelIntegrity() przy starcie
 npm run model:export # opcjonalnie: poprawny 8-output/export/model.json
 

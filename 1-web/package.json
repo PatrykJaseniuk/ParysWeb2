@@ -7,14 +7,16 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "npm run cms:sync && astro build",
     "preview": "astro preview",
-    "check": "astro check",
+    "check": "npm run cms:check && astro check",
     "model:check": "astro check",
     "model:export": "node 6-tools/export-model.mjs",
     "assets": "python3 6-tools/prepare_assets.py",
     "brand:md": "node 6-tools/export-brand.mjs",
-    "lighthouse": "node 6-tools/lighthouse.mjs"
+    "lighthouse": "node 6-tools/lighthouse.mjs",
+    "cms:sync": "node ../tools/cms/generate.mjs",
+    "cms:check": "node ../tools/cms/generate.mjs --check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",

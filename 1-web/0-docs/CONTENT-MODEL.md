@@ -1,5 +1,10 @@
 # Model — trzy moduły TS, jak zależą i jak je edytować
 
+> **Aktualizacja (2026-11-12):** dane katalogu (firma, cennik, strefy,
+> zajęcia, trenerzy, usługi, partnerzy, dodatki, wejście jednorazowe) są
+> edytowane w Pages CMS jako `0-content/*.json` i generowane do `0-core/`
+> przez `tools/cms/generate.mjs`. Dokument poniżej opisuje układ sprzed CMS-a.
+>
 > **Uwaga historyczna (2026-11-06):** ten dokument opisuje układ sprzed
 > przeniesienia rdzenia do `0-core/` i numeracji warstw w `1-web/`.
 > Aktualny układ katalogów i ścieżki opisują [`../../README.md`](../../README.md)

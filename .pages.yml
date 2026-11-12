@@ -1,0 +1,832 @@
+# Konfiguracja Pages CMS dla Parysa.
+# CMS edytuje wyłącznie pliki w 0-content/. Model 0-core jest generowany
+# z tych plików przez tools/cms/generate.mjs — nie edytuj 0-core ręcznie.
+#
+# Klucze encji są tożsamością: po utworzeniu wpisu nie zmieniaj pola "key".
+# Kolejność w UI wyznacza pole "order" (1 = pierwszy).
+
+content:
+  - name: firma
+    label: Firma i kontakt
+    type: file
+    path: 0-content/company.json
+    format: json
+    fields:
+      - name: display_name
+        label: Nazwa wyświetlana
+        type: string
+        required: true
+      - name: legal_name
+        label: Nazwa prawna
+        type: string
+      - name: nip
+        label: NIP
+        type: string
+        pattern: "^[0-9]{10}$"
+      - name: regon
+        label: REGON
+        type: string
+        pattern: "^[0-9]{9,14}$"
+      - name: alternate_names
+        label: Nazwy alternatywne
+        type: string
+        list: true
+      - name: type
+        label: Typ obiektu
+        type: select
+        options:
+          values:
+            - name: gym
+              label: Siłownia
+            - name: fitness_club
+              label: Klub fitness
+            - name: sports_center
+              label: Centrum sportowe
+      - name: tagline
+        label: Motto
+        type: string
+        required: true
+      - name: description
+        label: Opis
+        type: text
+        required: true
+      - name: facts
+        label: Fakty
+        type: object
+        fields:
+          - name: founded
+            label: Rok założenia
+            type: number
+            required: true
+          - name: area_m2
+            label: Powierzchnia (m²)
+            type: number
+            required: true
+          - name: rooms
+            label: Liczba sal
+            type: number
+            required: true
+          - name: open_24_7
+            label: Otwarte 24/7
+            type: boolean
+      - name: languages
+        label: Języki
+        type: string
+        list: true
+      - name: website
+        label: Strona internetowa
+        type: string
+        required: true
+      - name: address
+        label: Adres
+        type: object
+        fields:
+          - name: street
+            label: Ulica i numer
+            type: string
+            required: true
+          - name: city
+            label: Miasto
+            type: string
+            required: true
+          - name: postal_code
+            label: Kod pocztowy
+            type: string
+            pattern: "^[0-9]{2}-[0-9]{3}$"
+            required: true
+          - name: country_code
+            label: Kod kraju
+            type: string
+            required: true
+      - name: contact
+        label: Kontakt
+        type: object
+        fields:
+          - name: phone_e164
+            label: Telefon (E.164)
+            type: string
+            pattern: "^\\+[1-9][0-9]{7,14}$"
+            required: true
+          - name: phone_display
+            label: Telefon (wyświetlany)
+            type: string
+            required: true
+          - name: email
+            label: E-mail
+            type: string
+            required: true
+      - name: hours
+        label: Godziny
+        type: object
+        fields:
+          - name: facility
+            label: Obiekt
+            type: object
+            fields:
+              - name: mode
+                label: Tryb
+                type: select
+                options:
+                  values:
+                    - name: "24_7"
+                      label: Całodobowo
+                    - name: limited
+                      label: Ograniczone
+              - name: requires
+                label: Wymaga
+                type: select
+                options:
+                  values:
+                    - name: access
+                      label: Karnetu / karty
+                    - name: none
+                      label: Niczego
+              - name: note
+                label: Uwaga
+                type: text
+          - name: reception
+            label: Recepcja
+            type: object
+            list: true
+            fields:
+              - name: days
+                label: Dni
+                type: select
+                options:
+                  multiple: true
+                  values:
+                    - name: mon
+                      label: Poniedziałek
+                    - name: tue
+                      label: Wtorek
+                    - name: wed
+                      label: Środa
+                    - name: thu
+                      label: Czwartek
+                    - name: fri
+                      label: Piątek
+                    - name: sat
+                      label: Sobota
+                    - name: sun
+                      label: Niedziela
+              - name: open
+                label: Otwarcie
+                type: string
+                pattern: "^[0-2][0-9]:[0-5][0-9]$"
+              - name: close
+                label: Zamknięcie
+                type: string
+                pattern: "^[0-2][0-9]:[0-5][0-9]$"
+              - name: closed
+                label: Zamknięte
+                type: boolean
+      - name: location
+        label: Lokalizacja
+        type: object
+        fields:
+          - name: lat
+            label: Szerokość geograficzna
+            type: number
+            required: true
+          - name: lng
+            label: Długość geograficzna
+            type: number
+            required: true
+          - name: place_name
+            label: Nazwa miejsca
+            type: string
+            required: true
+          - name: google_place_id
+            label: Google Place ID
+            type: string
+          - name: map_embed_url
+            label: URL mapy (embed)
+            type: text
+            required: true
+      - name: social
+        label: Social media
+        type: object
+        list: true
+        fields:
+          - name: platform
+            label: Platforma
+            type: select
+            options:
+              values:
+                - name: facebook
+                  label: Facebook
+                - name: instagram
+                  label: Instagram
+                - name: youtube
+                  label: YouTube
+                - name: tiktok
+                  label: TikTok
+                - name: google
+                  label: Google
+          - name: url
+            label: URL
+            type: string
+            required: true
+          - name: handle
+            label: Nazwa profilu
+            type: string
+            required: true
+
+  - name: cennik
+    label: Cennik i karnety
+    type: file
+    path: 0-content/accesses.json
+    format: json
+    fields:
+      - name: accesses
+        label: Karnety
+        type: object
+        list: true
+        fields:
+          - name: key
+            label: Klucz (nie zmieniaj po utworzeniu)
+            type: string
+            pattern: "^acc-[a-z0-9-]+$"
+            description: "Stabilny identyfikator, np. acc-4-areas. Zmiana klucza wymaga migracji referencji."
+            required: true
+          - name: order
+            label: Kolejność
+            type: number
+            description: "1 = pierwszy karnet w cenniku."
+            required: true
+          - name: slug
+            label: Slug
+            type: string
+            pattern: "^[a-z0-9-]+$"
+            required: true
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: subtitle
+            label: Podtytuł
+            type: string
+          - name: featured
+            label: Wyróżniony
+            type: boolean
+          - name: areas
+            label: Strefy
+            type: select
+            options:
+              multiple: true
+              values:
+                - name: area-free-weights
+                  label: Wolne ciężary
+                - name: area-machines
+                  label: Maszyny ze stosem
+                - name: area-cardio
+                  label: Cardio
+                - name: area-functional
+                  label: Sala funkcjonalna
+                - name: area-cross
+                  label: Sala cross
+                - name: area-roll-massage
+                  label: Rollmasaż i platforma wibrująca
+            required: true
+          - name: classes
+            label: Zajęcia grupowe
+            type: select
+            options:
+              multiple: true
+              values:
+                - name: class-cross-training
+                  label: Cross
+          - name: variants
+            label: Warianty cenowe
+            type: object
+            list: true
+            fields:
+              - name: code
+                label: Kod wariantu
+                type: select
+                options:
+                  values:
+                    - name: two_weeks
+                      label: 2 tygodnie
+                    - name: eight_entries
+                      label: 8 wejść
+                    - name: monthly
+                      label: Miesięczny
+                    - name: monthly_student_retiree
+                      label: Miesięczny — uczeń/emeryt
+                    - name: yearly
+                      label: Roczny
+                required: true
+              - name: label
+                label: Etykieta
+                type: string
+                required: true
+              - name: price
+                label: Cena
+                type: object
+                fields:
+                  - name: amount
+                    label: Kwota PLN
+                    type: number
+                    required: true
+                  - name: unit
+                    label: Jednostka
+                    type: select
+                    options:
+                      values:
+                        - name: entry
+                          label: wejście
+                        - name: term
+                          label: okres
+                        - name: hour
+                          label: godzina
+                        - name: item
+                          label: sztuka
+                    required: true
+                  - name: type
+                    label: Typ ceny
+                    type: select
+                    options:
+                      values:
+                        - name: from
+                          label: "od …"
+              - name: term
+                label: Okres ważności
+                type: object
+                fields:
+                  - name: value
+                    label: Liczba
+                    type: number
+                    required: true
+                  - name: unit
+                    label: Jednostka
+                    type: select
+                    options:
+                      values:
+                        - name: day
+                          label: dni
+                        - name: week
+                          label: tygodnie
+                        - name: month
+                          label: miesiące
+                        - name: year
+                          label: lata
+                    required: true
+              - name: entries
+                label: Liczba wejść
+                type: number
+              - name: perks
+                label: Dodatki
+                type: select
+                options:
+                  multiple: true
+                  values:
+                    - name: student-retiree-eligibility
+                      label: Uczniowie, studenci i emeryci
+                    - name: two-months-free
+                      label: Dwa miesiące gratis
+
+  - name: strefy
+    label: Strefy treningowe
+    type: file
+    path: 0-content/areas.json
+    format: json
+    fields:
+      - name: areas
+        label: Strefy
+        type: object
+        list: true
+        fields:
+          - name: key
+            label: Klucz (nie zmieniaj po utworzeniu)
+            type: string
+            pattern: "^area-[a-z0-9-]+$"
+            required: true
+          - name: order
+            label: Kolejność
+            type: number
+            required: true
+          - name: slug
+            label: Slug
+            type: string
+            pattern: "^[a-z0-9-]+$"
+            required: true
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: short
+            label: Krótki opis
+            type: string
+            required: true
+          - name: description
+            label: Opis
+            type: text
+            required: true
+          - name: calendar
+            label: Kalendarz
+            type: select
+            options:
+              values:
+                - name: cal-classes
+                  label: Harmonogram Cross
+                - name: cal-room-availability
+                  label: Dostępność sali
+                - name: cal-sauna
+                  label: Sauna
+                - name: cal-rollmassage
+                  label: Rollmasaż
+
+  - name: zajecia
+    label: Trenerzy i zajęcia
+    type: file
+    path: 0-content/classes.json
+    format: json
+    fields:
+      - name: trainers
+        label: Trenerzy
+        type: object
+        list: true
+        fields:
+          - name: key
+            label: Klucz (nie zmieniaj po utworzeniu)
+            type: string
+            pattern: "^trainer-[a-z0-9-]+$"
+            required: true
+          - name: order
+            label: Kolejność
+            type: number
+            required: true
+          - name: name
+            label: Imię
+            type: string
+            required: true
+          - name: role
+            label: Rola
+            type: string
+            required: true
+          - name: instagram
+            label: Instagram
+            type: string
+          - name: specialties
+            label: Specjalizacje
+            type: string
+            list: true
+      - name: classes
+        label: Zajęcia
+        type: object
+        list: true
+        fields:
+          - name: key
+            label: Klucz (nie zmieniaj po utworzeniu)
+            type: string
+            pattern: "^class-[a-z0-9-]+$"
+            required: true
+          - name: order
+            label: Kolejność
+            type: number
+            required: true
+          - name: slug
+            label: Slug
+            type: string
+            pattern: "^[a-z0-9-]+$"
+            required: true
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: summary
+            label: Streszczenie
+            type: text
+            required: true
+          - name: description
+            label: Opis
+            type: text
+            required: true
+          - name: calendar
+            label: Kalendarz
+            type: select
+            options:
+              values:
+                - name: cal-classes
+                  label: Harmonogram Cross
+                - name: cal-room-availability
+                  label: Dostępność sali
+                - name: cal-sauna
+                  label: Sauna
+                - name: cal-rollmassage
+                  label: Rollmasaż
+          - name: trainer
+            label: Trener
+            type: select
+            options:
+              values:
+                - name: trainer-krzysztof
+                  label: Krzysztof
+                - name: trainer-cezary
+                  label: Cezary
+                - name: trainer-lukasz
+                  label: Łukasz
+                - name: trainer-rafal
+                  label: Rafał
+                - name: trainer-artur
+                  label: Artur
+      - name: personal_training
+        label: Trening personalny
+        type: object
+        fields:
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: description
+            label: Opis
+            type: text
+            required: true
+          - name: booking
+            label: Rezerwacja
+            type: object
+            fields:
+              - name: channel
+                label: Kanał
+                type: select
+                options:
+                  values:
+                    - name: phone
+                      label: Telefon
+                    - name: reception
+                      label: Recepcja
+                    - name: online
+                      label: Online
+              - name: text
+                label: Opis rezerwacji
+                type: text
+          - name: trainers
+            label: Trenerzy
+            type: select
+            options:
+              multiple: true
+              values:
+                - name: trainer-krzysztof
+                  label: Krzysztof
+                - name: trainer-cezary
+                  label: Cezary
+                - name: trainer-lukasz
+                  label: Łukasz
+                - name: trainer-rafal
+                  label: Rafał
+                - name: trainer-artur
+                  label: Artur
+
+  - name: uslugi
+    label: Usługi
+    type: file
+    path: 0-content/services.json
+    format: json
+    fields:
+      - name: services
+        label: Usługi
+        type: object
+        list: true
+        fields:
+          - name: key
+            label: Klucz (nie zmieniaj po utworzeniu)
+            type: string
+            pattern: "^svc-[a-z0-9-]+$"
+            required: true
+          - name: order
+            label: Kolejność
+            type: number
+            required: true
+          - name: slug
+            label: Slug
+            type: string
+            pattern: "^[a-z0-9-]+$"
+            required: true
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: description
+            label: Opis
+            type: text
+            required: true
+          - name: price
+            label: Cena
+            type: object
+            fields:
+              - name: amount
+                label: Kwota PLN
+                type: number
+              - name: unit
+                label: Jednostka
+                type: select
+                options:
+                  values:
+                    - name: entry
+                      label: wejście
+                    - name: term
+                      label: okres
+                    - name: hour
+                      label: godzina
+                    - name: item
+                      label: sztuka
+              - name: type
+                label: Typ ceny
+                type: select
+                options:
+                  values:
+                    - name: from
+                      label: "od …"
+          - name: price_note
+            label: Nota o cenie
+            type: string
+          - name: features
+            label: Elementy w cenie
+            type: string
+            list: true
+          - name: booking
+            label: Rezerwacja
+            type: object
+            fields:
+              - name: channel
+                label: Kanał
+                type: select
+                options:
+                  values:
+                    - name: phone
+                      label: Telefon
+                    - name: reception
+                      label: Recepcja
+                    - name: online
+                      label: Online
+                    - name: none
+                      label: Brak
+              - name: lead_time_hours
+                label: Wyprzedzenie (godziny)
+                type: number
+              - name: text
+                label: Opis rezerwacji
+                type: text
+          - name: calendar
+            label: Kalendarz
+            type: select
+            options:
+              values:
+                - name: cal-classes
+                  label: Harmonogram Cross
+                - name: cal-room-availability
+                  label: Dostępność sali
+                - name: cal-sauna
+                  label: Sauna
+                - name: cal-rollmassage
+                  label: Rollmasaż
+
+  - name: partnerzy
+    label: Partnerzy
+    type: file
+    path: 0-content/partners.json
+    format: json
+    fields:
+      - name: partners
+        label: Programy partnerskie
+        type: object
+        list: true
+        fields:
+          - name: key
+            label: Klucz (nie zmieniaj po utworzeniu)
+            type: string
+            pattern: "^partner-[a-z0-9-]+$"
+            required: true
+          - name: order
+            label: Kolejność
+            type: number
+            required: true
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: can_register_club_card
+            label: Można odebrać kartę klubową
+            type: boolean
+          - name: terminal_visit_registration
+            label: Rejestracja wizyty w terminalu
+            type: boolean
+          - name: note
+            label: Uwaga
+            type: text
+
+  - name: dodatki
+    label: Dodatki i benefity
+    type: file
+    path: 0-content/perks.json
+    format: json
+    fields:
+      - name: perks
+        label: Dodatki
+        type: object
+        list: true
+        fields:
+          - name: code
+            label: Kod (nie zmieniaj po utworzeniu)
+            type: string
+            pattern: "^[a-z0-9-]+$"
+            required: true
+          - name: order
+            label: Kolejność
+            type: number
+            required: true
+          - name: label
+            label: Etykieta
+            type: string
+            required: true
+
+  - name: wejscie
+    label: Wejście jednorazowe
+    type: file
+    path: 0-content/single-entry.json
+    format: json
+    fields:
+      - name: single_entry
+        label: Wejście jednorazowe
+        type: object
+        fields:
+          - name: name
+            label: Nazwa
+            type: string
+            required: true
+          - name: description
+            label: Opis
+            type: text
+            required: true
+          - name: price
+            label: Cena
+            type: object
+            fields:
+              - name: amount
+                label: Kwota PLN
+                type: number
+                required: true
+              - name: unit
+                label: Jednostka
+                type: select
+                options:
+                  values:
+                    - name: entry
+                      label: wejście
+                    - name: term
+                      label: okres
+                    - name: hour
+                      label: godzina
+                    - name: item
+                      label: sztuka
+                required: true
+          - name: term
+            label: Ważność
+            type: object
+            fields:
+              - name: value
+                label: Liczba
+                type: number
+                required: true
+              - name: unit
+                label: Jednostka
+                type: select
+                options:
+                  values:
+                    - name: day
+                      label: dni
+                    - name: week
+                      label: tygodnie
+                    - name: month
+                      label: miesiące
+                    - name: year
+                      label: lata
+                required: true
+          - name: areas
+            label: Strefy
+            type: select
+            options:
+              multiple: true
+              values:
+                - name: area-free-weights
+                  label: Wolne ciężary
+                - name: area-machines
+                  label: Maszyny ze stosem
+                - name: area-cardio
+                  label: Cardio
+                - name: area-functional
+                  label: Sala funkcjonalna
+                - name: area-cross
+                  label: Sala cross
+                - name: area-roll-massage
+                  label: Rollmasaż i platforma wibrująca
+            required: true
+          - name: classes
+            label: Zajęcia grupowe
+            type: select
+            options:
+              multiple: true
+              values:
+                - name: class-cross-training
+                  label: Cross

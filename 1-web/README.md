@@ -2,7 +2,8 @@
 
 Konsument rdzenia [`../0-core`](../0-core): statyczna strona **Astro 5 +
 Tailwind CSS 4 + TypeScript**. Zero frameworka JS na kliencie; treści pochodzą
-z typowanego modelu, nie z CMS-a ani JSON-a.
+z typowanego modelu `0-core`, generowanego dla katalogu z `0-content/`
+(edytowanego w Pages CMS).
 
 ## Układ katalogów
 
@@ -50,8 +51,9 @@ Komponenty nie czytają modelu bezpośrednio — tylko przez `1-data/business.ts
 
 ```bash
 npm install
-npm run dev          # http://localhost:4321/ParysWeb2/
-npm run check        # astro check (typy całego projektu)
+npm run dev          # http://localhost:4321/
+npm run cms:sync     # 0-content/*.json → 0-core
+npm run check        # cms:check + astro check (typy całego projektu)
 npm run build        # build + assertModelIntegrity() przy starcie
 npm run preview      # podgląd builda
 npm run model:export # 8-output/export/model.json

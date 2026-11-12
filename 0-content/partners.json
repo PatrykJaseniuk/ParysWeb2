@@ -1,0 +1,36 @@
+{
+  "partners": [
+    {
+      "key": "partner-multisport",
+      "order": 1,
+      "name": "MultiSport",
+      "can_register_club_card": false,
+      "terminal_visit_registration": false,
+      "note": "Wejście jednorazowe do wszystkich stref i Cross, tylko w godzinach pracy recepcji — wymagana weryfikacja tożsamości przez pracownika."
+    },
+    {
+      "key": "partner-medicover",
+      "order": 2,
+      "name": "Medicover Sport",
+      "can_register_club_card": true,
+      "terminal_visit_registration": true,
+      "note": "Wejście jednorazowe do wszystkich stref i Cross. Po rejestracji karta klubowa 24/7 i samodzielna rejestracja wizyty w terminalu."
+    },
+    {
+      "key": "partner-fitprofit",
+      "order": 3,
+      "name": "FitProfit",
+      "can_register_club_card": true,
+      "terminal_visit_registration": true,
+      "note": "Wejście jednorazowe do wszystkich stref i Cross. Po rejestracji karta klubowa 24/7 i samodzielna rejestracja wizyty w terminalu."
+    },
+    {
+      "key": "partner-pzu",
+      "order": 4,
+      "name": "PZU",
+      "can_register_club_card": true,
+      "terminal_visit_registration": true,
+      "note": "Wejście jednorazowe do wszystkich stref i Cross. Po rejestracji karta klubowa 24/7 i samodzielna rejestracja wizyty w terminalu."
+    }
+  ]
+}

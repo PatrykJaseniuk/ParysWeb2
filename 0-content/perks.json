@@ -1,0 +1,14 @@
+{
+  "perks": [
+    {
+      "code": "student-retiree-eligibility",
+      "label": "Uczniowie oraz studenci do 26 lat na studiach dziennych i emeryci w wieku emerytalnym",
+      "order": 1
+    },
+    {
+      "code": "two-months-free",
+      "label": "Dwa miesiące gratis",
+      "order": 2
+    }
+  ]
+}

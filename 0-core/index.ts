@@ -41,6 +41,10 @@ import { membership_agreement } from "./2-membership-agreement";
  *   3-single-entry.ts   wejście jednorazowe poza karnetami
  *   index.ts            kompozycja — najwyższa warstwa, importuje wszystko
  *
+ * Część modułów katalogu jest generowana z `0-content/*.json` przez
+ * `tools/cms/generate.mjs` — nie edytuj ich ręcznie, zmieniaj JSON i uruchom
+ * `npm run cms:sync` w `1-web`.
+ *
  * Tożsamość encji jest kluczem rekordu, nie polem `id`. Referencje używają
  * typów kluczy (`AreaKey`, `ClassKey`, …), więc nieistniejąca referencja to
  * błąd kompilacji, a nie błąd runtime.

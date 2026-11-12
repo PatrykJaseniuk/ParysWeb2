@@ -5,11 +5,15 @@ on:
     branches: [main]
     paths:
       - "0-core/**"
+      - "0-content/**"
+      - "tools/cms/**"
       - "1-printables/**"
       - ".github/workflows/cennik.yml"
   pull_request:
     paths:
       - "0-core/**"
+      - "0-content/**"
+      - "tools/cms/**"
       - "1-printables/**"
       - ".github/workflows/cennik.yml"
   workflow_dispatch:
@@ -33,6 +37,9 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: 1-printables/package-lock.json
+
+      - name: Synchronizuj model z 0-content
+        run: node tools/cms/generate.mjs
 
       - name: Instalacja zależności
         working-directory: 1-printables

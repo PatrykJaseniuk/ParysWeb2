@@ -1,13 +1,17 @@
 # CMS dla Parysa — warianty integracji, koszty i rekomendacja
 
-**Data:** 2026-11-12 · **Status:** analiza, nic nie zostało wdrożone
+**Data:** 2026-11-12 · **Status:** analiza; MVP wariantu A wdrożony na
+gałęzi `cms/pages-cms` — instrukcja redaktora:
+[`PAGES-CMS.md`](PAGES-CMS.md)
 **Zakres:** sposoby dołączenia CMS-a do obecnego modelu (`0-core/`) i strony
 (`1-web/`), bez zmiany publicznego adresu i bez utraty typu danych.
 
 ## W skrócie
 
-- **A. Git-based CMS** (Pages CMS, Sveltia, Decap) — CMS zapisuje JSON/YAML
-  commitem do repo, CI generuje z niego typowany `0-core/`. **Rekomendacja.**
+- **A. Git-based CMS** (Pages CMS, Sveltia, Decap, TinaCloud, CloudCannon) —
+  CMS zapisuje dane commitem do repo, CI generuje z nich typowany `0-core/`.
+  **Rekomendacja.** Jeśli redakcja ma nie mieć konta GitHub — TinaCloud
+  (konto e-mail) albo CloudCannon.
 - **B. Headless SaaS** (Sanity, Storyblok) — wygodna redakcja i podgląd, ale
   abonament, snapshot w repo i drugi hosting do preview.
 - **C. Self-hosted** (Directus, Payload, Strapi) — pełny panel i role, ale
@@ -92,11 +96,12 @@ commit do repozytorium. Push na `main` uruchamia istniejący
 
 | Narzędzie | Jak działa | Zalety | Ograniczenia |
 |---|---|---|---|
-| **Pages CMS** | hosted lub self-host; konfiguracja w `.pages.yml`; dostęp przez GitHub App | najmniej pracy, brak własnego OAuth, edycja plików i mediów, open source | interfejs głównie angielski; hosted zależy od zewnętrznego serwisu; GitHub App prosi o szerokie uprawnienia (m.in. Actions) |
+| **Pages CMS** | hosted lub self-host; konfiguracja w `.pages.yml`; dostęp przez GitHub App; **redaktorów można zaprosić e-mailem, bez konta GitHub** | najmniej pracy, brak własnego OAuth, edycja plików i mediów, darmowy i open source | interfejs głównie angielski; hosted zależy od zewnętrznego serwisu; GitHub App prosi o szerokie uprawnienia (m.in. Actions); brak granularnych uprawnień (zapowiedziane) |
 | **Sveltia CMS** | kliencki SPA w `/admin`, konfiguracja zgodna z Decap; GitHub/GitLab; 25+ języków interfejsu | darmowy, MIT, dobry UX i mobile, aktywnie rozwijany, wielojęzyczny interfejs (polski warto potwierdzić w wybranej wersji) | brak wbudowanego logowania — trzeba postawić OAuth proxy (np. Cloudflare Worker); obecnie beta, GA planowane na koniec 2026; edytor musi mieć konto GitHub |
 | **Decap CMS** | poprzednik Sveltii, ten sam model konfiguracji | dojrzały, dużo dokumentacji, editorial workflow (PR) | wolniejszy rozwój, cięższy UI, OAuth również trzeba obsłużyć |
 | **Keystatic** | integracja z Astro, schemat w TS, świetny DX | najlepsze typowanie formularzy, lokalny tryb deweloperski | tryb GitHub wymaga hosta Node.js na API routes — **nie działa na czystym GitHub Pages**; trzebaby dodać serwer albo Keystatic Cloud |
-| **TinaCMS** | Git-backed + Tina Cloud, visual editing | podgląd wizualny, dobre dla marketingu | cięższy integracyjnie, uzależnienie od Tina Cloud, większy koszt złożoności |
+| **TinaCMS** | Git-backed + Tina Cloud, visual editing | podgląd wizualny, dobre dla marketingu; **redaktorzy mogą logować się e-mailem, bez konta GitHub** | cięższy integracyjnie, uzależnienie od Tina Cloud, większy koszt złożoności; TinaCloud obsługuje dziś tylko repo GitHub |
+| **CloudCannon** | hosted, Git-backed; własne konta użytkowników i role | redaktorzy nie potrzebują konta GitHub; visual editing, workflow gałęzi | płatny od ok. 55 USD/mies. za 3 użytkowników; zewnętrzny dostawca |
 
 ### 2.2. Jak to wpasować w obecny model
 
@@ -224,24 +229,177 @@ Rekomendacja: na start opcja 1 + testowy PR; przy większym zespole opcja 2.
 
 ### 2.7. Uwierzytelnianie i role
 
-- **Pages CMS:** GitHub App; uprawnienia wynikają z dostępu do repo. Osobne
-  role redaktora nie istnieją — albo ktoś ma write do repo, albo nie.
-- **Sveltia/Decap:** OAuth przez GitHub; przy `editorial_workflow` zmiany
-  lądują na branchu i w PR, więc można rozdzielić „redaguje” od „zatwierdza”
-  przez uprawnienia GitHub teamów.
+- **Pages CMS:** GitHub App dla repo; redaktor loguje się kontem GitHub
+  **albo** dostaje zaproszenie e-mailem jako „collaborator”. Collaborator
+  edytuje treść i media, ale nie zmienia `.pages.yml` ani listy
+  współpracowników; granularne uprawnienia są zapowiedziane, jeszcze ich nie ma.
+- **Sveltia/Decap:** OAuth przez GitHub (lub GitLab); przy `editorial_workflow`
+  zmiany lądują na branchu i w PR, więc można rozdzielić „redaguje” od
+  „zatwierdza” przez uprawnienia GitHub teamów.
 - **Keystatic:** GitHub App + write access; ewentualnie Keystatic Cloud.
-- W każdym wariancie redaktor potrzebuje konta GitHub. Jeśli to przeszkoda,
-  wariant A odpada i trzeba iść w B lub C (logowanie e-mail).
+- **TinaCMS + TinaCloud:** konto GitHub potrzebuje tylko osoba, która podłącza
+  repozytorium; redaktorzy zakładają konto TinaCloud e-mailem.
+- **CloudCannon:** redaktorzy mają konta CloudCannon i role w organizacji;
+  konto GitHub (lub GitLab/Bitbucket) potrzebne jest tylko do podłączenia repo.
 
-### 2.8. Koszt i nakład
+Jeśli brak konta GitHub jest warunkiem twardym, nie trzeba od razu porzucać
+wariantu A — patrz §2.8.
+
+### 2.8. Wariant A bez konta GitHub
+
+Krótka odpowiedź: **da się, ale nie „bez żadnego konta”**. Git-based CMS musi
+wiedzieć, kto zapisuje zmiany, więc redaktor zawsze ma *jakieś* konto
+(GitHub, GitLab, Gitea, TinaCloud, CloudCannon, e-mail w Pages CMS). Da się
+natomiast usunąć **konto GitHub** z równania.
+
+| Droga | Kto się loguje | Repo / hosting | Koszt i ops | Ocena |
+|---|---|---|---|---|
+| **Pages CMS (collaborator)** | redaktor: zaproszenie e-mail; właściciel repo: GitHub tylko do instalacji App | repo GitHub, build GitHub Pages bez zmian | **0 zł**, hosted lub self-host | **najprostsze „A bez GitHub”**; brak granularnych uprawnień |
+| **TinaCMS + TinaCloud** | redaktor: e-mail w TinaCloud; właściciel repo: GitHub tylko do podłączenia | repo GitHub, build GitHub Pages bez zmian | darmowy plan 2 użytkowników; płatny od ok. 24 USD/projekt/mies. | Git-backed, podgląd wizualny, bez GitHub dla redakcji |
+| **CloudCannon** | redaktor: konto CloudCannon (e-mail/SSO) | repo GitHub/GitLab/Bitbucket; hosting strony bez zmian | od ok. 55 USD/mies. za 3 użytkowników | dojrzały, ale drogi dla jednej osoby |
+| **GitLab zamiast GitHub** | redaktor: konto GitLab | repo GitLab; build i hosting trzeba przenieść na GitLab Pages albo mirrorować do GitHub | 0 zł + migracja CI | sensowne, jeśli GitLab i tak jest używany |
+| **Gitea/Forgejo (self-hosted)** | redaktor: konto na Waszym serwerze | repo Gitea; mirror do GitHub lub build na Gitea | VPS + utrzymanie Gitei, OAuth, mirroru | tylko przy zapleczu admina |
+| **Decap + Git Gateway** | redaktor: e-mail przez Netlify Identity lub własny GoTrue | Git Gateway commituje botem do repo GitHub | Netlify Identity/Git Gateway są **przestarzałe**; własny Git Gateway + GoTrue to spory ops | nie dla nowego projektu |
+| **Arkusz/Issue + bot** | redaktor: konto Google/GitHub Issue | Action z tokenem bota commitami do repo | 0 zł, 1–2 dni | nie jest pełnym CMS-em, ale dla cen/godzin wystarcza |
+
+Szczegóły najważniejszych opcji:
+
+**Pages CMS (collaborator).** Repozytorium zostaje na GitHubie, build i hosting
+bez zmian. Właściciel instaluje GitHub App, a redaktorów zaprasza e-mailem;
+nie potrzebują konta GitHub. Collaborator edytuje treść i media, ale nie
+`.pages.yml` ani listę współpracowników. Commity wykonuje GitHub App, więc
+uprawnienia redaktora nie obejmują całego repo. Koszt: 0 zł. Minus: brak
+granularnych uprawnień „tylko cennik” (są zapowiedziane), a hosted wersja
+zależy od zewnętrznego serwisu.
+
+**TinaCMS + TinaCloud.** Repozytorium zostaje na GitHubie, build i hosting bez
+zmian. Redaktor dostaje zaproszenie do projektu TinaCloud i loguje się e-mailem;
+commity wykonuje aplikacja TinaCloud, opcjonalnie z co-autorem. Darmowy plan
+ma 2 użytkowników i 100 GB transferu, co dla Parysa zwykle wystarczy. Minus:
+Tina dokłada własny panel React i build `tinacms build` przed `astro build`;
+TinaCloud obsługuje dziś wyłącznie repozytoria GitHub. To wciąż wariant A
+(commit do repo), tylko z tożsamością po stronie TinaCloud.
+
+Praktyczna uwaga: Tina powinna być zainicjalizowana w rootcie repo, bo treść
+leży w `0-content/` poza `1-web/`. Build trzeba oprzeć o
+`tinacms build -c "cd 1-web && npm run build"` (albo równoważny skrypt), a panel
+generować do `1-web/7-public/admin`. Publiczne strony nie dostają JS Tiny —
+bundel Reacta ładuje się tylko na `/admin`. To odróżnia TinaCMS od Pages CMS,
+który nie wymaga zmian w buildzie.
+
+**CloudCannon.** Redaktorzy logują się do CloudCannon, nie do GitHuba; repo
+podłącza administrator. Dostajecie visual editing, role i workflow gałęzi.
+Koszt jest jednak stały i wysoki jak na jedną stronę — ok. 55 USD/mies. za
+3 użytkowników.
+
+**Inny Git provider.** Sveltia obsługuje GitHub, GitLab i Gitea/Forgejo; Decap
+dodatkowo Bitbucket. Redaktor ma konto GitLaba/Gitei, nie GitHuba. Jeśli
+zostajecie na GitHub Pages, trzeba mirrorować repo lub przenieść deploy do
+GitLab Pages; to dodatkowy ruchomy element, ale bez abonamentu.
+
+**Git Gateway.** Decap potrafi commitować przez Git Gateway, więc redaktor
+loguje się e-mailem, a nie GitHubem. Problem: Netlify Identity i Git Gateway
+zostały uznane za przestarzałe, a Sveltia w ogóle ich nie wspiera. Własny
+Git Gateway + GoTrue jest możliwy, ale to już mini-infrastruktura i ryzyko
+bezpieczeństwa. Dla Parysa odradzam.
+
+**Arkusz/Issue + bot.** Właściciel wypełnia arkusz Google albo Issue, a GitHub
+Action z tokenem bota generuje commit. Konto GitHub ma tylko bot. To najtańsze
+„bez GitHub”, ale nie jest to CMS: brak podglądu, media osobno, łatwo zepsuć
+strukturę.
+
+**Wniosek:** jeśli redakcja ma nie mieć konta GitHub, a budżet ma być zerowy,
+najlepszy kompromis to **Pages CMS z zaproszeniami e-mail** (0 zł, bez zmian
+w buildzie). Jeśli potrzebny jest podgląd wizualny — **TinaCloud** (darmowe
+2 konta). CloudCannon jest lepszy funkcjonalnie, ale kosztuje więcej niż cały
+obecny hosting. Arkusz + bot zostaje jako etap przejściowy.
+
+### 2.9. Koszt i nakład
 
 | Element | Koszt |
 |---|---|
-| CMS (Pages CMS / Sveltia / Decap) | 0 zł |
+| CMS Git (Pages CMS / Sveltia / Decap) | 0 zł |
+| TinaCMS + TinaCloud | 0 zł do 2 użytkowników; płatne od ok. 24 USD/projekt/mies. |
+| CloudCannon | od ok. 55 USD/mies. za 3 użytkowników |
 | OAuth proxy (Sveltia/Decap) | 0 zł w darmowym planie Workera/Netlify |
 | Hosting strony | bez zmian (GitHub Pages) |
-| Wdrożenie | ok. 4–7 dni: ekstrakcja danych, codegen, schemat, testy, instrukcja |
+| Wdrożenie | ok. 4–7 dni: ekstrakcja danych, codegen, schemat, testy, instrukcja; Tina +1–2 dni |
 | Utrzymanie | niskie; aktualizacje CMS-a i pilnowanie, żeby nie zniknął hosting OAuth |
+
+### 2.10. Opcje z kontem GitHub — ściąga
+
+To warianty, w których redaktor loguje się kontem GitHub i CMS zapisuje zmiany
+do repozytorium. Wszystkie mieszczą się w wariancie A (commit do repo → CI →
+GitHub Pages), różnią się sposobem logowania, wygodą i tym, czy wymagają zmian
+w buildzie. Pages CMS i TinaCloud obsługują też redaktorów bez GitHuba —
+takie warianty opisuje §2.8.
+
+| Narzędzie | Logowanie redaktora | GitHub Pages | Role / workflow | Koszt | Kiedy wybrać |
+|---|---|---|---|---|---|
+| **Pages CMS** | GitHub App: konto GitHub **lub** zaproszenie e-mail | tak, bez zmian w buildzie | collaboratorzy bez zarządzania configiem; brak granularnych uprawnień | 0 zł | najmniej pracy, także bez GitHuba |
+| **Sveltia CMS** | GitHub OAuth (własny Worker) | tak, statyczny `/admin` | branch/PR, editorial workflow | 0 zł + Worker | najlepszy UX, mobilność, wiele języków |
+| **Decap CMS** | GitHub OAuth (proxy) | tak, statyczny `/admin` | editorial workflow, PR, role przez GitHub | 0 zł + proxy | potrzebne zatwierdzanie zmian przez PR |
+| **Keystatic** | GitHub App | **nie w trybie GitHub** — wymaga Node.js | branch prefix, GitHub App | 0 zł / Cloud | tylko jeśli hosting przejdzie na Node/Cloudflare |
+| **TinaCloud** | GitHub **lub** e-mail | tak | role w TinaCloud | 0 zł do 2 użytkowników | gdy część osób woli GitHub, część e-mail |
+| **GitHub Web / Codespaces** | konto GitHub | tak | uprawnienia repo | 0 zł | dla programisty, nie dla redaktora |
+
+**Pages CMS.** Najkrótsza droga: instalujesz GitHub App, dodajesz `.pages.yml`
+i redaktor pracuje w formularzach — z kontem GitHub albo z zaproszeniem
+e-mailem. Nie ma własnego OAuth ani serwera. Minus: collaboratorzy nie mają
+granularnych uprawnień „tylko cennik” (są zapowiedziane), a GitHub App prosi
+o szeroki zakres (m.in. Actions). Jeśli to akceptowalne, to najlepszy stosunek
+efektu do pracy.
+
+**Sveltia CMS.** Redaktor loguje się przez GitHub OAuth, ale OAuth musi
+obsłużyć proxy (np. `sveltia-cms-auth` na Cloudflare Workerze). Dostajesz
+nowoczesny interfejs, drag-and-drop mediów i editorial workflow (gałęzie/PR).
+To nadal statyczny `/admin`, więc GitHub Pages wystarcza. Minus: dodatkowy
+Worker do utrzymania i beta.
+
+**Decap CMS.** Ten sam model co Sveltia, bardziej dojrzały, z editorial
+workflow. Jeśli zależy Wam na PR-ach i zatwierdzaniu przed publikacją, to
+najbezpieczniejszy wybór. Minus: starszy UI i wolniejszy rozwój.
+
+**Keystatic.** Najlepszy DX i typowanie formularzy, ale tryb GitHub wymaga
+hosta Node.js na API routes. Na czystym GitHub Pages nie zadziała; trzeba
+zmienić hosting albo użyć Keystatic Cloud. Nie polecam, dopóki hosting się
+nie zmieni.
+
+**TinaCloud.** Pozwala łączyć logowanie GitHub i e-mail w jednym projekcie.
+Jeśli właściciel ma GitHub, a recepcja nie — to wygodny kompromis. Commity
+wykonuje aplikacja TinaCloud, więc uprawnienia redaktora nie muszą obejmować
+całego repo.
+
+### 2.11. Checklista wdrożenia z kontem GitHub
+
+1. **Uprawnienia:** GitHub App / OAuth tylko z `contents: read/write`
+   i `metadata: read`; unikać `administration` i `actions`, jeśli narzędzie
+   tego nie wymaga. Pages CMS niestety wymaga szerszego zakresu.
+2. **Konta:** przy CMS z GitHubem redaktor dostaje `write` do repo (lub teamu);
+   przy Pages CMS collaborator dostaje zaproszenie e-mail i nie potrzebuje
+   `write`. Włącz 2FA osobom z GitHubem; po zakończeniu współpracy odbierz
+   dostęp (i usuń collaboratora w Pages CMS).
+3. **Gałąź:** zdecyduj, czy CMS commituje bezpośrednio do `main`, czy do
+   `cms/*` i otwiera PR. Przy bezpośrednim commicie branch protection może
+   blokować zapis — wtedy albo wyjątek dla GitHub App, albo workflow PR.
+4. **OAuth:** callback URL musi wskazywać na wdrożony Worker; sekrety
+   (client secret) trzymaj w Workerze, nie w repo. Dla Sveltii/Decap nie
+   commituj `config.yml` z sekretami — tam ich nie ma, ale nie dodawaj ich
+   „na skróty”.
+5. **CMS:** klucze encji nieedytowalne, `alt` wymagany, media w jednym
+   katalogu, kolekcje tylko dla danych biznesowych (nie dla layoutu).
+6. **Bezpieczeństwo:** `/admin` oznacz `noindex` i dodaj do `robots.txt`
+   (to higiena, nie zabezpieczenie); nie polegaj na ukryciu adresu.
+7. **Test:** dodaj drugie konto testowe z `write`, sprawdź, że nie widzi
+   ustawień repo i że po odebraniu dostępu nie może się zalogować.
+8. **CI:** `cms:check` (wygenerowany model == commit), `astro check`,
+   build strony i `1-printables`; dopiero potem deploy.
+
+**Rekomendacja:** przy obecnym hostingu i jednym redaktorze —
+**Pages CMS** (najmniej ruchomych części) albo **Sveltia** (lepszy UX, jeśli
+możesz utrzymać Worker OAuth). Jeśli potrzebne jest zatwierdzanie przez PR —
+**Sveltia z editorial workflow** lub **Decap**. Keystatic dopiero po zmianie
+hostingu.
 
 ---
 
@@ -299,7 +457,8 @@ commicie/PR, a deploy działa jak dziś.
 
 Gdy spełnione są co najmniej dwa warunki:
 
-- redaktorzy nie mają i nie chcą mieć konta GitHub,
+- redaktorzy nie chcą konta GitHub, a TinaCloud/CloudCannon nie wystarcza
+  (za mało miejsc, potrzebne role i workflow redakcyjny),
 - treść zmienia się co tydzień lub częściej,
 - potrzebny jest podgląd „jak będzie wyglądać” przed publikacją,
 - są role i odpowiedzialność za publikację,
@@ -354,11 +513,11 @@ cen, a CMS do zdjęć i opisów.
 | Kryterium | A. Git CMS | B. SaaS API | C. Self-hosted | D. Arkusz/Issue |
 |---|---|---|---|---|
 | Gdzie treść | repo (JSON/YAML) | baza dostawcy | własna baza | arkusz/Issue |
-| Kto edytuje | konto GitHub | e-mail + rola | e-mail + rola | konto Google/GitHub |
-| Podgląd wizualny | brak / osobny hosting | zwykle tak (preview) | tak | brak |
-| Role i workflow | GitHub (PR) | wbudowane | wbudowane | ograniczone |
-| Media | repo + pipeline | CDN dostawcy | własny storage | ręcznie |
-| Koszt miesięczny | 0 zł | 0–150 zł | 20–60 zł + ops | 0 zł |
+| Kto edytuje | konto GitHub lub e-mail (Pages CMS, TinaCloud, CloudCannon) | e-mail + rola | e-mail + rola | konto Google/GitHub |
+| Podgląd wizualny | brak / TinaCloud / CloudCannon | zwykle tak (preview) | tak | brak |
+| Role i workflow | GitHub (PR), TinaCloud, CloudCannon | wbudowane | wbudowane | ograniczone |
+| Media | repo + pipeline (TinaCloud: CDN) | CDN dostawcy | własny storage | ręcznie |
+| Koszt miesięczny | 0 zł lub 24–55 USD | 0–150 zł | 20–60 zł + ops | 0 zł |
 | Wpływ na GitHub Pages | brak | brak (build pobiera snapshot) | brak | brak |
 | Czas wdrożenia | 4–7 dni | 7–12 dni | 7–15 dni | 1–2 dni |
 | Lock-in | bardzo mały | średni | mały | średni (arkusz) |
@@ -373,9 +532,11 @@ cen, a CMS do zdjęć i opisów.
 
 Najlepszy stosunek zysku do kosztu i ryzyka:
 
-- **CMS:** Pages CMS (najmniej pracy) albo Sveltia CMS (lepszy UX i
-  wielojęzyczny interfejs, ale trzeba postawić OAuth proxy). Wybór po
-  półdniowym teście na kopii repo.
+- **CMS:** Pages CMS (najmniej pracy; redaktor przez GitHub **albo**
+  zaproszenie e-mail) albo Sveltia CMS (lepszy UX i wielojęzyczny interfejs,
+  ale trzeba postawić OAuth proxy). Jeśli potrzebny podgląd wizualny —
+  TinaCMS + TinaCloud (2 konta e-mail w darmowym planie) albo CloudCannon
+  (konta CloudCannon, płatny). Wybór po półdniowym teście na kopii repo.
 - **Dane:** `0-content/` w rootcie, tablice z `key`, codegen do obecnych
   modułów `0-core/`.
 - **Walidacja:** Zod/JSON Schema w `tools/cms/` + `astro check` +
@@ -392,14 +553,18 @@ w runtime.
 
 ### 7.2. Kiedy wybrać B zamiast A
 
-Jeśli po rozmowie z właścicielem okaże się, że:
+Pages CMS (zaproszenia e-mail) i TinaCloud usuwają już główną przeszkodę
+wariantu A — brak konta GitHub u redaktora. Wariant B wybierzcie więc dopiero,
+gdy dodatkowo:
 
-- nikt nie chce konta GitHub,
-- zmiany będą co tydzień,
-- potrzebny jest podgląd „na żywo” i role,
+- potrzebne są role i workflow redakcyjny dla większej liczby osób,
+- redakcja ma układać sekcje strony, a nie tylko dane,
+- CMS ma być niezależny od GitHuba i commitów w repo,
+- zmiany będą co tydzień i potrzebny jest podgląd „na żywo”,
+- budżet pozwala na abonament i snapshot w repo.
 
-wtedy **Sanity** (albo Storyblok, jeśli redakcja ma układać sekcje) jest
-lepszym wyborem niż walczenie z OAuth i Git-em. Trzeba wtedy zaakceptować
+Wtedy **Sanity** (albo Storyblok, jeśli redakcja ma układać sekcje) jest
+lepszym wyborem niż dalsze rozbudowywanie Git CMS-a. Trzeba wtedy zaakceptować
 miesięczny koszt i snapshot w repo.
 
 ### 7.3. Czego nie robić
@@ -421,7 +586,8 @@ miesięczny koszt i snapshot w repo.
 
 ### Etap 0 — decyzje i pomiar (0,5 dnia)
 
-1. Wybrać edytora: Pages CMS vs Sveltia (test na kopii repo).
+1. Wybrać edytora: Pages CMS (konto GitHub lub e-mail) / Sveltia (konto
+   GitHub) vs TinaCloud / CloudCannon (konto e-mail); test na kopii repo.
 2. Ustalić zakres MVP i osobę odpowiedzialną za treść.
 3. Spisać zasady: klucze niezmienne, `alt` wymagany, kwoty w PLN, kolejność
    listy = kolejność w UI.
@@ -485,7 +651,8 @@ miesięczny koszt i snapshot w repo.
 
 1. **Kto będzie edytował** — właściciel, recepcja, agencja? Ile osób?
 2. **Jak często** zmieniają się ceny i godziny? Czy są promocje sezonowe?
-3. **Czy redaktor ma konto GitHub** i czy akceptuje logowanie przez GitHub?
+3. **Czy redaktor ma konto GitHub**, czy ma to być logowanie e-mailem
+   (TinaCloud/CloudCannon)?
 4. **Czy potrzebny jest podgląd wizualny** przed publikacją?
 5. **Jaki jest budżet miesięczny** — 0 zł, 50 zł, 200 zł?
 6. **Czy w planach są aktualności/blog** i nowe podstrony, czy tylko dane?
@@ -494,9 +661,11 @@ miesięczny koszt i snapshot w repo.
    uzasadniają wariant C?
 
 Jeśli odpowiedzi to „właściciel, kilka razy w roku, GitHub może być, podgląd
-nie jest konieczny, budżet 0 zł, tylko dane” — **wariant A jest oczywisty**.
-Jeśli „agencja, co tydzień, bez GitHuba, podgląd tak, budżet 100 zł” —
-**wariant B**.
+nie jest konieczny, budżet 0 zł, tylko dane” — **wariant A z Pages CMS lub
+Sveltii jest oczywisty**. Jeśli „bez GitHuba, ale konto e-mail może być” —
+**wariant A z Pages CMS (collaborator) lub TinaCloud** (darmowe 2 konta),
+ewentualnie arkusz + bot. Jeśli „agencja, co tydzień, wiele osób, role,
+podgląd, budżet 100 zł” — **wariant B**.
 
 ---
 
@@ -643,15 +812,39 @@ Dopiero potem `npm run check` i `npm run build`.
 
 ---
 
+## 13. Wdrożenie MVP (gałąź `cms/pages-cms`)
+
+Wdrożono wariant A z generowanym TS:
+
+- `0-content/*.json` — edytowalne dane: firma, cennik, strefy, zajęcia,
+  trenerzy, usługi, partnerzy, dodatki, wejście jednorazowe,
+- `.pages.yml` — konfiguracja Pages CMS (8 sekcji formularzy),
+- `tools/cms/generate.mjs` — walidacja i generator do `0-core/`,
+- `npm run cms:sync` / `npm run cms:check` w `1-web/`,
+- build strony i cennika synchronizuje `0-core` z `0-content`; workflow
+  **CMS sync** commituje wygenerowany model po zmianie w CMS.
+
+Poza MVP zostały: media (upload i bindingi), dokumenty prawne, marka, SEO,
+layout oraz granularne role redaktorów. Instrukcja redaktora:
+[`PAGES-CMS.md`](PAGES-CMS.md).
+
+---
+
 ## Źródła
 
 Dokumentacja narzędzi (stan na 2026-11-12; wersje, limity i cenniki należy
 sprawdzić przed wdrożeniem):
 
 - Pages CMS — wprowadzenie i konfiguracja: <https://pagescms.org/docs/>
+- Pages CMS — zaproszenia e-mail dla redaktorów bez GitHuba: <https://pagescms.org/docs/configuration/collaborators/>
+- Pages CMS — strona główna (darmowy, MIT): <https://pagescms.org/>
 - Pages CMS — GitHub App i uprawnienia: <https://pagescms.org/docs/guides/installing/github-app/>
 - Sveltia CMS — opis, licencja, ograniczenia: <https://sveltiacms.app/en/docs/intro>
 - Sveltia CMS — backend GitHub: <https://sveltiacms.app/en/docs/backends/github>
+- Sveltia CMS — obsługiwane backendy (GitHub/GitLab/Gitea; brak Git Gateway): <https://sveltiacms.app/en/docs/backends>
+- TinaCMS — FAQ: redaktor nie potrzebuje konta GitHub: <https://tina.io/docs/faq>
+- TinaCMS — cennik TinaCloud: <https://tina.io/pricing>
+- CloudCannon — cennik: <https://cloudcannon.com/pricing/>
 - Keystatic — tryb GitHub wymagający hosta Node.js: <https://keystatic.com/docs/github-mode>
 - Astro — przegląd integracji CMS: <https://docs.astro.build/en/guides/cms/>
 - Sanity — cennik i limity: <https://www.sanity.io/pricing>
