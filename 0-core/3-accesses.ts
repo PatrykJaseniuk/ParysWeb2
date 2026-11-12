@@ -11,6 +11,7 @@ export const accesses = {
   "acc-4-areas": {
     "slug": "4-strefy",
     "name": "4 strefy",
+    "featured": false,
     "areas": [
       "area-free-weights",
       "area-machines",
@@ -90,6 +91,7 @@ export const accesses = {
   "acc-4-areas-cross": {
     "slug": "4-strefy-plus-cross",
     "name": "4 strefy + zajęcia grupowe",
+    "featured": false,
     "areas": [
       "area-free-weights",
       "area-machines",
@@ -145,6 +147,7 @@ export const accesses = {
   "acc-5-areas": {
     "slug": "5-stref",
     "name": "5 stref",
+    "featured": false,
     "areas": [
       "area-free-weights",
       "area-machines",
@@ -210,6 +213,7 @@ export const accesses = {
   "acc-6-areas": {
     "slug": "6-stref-plus-zajecia",
     "name": "6 stref + zajęcia grupowe",
+    "featured": true,
     "areas": [
       "area-free-weights",
       "area-machines",
@@ -221,7 +225,6 @@ export const accesses = {
     "classes": [
       "class-cross-training"
     ],
-    "featured": true,
     "variants": [
       {
         "code": "monthly",
@@ -256,6 +259,7 @@ export const accesses = {
     "slug": "rollmasaz",
     "name": "Rollmasaż",
     "subtitle": "Tylko rollmasaż",
+    "featured": false,
     "areas": [
       "area-roll-massage"
     ],
