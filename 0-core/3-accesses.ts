@@ -11,7 +11,7 @@ export const accesses = {
   "acc-4-areas": {
     "slug": "4-strefy",
     "name": "4 strefy",
-    "featured": true,
+    "featured": false,
     "areas": [
       "area-free-weights",
       "area-machines",
