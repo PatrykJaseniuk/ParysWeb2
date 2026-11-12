@@ -49,14 +49,6 @@
       "short": "Rollmasaż i platforma wibrująca",
       "description": "Strefa z urządzeniem do rollmasażu i platformą wibrującą. Rollmasaż polega na masażu ciała za pomocą obracającego się bębna z drewnianymi rolkami. Platforma generuje drgania podczas wykonywania ćwiczeń.",
       "calendar": "cal-rollmassage"
-    },
-    {
-      "key": "area-pingpong",
-      "order": 7,
-      "slug": "pingpong",
-      "name": "Pingpong",
-      "short": "Pingpong",
-      "description": "Sala do pingponga"
     }
   ]
 }
