@@ -43,12 +43,6 @@ export const areas = {
     "short": "Rollmasaż i platforma wibrująca",
     "description": "Strefa z urządzeniem do rollmasażu i platformą wibrującą. Rollmasaż polega na masażu ciała za pomocą obracającego się bębna z drewnianymi rolkami. Platforma generuje drgania podczas wykonywania ćwiczeń.",
     "calendar": "cal-rollmassage"
-  },
-  "area-pingpong": {
-    "slug": "pingpong",
-    "name": "Pingpong",
-    "short": "Pingpong",
-    "description": "Sala do pingponga"
   }
 } satisfies Record<string, Area<CalendarKey>>;
 
