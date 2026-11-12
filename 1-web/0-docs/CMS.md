@@ -1,8 +1,7 @@
 # CMS dla Parysa — warianty integracji, koszty i rekomendacja
 
-**Data:** 2026-11-12 · **Status:** analiza; MVP wariantu A wdrożony na
-gałęzi `cms/pages-cms` — instrukcja redaktora:
-[`PAGES-CMS.md`](PAGES-CMS.md)
+**Data:** 2026-11-12 · **Status:** analiza; MVP wariantu A wdrożony na `main`
+— instrukcja redaktora: [`PAGES-CMS.md`](PAGES-CMS.md)
 **Zakres:** sposoby dołączenia CMS-a do obecnego modelu (`0-core/`) i strony
 (`1-web/`), bez zmiany publicznego adresu i bez utraty typu danych.
 
@@ -812,7 +811,7 @@ Dopiero potem `npm run check` i `npm run build`.
 
 ---
 
-## 13. Wdrożenie MVP (gałąź `cms/pages-cms`)
+## 13. Wdrożenie MVP (`main`)
 
 Wdrożono wariant A z generowanym TS:
 

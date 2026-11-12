@@ -1,6 +1,6 @@
 # Pages CMS — instrukcja redaktora
 
-**Status:** MVP na gałęzi `cms/pages-cms` · **Zakres:** cennik, firma/kontakt,
+**Status:** MVP wdrożony na `main` · **Zakres:** cennik, firma/kontakt,
 strefy, trenerzy, zajęcia, usługi, partnerzy, dodatki, wejście jednorazowe.
 
 CMS edytuje pliki `0-content/*.json`. Z nich generator tworzy typowany model
