@@ -34,15 +34,21 @@ export const areas = {
     "slug": "sala-cross",
     "name": "Sala cross",
     "short": "Trening cross, kalistenika i sztuki walki",
-    "calendar": "cal-room-availability",
-    "description": "Sala o wysokości 7 m do treningu cross, kalisteniki i sztuk walki. Znajdziesz tu konstrukcję z drążkami, poręczami, kółkami i taśmami TRX, a także rowery airbike, narciarze, odważniki kettlebell, piłki lekarskie, skrzynie i gumy oporowe. Gumowana podłoga oraz rozkładana mata umożliwiają trening funkcjonalny i ćwiczenia sztuk walki."
+    "description": "Sala o wysokości 7 m do treningu cross, kalisteniki i sztuk walki. Znajdziesz tu konstrukcję z drążkami, poręczami, kółkami i taśmami TRX, a także rowery airbike, narciarze, odważniki kettlebell, piłki lekarskie, skrzynie i gumy oporowe. Gumowana podłoga oraz rozkładana mata umożliwiają trening funkcjonalny i ćwiczenia sztuk walki.",
+    "calendar": "cal-room-availability"
   },
   "area-roll-massage": {
     "slug": "rollmasaz-platforma-wibrujaca",
     "name": "Rollmasaż i platforma wibrująca",
     "short": "Rollmasaż i platforma wibrująca",
-    "calendar": "cal-rollmassage",
-    "description": "Strefa z urządzeniem do rollmasażu i platformą wibrującą. Rollmasaż polega na masażu ciała za pomocą obracającego się bębna z drewnianymi rolkami. Platforma generuje drgania podczas wykonywania ćwiczeń."
+    "description": "Strefa z urządzeniem do rollmasażu i platformą wibrującą. Rollmasaż polega na masażu ciała za pomocą obracającego się bębna z drewnianymi rolkami. Platforma generuje drgania podczas wykonywania ćwiczeń.",
+    "calendar": "cal-rollmassage"
+  },
+  "area-pingpong": {
+    "slug": "pingpong",
+    "name": "Pingpong",
+    "short": "Pingpong",
+    "description": "Sala do pingponga"
   }
 } satisfies Record<string, Area<CalendarKey>>;
 
